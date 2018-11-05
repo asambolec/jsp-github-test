@@ -44,40 +44,40 @@
 package chart.ui;
 
 /**
- * Represents the three options for adjusting a length:  expand, contract, and
- * no change.
+ * Represents the three options for adjusting a length: expand, contract, and no
+ * change.
  */
 public enum LengthAdjustmentType {
 
-    /** NO_CHANGE. */
-    NO_CHANGE("NO_CHANGE"),
+	/** NO_CHANGE. */
+	NO_CHANGE("NO_CHANGE"),
 
-    /** EXPAND. */
-    EXPAND("EXPAND"),
+	/** EXPAND. */
+	EXPAND("EXPAND"),
 
-    /** CONTRACT. */
-    CONTRACT("CONTRACT");
+	/** CONTRACT. */
+	CONTRACT("CONTRACT");
 
-    /** The name. */
-    private String name;
+	/** The name. */
+	private String name;
 
-    /**
-     * Private constructor.
-     *
-     * @param name  the name.
-     */
-    private LengthAdjustmentType(final String name) {
-        this.name = name;
-    }
+	/**
+	 * Private constructor.
+	 *
+	 * @param name the name.
+	 */
+	private LengthAdjustmentType(final String name) {
+		this.name = name;
+	}
 
-    /**
-     * Returns a string representing the object.
-     *
-     * @return The string.
-     */
-    @Override
-    public String toString() {
-        return this.name;
-    }
+	/**
+	 * Returns a string representing the object.
+	 *
+	 * @return The string.
+	 */
+	@Override
+	public String toString() {
+		return this.name;
+	}
 
 }

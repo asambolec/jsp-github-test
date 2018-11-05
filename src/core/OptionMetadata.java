@@ -48,8 +48,8 @@ public @interface OptionMetadata {
 	String displayName();
 
 	/**
-	 * Description of this parameter. Displayed as a tool tip and help in the
-	 * GUI, and on the command line.
+	 * Description of this parameter. Displayed as a tool tip and help in the GUI,
+	 * and on the command line.
 	 *
 	 * @return the description text of this parameter
 	 */
@@ -57,17 +57,16 @@ public @interface OptionMetadata {
 
 	/**
 	 * The order (low to high), relative to other parameters, that this property
-	 * should be displayed in the GUI and, if applicable, on the command line
-	 * help
+	 * should be displayed in the GUI and, if applicable, on the command line help
 	 *
 	 * @return the order (default 100)
 	 */
 	int displayOrder() default 100;
 
 	/**
-	 * The name of the command line version of this parameter (without leading
-	 * -). If this parameter is not a command line one, then just leave at the
-	 * default empty string.
+	 * The name of the command line version of this parameter (without leading -).
+	 * If this parameter is not a command line one, then just leave at the default
+	 * empty string.
 	 *
 	 * @return the name of the command line version of this parameter
 	 */
@@ -82,9 +81,9 @@ public @interface OptionMetadata {
 	boolean commandLineParamIsFlag() default false;
 
 	/**
-	 * The synopsis to display on in the command line help for this parameter
-	 * (e.g. -Z <integer>). If this parameter is not a command line one, then
-	 * just leave at the default empty string.
+	 * The synopsis to display on in the command line help for this parameter (e.g.
+	 * -Z <integer>). If this parameter is not a command line one, then just leave
+	 * at the default empty string.
 	 *
 	 * @return the command line synopsis for this parameter
 	 */

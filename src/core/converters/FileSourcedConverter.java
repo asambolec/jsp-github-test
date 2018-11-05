@@ -55,10 +55,8 @@ public interface FileSourcedConverter {
 	/**
 	 * Set the file to load from/ to save in
 	 *
-	 * @param file
-	 *            the file to load from
-	 * @exception IOException
-	 *                if an error occurs
+	 * @param file the file to load from
+	 * @exception IOException if an error occurs
 	 */
 	public void setFile(File file) throws IOException;
 
@@ -72,8 +70,7 @@ public interface FileSourcedConverter {
 	/**
 	 * Set whether to use relative rather than absolute paths
 	 *
-	 * @param rp
-	 *            true if relative paths are to be used
+	 * @param rp true if relative paths are to be used
 	 */
 	public void setUseRelativePath(boolean rp);
 

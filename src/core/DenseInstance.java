@@ -73,16 +73,15 @@ public class DenseInstance extends AbstractInstance {
 	static final long serialVersionUID = 1482635194499365122L;
 
 	/**
-	 * Constructor that copies the attribute values and the weight from the
-	 * given instance. It does NOT perform a deep copy of the attribute values
-	 * if the instance provided is also of type DenseInstance (it simply copies
-	 * the reference to the array of values), otherwise it does. Reference to
-	 * the dataset is set to null. (ie. the instance doesn't have access to
-	 * information about the attribute types)
+	 * Constructor that copies the attribute values and the weight from the given
+	 * instance. It does NOT perform a deep copy of the attribute values if the
+	 * instance provided is also of type DenseInstance (it simply copies the
+	 * reference to the array of values), otherwise it does. Reference to the
+	 * dataset is set to null. (ie. the instance doesn't have access to information
+	 * about the attribute types)
 	 * 
-	 * @param instance
-	 *            the instance from which the attribute values and the weight
-	 *            are to be copied
+	 * @param instance the instance from which the attribute values and the weight
+	 *                 are to be copied
 	 */
 	// @ ensures m_Dataset == null;
 	public DenseInstance(/* @non_null@ */Instance instance) {
@@ -97,14 +96,12 @@ public class DenseInstance extends AbstractInstance {
 	}
 
 	/**
-	 * Constructor that inititalizes instance variable with given values.
-	 * Reference to the dataset is set to null. (ie. the instance doesn't have
-	 * access to information about the attribute types)
+	 * Constructor that inititalizes instance variable with given values. Reference
+	 * to the dataset is set to null. (ie. the instance doesn't have access to
+	 * information about the attribute types)
 	 * 
-	 * @param weight
-	 *            the instance's weight
-	 * @param attValues
-	 *            a vector of attribute values
+	 * @param weight    the instance's weight
+	 * @param attValues a vector of attribute values
 	 */
 	// @ ensures m_Dataset == null;
 	public DenseInstance(double weight, /* @non_null@ */double[] attValues) {
@@ -115,12 +112,11 @@ public class DenseInstance extends AbstractInstance {
 	}
 
 	/**
-	 * Constructor of an instance that sets weight to one, all values to be
-	 * missing, and the reference to the dataset to null. (ie. the instance
-	 * doesn't have access to information about the attribute types)
+	 * Constructor of an instance that sets weight to one, all values to be missing,
+	 * and the reference to the dataset to null. (ie. the instance doesn't have
+	 * access to information about the attribute types)
 	 * 
-	 * @param numAttributes
-	 *            the size of the instance
+	 * @param numAttributes the size of the instance
 	 */
 	// @ requires numAttributes > 0; // Or maybe == 0 is okay too?
 	// @ ensures m_Dataset == null;
@@ -136,8 +132,8 @@ public class DenseInstance extends AbstractInstance {
 
 	/**
 	 * Produces a shallow copy of this instance. The copy has access to the same
-	 * dataset. (if you want to make a copy that doesn't have access to the
-	 * dataset, use <code>new DenseInstance(instance)</code>
+	 * dataset. (if you want to make a copy that doesn't have access to the dataset,
+	 * use <code>new DenseInstance(instance)</code>
 	 * 
 	 * @return the shallow copy
 	 */
@@ -156,8 +152,7 @@ public class DenseInstance extends AbstractInstance {
 	 * Copies the instance but fills up its values based on the given array of
 	 * doubles. The copy has access to the same dataset.
 	 *
-	 * @param values
-	 *            the array with new values
+	 * @param values the array with new values
 	 * @return the new instance
 	 */
 	@Override
@@ -169,11 +164,10 @@ public class DenseInstance extends AbstractInstance {
 	}
 
 	/**
-	 * Returns the index of the attribute stored at the given position. Just
-	 * returns the given value.
+	 * Returns the index of the attribute stored at the given position. Just returns
+	 * the given value.
 	 * 
-	 * @param position
-	 *            the position
+	 * @param position the position
 	 * @return the index of the attribute stored at the given position
 	 */
 	@Override
@@ -183,12 +177,10 @@ public class DenseInstance extends AbstractInstance {
 	}
 
 	/**
-	 * Merges this instance with the given instance and returns the result.
-	 * Dataset is set to null. The returned instance is of the same type as this
-	 * instance.
+	 * Merges this instance with the given instance and returns the result. Dataset
+	 * is set to null. The returned instance is of the same type as this instance.
 	 * 
-	 * @param inst
-	 *            the instance to be merged with this one
+	 * @param inst the instance to be merged with this one
 	 * @return the merged instances
 	 */
 	@Override
@@ -230,14 +222,12 @@ public class DenseInstance extends AbstractInstance {
 	}
 
 	/**
-	 * Replaces all missing values in the instance with the values contained in
-	 * the given array. A deep copy of the vector of attribute values is
-	 * performed before the values are replaced.
+	 * Replaces all missing values in the instance with the values contained in the
+	 * given array. A deep copy of the vector of attribute values is performed
+	 * before the values are replaced.
 	 * 
-	 * @param array
-	 *            containing the means and modes
-	 * @throws IllegalArgumentException
-	 *             if numbers of attributes are unequal
+	 * @param array containing the means and modes
+	 * @throws IllegalArgumentException if numbers of attributes are unequal
 	 */
 	@Override
 	public void replaceMissingValues(double[] array) {
@@ -258,12 +248,10 @@ public class DenseInstance extends AbstractInstance {
 	 * floating-point format). Performs a deep copy of the vector of attribute
 	 * values before the value is set.
 	 * 
-	 * @param attIndex
-	 *            the attribute's index
-	 * @param value
-	 *            the new attribute value (If the corresponding attribute is
-	 *            nominal (or a string) then this is the new value's index as a
-	 *            double).
+	 * @param attIndex the attribute's index
+	 * @param value    the new attribute value (If the corresponding attribute is
+	 *                 nominal (or a string) then this is the new value's index as a
+	 *                 double).
 	 */
 	@Override
 	public void setValue(int attIndex, double value) {
@@ -275,15 +263,12 @@ public class DenseInstance extends AbstractInstance {
 	/**
 	 * Sets a specific value in the instance to the given value (internal
 	 * floating-point format). Performs a deep copy of the vector of attribute
-	 * values before the value is set. Does exactly the same thing as
-	 * setValue().
+	 * values before the value is set. Does exactly the same thing as setValue().
 	 * 
-	 * @param indexOfIndex
-	 *            the index of the attribute's index
-	 * @param value
-	 *            the new attribute value (If the corresponding attribute is
-	 *            nominal (or a string) then this is the new value's index as a
-	 *            double).
+	 * @param indexOfIndex the index of the attribute's index
+	 * @param value        the new attribute value (If the corresponding attribute
+	 *                     is nominal (or a string) then this is the new value's
+	 *                     index as a double).
 	 */
 	@Override
 	public void setValueSparse(int indexOfIndex, double value) {
@@ -311,8 +296,8 @@ public class DenseInstance extends AbstractInstance {
 	 * floating-point values. Quotes string values that contain whitespace
 	 * characters.
 	 * 
-	 * This method is used by getRandomNumberGenerator() in Instances.java in
-	 * order to maintain backwards compatibility with weka 3.4.
+	 * This method is used by getRandomNumberGenerator() in Instances.java in order
+	 * to maintain backwards compatibility with weka 3.4.
 	 * 
 	 * @return the instance's description as a string
 	 */
@@ -327,12 +312,11 @@ public class DenseInstance extends AbstractInstance {
 	 * floating-point values. Quotes string values that contain whitespace
 	 * characters.
 	 * 
-	 * This method is used by getRandomNumberGenerator() in Instances.java in
-	 * order to maintain backwards compatibility with weka 3.4.
+	 * This method is used by getRandomNumberGenerator() in Instances.java in order
+	 * to maintain backwards compatibility with weka 3.4.
 	 * 
-	 * @param afterDecimalPoint
-	 *            maximum number of digits after the decimal point for numeric
-	 *            values
+	 * @param afterDecimalPoint maximum number of digits after the decimal point for
+	 *                          numeric values
 	 * 
 	 * @return the instance's description as a string
 	 */
@@ -353,11 +337,9 @@ public class DenseInstance extends AbstractInstance {
 	/**
 	 * Returns an instance's attribute value in internal format.
 	 * 
-	 * @param attIndex
-	 *            the attribute's index
-	 * @return the specified value as a double (If the corresponding attribute
-	 *         is nominal (or a string) then it returns the value's index as a
-	 *         double).
+	 * @param attIndex the attribute's index
+	 * @return the specified value as a double (If the corresponding attribute is
+	 *         nominal (or a string) then it returns the value's index as a double).
 	 */
 	@Override
 	public/* @pure@ */double value(int attIndex) {
@@ -368,8 +350,7 @@ public class DenseInstance extends AbstractInstance {
 	/**
 	 * Deletes an attribute at the given position (0 to numAttributes() - 1).
 	 * 
-	 * @param position
-	 *            the attribute's position
+	 * @param position the attribute's position
 	 */
 	@Override
 	protected void forceDeleteAttributeAt(int position) {
@@ -384,11 +365,10 @@ public class DenseInstance extends AbstractInstance {
 	}
 
 	/**
-	 * Inserts an attribute at the given position (0 to numAttributes()) and
-	 * sets its value to be missing.
+	 * Inserts an attribute at the given position (0 to numAttributes()) and sets
+	 * its value to be missing.
 	 * 
-	 * @param position
-	 *            the attribute's position
+	 * @param position the attribute's position
 	 */
 	@Override
 	protected void forceInsertAttributeAt(int position) {
@@ -402,8 +382,7 @@ public class DenseInstance extends AbstractInstance {
 	}
 
 	/**
-	 * Clones the attribute vector of the instance and overwrites it with the
-	 * clone.
+	 * Clones the attribute vector of the instance and overwrites it with the clone.
 	 */
 	private void freshAttributeVector() {
 
@@ -413,8 +392,7 @@ public class DenseInstance extends AbstractInstance {
 	/**
 	 * Main method for testing this class.
 	 * 
-	 * @param options
-	 *            the commandline options - ignored
+	 * @param options the commandline options - ignored
 	 */
 	// @ requires options != null;
 	public static void main(String[] options) {
@@ -426,7 +404,7 @@ public class DenseInstance extends AbstractInstance {
 			Attribute weight = new Attribute("weight");
 
 			List<String> values = new ArrayList<>();
-			
+
 			// Create vector to hold nominal values "first", "second", "third"
 			ArrayList<String> my_nominal_values = new ArrayList<>(3);
 			my_nominal_values.add("first");
@@ -481,13 +459,10 @@ public class DenseInstance extends AbstractInstance {
 			// Print a shallow copy of this instance
 			Instance copy = (Instance) inst.copy();
 			System.out.println("Shallow copy: " + copy);
-			
+
 			my_nominal_values.add("five");
-			my_nominal_values.stream().map(o -> o.substring(0))
-			.forEach((String oString) -> 
-				values.add(oString)
-			);
-			
+			my_nominal_values.stream().map(o -> o.substring(0)).forEach((String oString) -> values.add(oString));
+
 			// Set dataset for shallow copy
 			copy.setDataset(inst.dataset());
 			System.out.println("Shallow copy with dataset set: " + copy);

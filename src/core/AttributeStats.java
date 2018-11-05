@@ -62,12 +62,9 @@ public class AttributeStats implements Serializable, RevisionHandler {
 	/**
 	 * Updates the counters for one more observed distinct value.
 	 *
-	 * @param value
-	 *            the value that has just been seen
-	 * @param count
-	 *            the number of times the value appeared
-	 * @param weight
-	 *            the weight mass of the value
+	 * @param value  the value that has just been seen
+	 * @param count  the number of times the value appeared
+	 * @param weight the weight mass of the value
 	 */
 	protected void addDistinct(double value, int count, double weight) {
 

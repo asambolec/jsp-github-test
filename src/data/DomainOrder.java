@@ -45,35 +45,35 @@ package data;
  */
 public enum DomainOrder {
 
-    /** No order. */
-    NONE("DomainOrder.NONE"),
+	/** No order. */
+	NONE("DomainOrder.NONE"),
 
-    /** Ascending order. */
-    ASCENDING("DomainOrder.ASCENDING"),
+	/** Ascending order. */
+	ASCENDING("DomainOrder.ASCENDING"),
 
-    /** Descending order. */
-    DESCENDING("DomainOrder.DESCENDING");
+	/** Descending order. */
+	DESCENDING("DomainOrder.DESCENDING");
 
-    /** The name. */
-    private String name;
+	/** The name. */
+	private String name;
 
-    /**
-     * Private constructor.
-     *
-     * @param name  the name.
-     */
-    private DomainOrder(String name) {
-        this.name = name;
-    }
+	/**
+	 * Private constructor.
+	 *
+	 * @param name the name.
+	 */
+	private DomainOrder(String name) {
+		this.name = name;
+	}
 
-    /**
-     * Returns a string representing the object.
-     *
-     * @return The string.
-     */
-    @Override
-    public String toString() {
-        return this.name;
-    }
+	/**
+	 * Returns a string representing the object.
+	 *
+	 * @return The string.
+	 */
+	@Override
+	public String toString() {
+		return this.name;
+	}
 
 }

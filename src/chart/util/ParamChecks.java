@@ -48,60 +48,58 @@ package chart.util;
  */
 public class ParamChecks {
 
-    /**
-     * Throws an <code>IllegalArgumentException</code> if the supplied
-     * <code>param</code> is <code>null</code>.
-     *
-     * @param param  the parameter to check (<code>null</code> permitted).
-     * @param name  the name of the parameter (to use in the exception message
-     *     if <code>param</code> is <code>null</code>).
-     *
-     * @throws IllegalArgumentException  if <code>param</code> is
-     *     <code>null</code>.
-     *
-     * @since 1.0.14
-     */
-    public static void nullNotPermitted(Object param, String name) {
-        if (param == null) {
-            throw new IllegalArgumentException("Null '" + name + "' argument.");
-        }
-    }
+	/**
+	 * Throws an <code>IllegalArgumentException</code> if the supplied
+	 * <code>param</code> is <code>null</code>.
+	 *
+	 * @param param the parameter to check (<code>null</code> permitted).
+	 * @param name  the name of the parameter (to use in the exception message if
+	 *              <code>param</code> is <code>null</code>).
+	 *
+	 * @throws IllegalArgumentException if <code>param</code> is <code>null</code>.
+	 *
+	 * @since 1.0.14
+	 */
+	public static void nullNotPermitted(Object param, String name) {
+		if (param == null) {
+			throw new IllegalArgumentException("Null '" + name + "' argument.");
+		}
+	}
 
-    /**
-     * Throws an {@code IllegalArgumentException} if param is not positive.
-     * 
-     * @param value  the value.
-     * @param name  the parameter name (to use in the exception message).
-     */
-    public static void requireNonNegative(int value, String name) {
-        if (value < 0) {
-            throw new IllegalArgumentException("Require '" + name + "' (" 
-                    + value + ") to be non-negative.");
-        }
-    }
-    
-    /**
-     * Throws an <code>IllegalArgumentException</code> if the supplied
-     * <code>value</code> is not in the range <code>lowerBound</code> to
-     * <code>upperBound</code> inclusive.
-     *
-     * @param value  the value to check.
-     * @param valueStr  the name of the parameter (to use in the exception
-     *     message).
-     * @param lowerBound  the lower bound.
-     * @param upperBound  the upper bound.
-     *
-     * @throws IllegalArgumentException  if the supplied <code>value</code> is
-     *     not in the range <code>lowerBound</code> to <code>upperBound</code>
-     *     inclusive.
-     *
-     * @since 1.0.15
-     */
-    public static void requireInRange(double value, String valueStr,
-            double lowerBound, double upperBound) {
-        if (value < lowerBound || value > upperBound || Double.isNaN(value)) {
-            throw new IllegalArgumentException("Requires '".concat(valueStr).concat("' in the range ").concat(String.valueOf(lowerBound)).concat(" to ").concat(String.valueOf(upperBound)));
-        }
-    }
+	/**
+	 * Throws an {@code IllegalArgumentException} if param is not positive.
+	 * 
+	 * @param value the value.
+	 * @param name  the parameter name (to use in the exception message).
+	 */
+	public static void requireNonNegative(int value, String name) {
+		if (value < 0) {
+			throw new IllegalArgumentException("Require '" + name + "' (" + value + ") to be non-negative.");
+		}
+	}
+
+	/**
+	 * Throws an <code>IllegalArgumentException</code> if the supplied
+	 * <code>value</code> is not in the range <code>lowerBound</code> to
+	 * <code>upperBound</code> inclusive.
+	 *
+	 * @param value      the value to check.
+	 * @param valueStr   the name of the parameter (to use in the exception
+	 *                   message).
+	 * @param lowerBound the lower bound.
+	 * @param upperBound the upper bound.
+	 *
+	 * @throws IllegalArgumentException if the supplied <code>value</code> is not in
+	 *                                  the range <code>lowerBound</code> to
+	 *                                  <code>upperBound</code> inclusive.
+	 *
+	 * @since 1.0.15
+	 */
+	public static void requireInRange(double value, String valueStr, double lowerBound, double upperBound) {
+		if (value < lowerBound || value > upperBound || Double.isNaN(value)) {
+			throw new IllegalArgumentException("Requires '".concat(valueStr).concat("' in the range ")
+					.concat(String.valueOf(lowerBound)).concat(" to ").concat(String.valueOf(upperBound)));
+		}
+	}
 
 }

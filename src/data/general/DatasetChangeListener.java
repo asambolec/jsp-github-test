@@ -52,11 +52,11 @@ import java.util.EventListener;
  */
 public interface DatasetChangeListener extends EventListener {
 
-    /**
-     * Receives notification of an dataset change event.
-     *
-     * @param event  information about the event.
-     */
-    public void datasetChanged(DatasetChangeEvent event);
+	/**
+	 * Receives notification of an dataset change event.
+	 *
+	 * @param event information about the event.
+	 */
+	public void datasetChanged(DatasetChangeEvent event);
 
 }

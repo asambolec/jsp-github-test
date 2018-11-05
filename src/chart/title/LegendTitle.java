@@ -115,13 +115,8 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	public static final Paint DEFAULT_ITEM_PAINT = Color.BLACK;
 
 	/** List of default parameters. */
-	private static final List<String> parameters = new ArrayList<String>(Arrays.asList(
-			"font",
-			"color",
-			"backgroundPaint",
-			"hLayout",
-			"vLayout"
-			));
+	private static final List<String> parameters = new ArrayList<>(
+			Arrays.asList("font", "color", "backgroundPaint", "hLayout", "vLayout"));
 
 	/** The background paint (possibly <code>null</code>). */
 	private transient Paint backgroundPaint;
@@ -147,14 +142,14 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	private BlockContainer items;
 
 	/**
-	 * The layout for the legend when it is positioned at the top or bottom of
-	 * the chart.
+	 * The layout for the legend when it is positioned at the top or bottom of the
+	 * chart.
 	 */
 	private Arrangement hLayout;
 
 	/**
-	 * The layout for the legend when it is positioned at the left or right of
-	 * the chart.
+	 * The layout for the legend when it is positioned at the left or right of the
+	 * chart.
 	 */
 	private Arrangement vLayout;
 
@@ -174,14 +169,11 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	/**
 	 * Creates a new legend title with the specified arrangement.
 	 *
-	 * @param source
-	 *            the source.
-	 * @param hLayout
-	 *            the horizontal item arrangement (<code>null</code> not
-	 *            permitted).
-	 * @param vLayout
-	 *            the vertical item arrangement (<code>null</code> not
-	 *            permitted).
+	 * @param source  the source.
+	 * @param hLayout the horizontal item arrangement (<code>null</code> not
+	 *                permitted).
+	 * @param vLayout the vertical item arrangement (<code>null</code> not
+	 *                permitted).
 	 */
 	public LegendTitle(Arrangement hLayout, Arrangement vLayout) {
 		this.items = new BlockContainer(hLayout);
@@ -206,11 +198,10 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	}
 
 	/**
-	 * Sets the background paint for the legend and sends a
-	 * {@link TitleChangeEvent} to all registered listeners.
+	 * Sets the background paint for the legend and sends a {@link TitleChangeEvent}
+	 * to all registered listeners.
 	 *
-	 * @param paint
-	 *            the paint (<code>null</code> permitted).
+	 * @param paint the paint (<code>null</code> permitted).
 	 */
 	public void setBackgroundPaint(Paint paint) {
 		this.backgroundPaint = paint;
@@ -229,8 +220,7 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	/**
 	 * Sets the location of the shape within each legend item.
 	 *
-	 * @param edge
-	 *            the edge (<code>null</code> not permitted).
+	 * @param edge the edge (<code>null</code> not permitted).
 	 */
 	public void setLegendItemGraphicEdge(RectangleEdge edge) {
 		if (edge == null) {
@@ -250,11 +240,10 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	}
 
 	/**
-	 * Sets the padding that will be applied to each item graphic in the legend
-	 * and sends a {@link TitleChangeEvent} to all registered listeners.
+	 * Sets the padding that will be applied to each item graphic in the legend and
+	 * sends a {@link TitleChangeEvent} to all registered listeners.
 	 *
-	 * @param padding
-	 *            the padding (<code>null</code> not permitted).
+	 * @param padding the padding (<code>null</code> not permitted).
 	 */
 	public void setLegendItemGraphicPadding(RectangleInsets padding) {
 		if (padding == null) {
@@ -277,8 +266,7 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	 * Sets the item font and sends a {@link TitleChangeEvent} to all registered
 	 * listeners.
 	 *
-	 * @param font
-	 *            the font (<code>null</code> not permitted).
+	 * @param font the font (<code>null</code> not permitted).
 	 */
 	public void setItemFont(Font font) {
 		if (font == null) {
@@ -300,8 +288,7 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	/**
 	 * Sets the item paint.
 	 *
-	 * @param paint
-	 *            the paint (<code>null</code> not permitted).
+	 * @param paint the paint (<code>null</code> not permitted).
 	 */
 	public void setItemPaint(Paint paint) {
 		if (paint == null) {
@@ -323,8 +310,7 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	/**
 	 * Sets the padding used for the item labels in the legend.
 	 *
-	 * @param padding
-	 *            the padding (<code>null</code> not permitted).
+	 * @param padding the padding (<code>null</code> not permitted).
 	 */
 	public void setItemLabelPadding(RectangleInsets padding) {
 		if (padding == null) {
@@ -347,9 +333,8 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	/**
 	 * Sets the order used to display legend items.
 	 *
-	 * @param order
-	 *            Specifies ascending or descending order (<code>null</code> not
-	 *            permitted).
+	 * @param order Specifies ascending or descending order (<code>null</code> not
+	 *              permitted).
 	 * @since 1.0.15
 	 */
 	public void setSortOrder(SortOrder order) {
@@ -381,8 +366,7 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	/**
 	 * Creates a legend item block.
 	 *
-	 * @param item
-	 *            the legend item.
+	 * @param item the legend item.
 	 *
 	 * @return The block.
 	 */
@@ -406,9 +390,9 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 		if (textPaint == null) {
 			textPaint = this.itemPaint;
 		}
-		
+
 		result = new BlockContainer(null);
-		
+
 		return result;
 	}
 
@@ -422,13 +406,11 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	}
 
 	/**
-	 * Arranges the contents of the block, within the given constraints, and
-	 * returns the block size.
+	 * Arranges the contents of the block, within the given constraints, and returns
+	 * the block size.
 	 *
-	 * @param g2
-	 *            the graphics device.
-	 * @param constraint
-	 *            the constraint (<code>null</code> not permitted).
+	 * @param g2         the graphics device.
+	 * @param constraint the constraint (<code>null</code> not permitted).
 	 *
 	 * @return The block size (in Java2D units, never <code>null</code>).
 	 */
@@ -454,10 +436,8 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	 * Draws the title on a Java 2D graphics device (such as the screen or a
 	 * printer).
 	 *
-	 * @param g2
-	 *            the graphics device.
-	 * @param area
-	 *            the available area for the title.
+	 * @param g2   the graphics device.
+	 * @param area the available area for the title.
 	 */
 	@Override
 	public void draw(Graphics2D g2, Rectangle2D area) {
@@ -467,12 +447,9 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	/**
 	 * Draws the block within the specified area.
 	 *
-	 * @param g2
-	 *            the graphics device.
-	 * @param area
-	 *            the area.
-	 * @param params
-	 *            ignored (<code>null</code> permitted).
+	 * @param g2     the graphics device.
+	 * @param area   the area.
+	 * @param params ignored (<code>null</code> permitted).
 	 *
 	 * @return An {@link chart.block.EntityBlockResult} or <code>null</code>.
 	 */
@@ -521,8 +498,7 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	/**
 	 * Sets the wrapper container for the legend.
 	 *
-	 * @param wrapper
-	 *            the wrapper container.
+	 * @param wrapper the wrapper container.
 	 */
 	public void setWrapper(BlockContainer wrapper) {
 		this.wrapper = wrapper;
@@ -531,8 +507,7 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	/**
 	 * Tests this title for equality with an arbitrary object.
 	 *
-	 * @param obj
-	 *            the object (<code>null</code> permitted).
+	 * @param obj the object (<code>null</code> permitted).
 	 *
 	 * @return A boolean.
 	 */
@@ -572,11 +547,9 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	/**
 	 * Provides serialization support.
 	 *
-	 * @param stream
-	 *            the output stream.
+	 * @param stream the output stream.
 	 *
-	 * @throws IOException
-	 *             if there is an I/O error.
+	 * @throws IOException if there is an I/O error.
 	 */
 	private void writeObject(ObjectOutputStream stream) throws IOException {
 		stream.defaultWriteObject();
@@ -587,13 +560,10 @@ public class LegendTitle extends Title implements Cloneable, PublicCloneable, Se
 	/**
 	 * Provides serialization support.
 	 *
-	 * @param stream
-	 *            the input stream.
+	 * @param stream the input stream.
 	 *
-	 * @throws IOException
-	 *             if there is an I/O error.
-	 * @throws ClassNotFoundException
-	 *             if there is a classpath problem.
+	 * @throws IOException            if there is an I/O error.
+	 * @throws ClassNotFoundException if there is a classpath problem.
 	 */
 	private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
 		stream.defaultReadObject();

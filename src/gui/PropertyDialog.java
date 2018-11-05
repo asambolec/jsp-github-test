@@ -54,17 +54,13 @@ public class PropertyDialog extends JDialog {
 	/**
 	 * Creates the editor frame - only kept for backward-compatibility.
 	 *
-	 * @param pe
-	 *            the PropertyEditor
-	 * @param x
-	 *            initial x coord for the frame
-	 * @param y
-	 *            initial y coord for the frame
-	 * @deprecated instead of this constructor, one should use the constructors
-	 *             with an explicit owner (either derived from
-	 *             <code>java.awt.Dialog</code> or from
-	 *             <code>java.awt.Frame</code>) or, if none available, using
-	 *             <code>(Frame) null</code> as owner.
+	 * @param pe the PropertyEditor
+	 * @param x  initial x coord for the frame
+	 * @param y  initial y coord for the frame
+	 * @deprecated instead of this constructor, one should use the constructors with
+	 *             an explicit owner (either derived from
+	 *             <code>java.awt.Dialog</code> or from <code>java.awt.Frame</code>)
+	 *             or, if none available, using <code>(Frame) null</code> as owner.
 	 */
 	public PropertyDialog(PropertyEditor pe, int x, int y) {
 		this((Frame) null, pe, x, y);
@@ -75,27 +71,21 @@ public class PropertyDialog extends JDialog {
 	 * Creates the (screen-centered) editor dialog. The dialog is automatically
 	 * modal in case the owner is non-null.
 	 *
-	 * @param owner
-	 *            the dialog that opens this dialog
-	 * @param pe
-	 *            the PropertyEditor
+	 * @param owner the dialog that opens this dialog
+	 * @param pe    the PropertyEditor
 	 */
 	public PropertyDialog(Dialog owner, PropertyEditor pe) {
 		this(owner, pe, -1, -1);
 	}
 
 	/**
-	 * Creates the editor dialog at the given position. The dialog is
-	 * automatically modal in case the owner is non-null.
+	 * Creates the editor dialog at the given position. The dialog is automatically
+	 * modal in case the owner is non-null.
 	 *
-	 * @param owner
-	 *            the dialog that opens this dialog
-	 * @param pe
-	 *            the PropertyEditor
-	 * @param x
-	 *            initial x coord for the dialog
-	 * @param y
-	 *            initial y coord for the dialog
+	 * @param owner the dialog that opens this dialog
+	 * @param pe    the PropertyEditor
+	 * @param x     initial x coord for the dialog
+	 * @param y     initial y coord for the dialog
 	 */
 	public PropertyDialog(Dialog owner, PropertyEditor pe, int x, int y) {
 		super(owner, pe.getClass().getName(), ModalityType.DOCUMENT_MODAL);
@@ -106,27 +96,21 @@ public class PropertyDialog extends JDialog {
 	 * Creates the (screen-centered) editor dialog. The dialog is automatically
 	 * modal in case the owner is non-null.
 	 *
-	 * @param owner
-	 *            the frame that opens this dialog
-	 * @param pe
-	 *            the PropertyEditor
+	 * @param owner the frame that opens this dialog
+	 * @param pe    the PropertyEditor
 	 */
 	public PropertyDialog(Frame owner, PropertyEditor pe) {
 		this(owner, pe, -1, -1);
 	}
 
 	/**
-	 * Creates the editor dialog at the given position. The dialog is
-	 * automatically modal in case the owner is non-null.
+	 * Creates the editor dialog at the given position. The dialog is automatically
+	 * modal in case the owner is non-null.
 	 *
-	 * @param owner
-	 *            the frame that opens this dialog
-	 * @param pe
-	 *            the PropertyEditor
-	 * @param x
-	 *            initial x coord for the dialog
-	 * @param y
-	 *            initial y coord for the dialog
+	 * @param owner the frame that opens this dialog
+	 * @param pe    the PropertyEditor
+	 * @param x     initial x coord for the dialog
+	 * @param y     initial y coord for the dialog
 	 */
 	public PropertyDialog(Frame owner, PropertyEditor pe, int x, int y) {
 		super(owner, pe.getClass().getName(), ModalityType.DOCUMENT_MODAL);
@@ -137,12 +121,9 @@ public class PropertyDialog extends JDialog {
 	/**
 	 * Initializes the dialog.
 	 *
-	 * @param pe
-	 *            the PropertyEditor
-	 * @param x
-	 *            initial x coord for the dialog
-	 * @param y
-	 *            initial y coord for the dialog
+	 * @param pe the PropertyEditor
+	 * @param x  initial x coord for the dialog
+	 * @param y  initial y coord for the dialog
 	 */
 	protected void initialize(PropertyEditor pe, int x, int y) {
 		addWindowListener(new WindowAdapter() {
@@ -193,8 +174,7 @@ public class PropertyDialog extends JDialog {
 	/**
 	 * Tries to determine the frame this panel is part of.
 	 * 
-	 * @param c
-	 *            the container to start with
+	 * @param c the container to start with
 	 * @return the parent frame if one exists or null if not
 	 */
 	public static Frame getParentFrame(Container c) {
@@ -219,8 +199,7 @@ public class PropertyDialog extends JDialog {
 	/**
 	 * Tries to determine the internal frame this panel is part of.
 	 * 
-	 * @param c
-	 *            the container to start with
+	 * @param c the container to start with
 	 * @return the parent internal frame if one exists or null if not
 	 */
 	public static JInternalFrame getParentInternalFrame(Container c) {
@@ -245,8 +224,7 @@ public class PropertyDialog extends JDialog {
 	/**
 	 * Tries to determine the dialog this panel is part of.
 	 * 
-	 * @param c
-	 *            the container to start with
+	 * @param c the container to start with
 	 * @return the parent dialog if one exists or null if not
 	 */
 	public static Dialog getParentDialog(Container c) {

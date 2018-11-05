@@ -47,53 +47,53 @@ package chart.plot;
  */
 public enum PlotOrientation {
 
-   /** For a plot where the range axis is horizontal. */
-    HORIZONTAL("PlotOrientation.HORIZONTAL"),
+	/** For a plot where the range axis is horizontal. */
+	HORIZONTAL("PlotOrientation.HORIZONTAL"),
 
-    /** For a plot where the range axis is vertical. */
-    VERTICAL("PlotOrientation.VERTICAL");
+	/** For a plot where the range axis is vertical. */
+	VERTICAL("PlotOrientation.VERTICAL");
 
-    /** The name. */
-    private String name;
+	/** The name. */
+	private String name;
 
-    /**
-     * Private constructor.
-     *
-     * @param name  the name.
-     */
-    private PlotOrientation(String name) {
-        this.name = name;
-    }
+	/**
+	 * Private constructor.
+	 *
+	 * @param name the name.
+	 */
+	private PlotOrientation(String name) {
+		this.name = name;
+	}
 
-    /**
-     * Returns {@code true} if the orientation is {@code HORIZONTAL} and 
-     * {@code false} otherwise.  This method isn't strictly required but using
-     * it can improve code readability in some cases.
-     * 
-     * @return A boolean. 
-     */
-    public boolean isHorizontal() {
-        return this.name == "PlotOrientation.HORIZONTAL";
-    }
-    
-    /**
-     * Returns {@code true} if the orientation is {@code VERTICAL} and 
-     * {@code false} otherwise.  This method isn't strictly required but using
-     * it can improve code readability in some cases.
-     * 
-     * @return A boolean. 
-     */
-    public boolean isVertical() {
-        return this.name == "PlotOrientation.VERTICAL";
-    }
-    
-    /**
-     * Returns a string representing the object.
-     *
-     * @return The string (never {@code null}).
-     */
-    public String toString() {
-        return this.name;
-    }
+	/**
+	 * Returns {@code true} if the orientation is {@code HORIZONTAL} and
+	 * {@code false} otherwise. This method isn't strictly required but using it can
+	 * improve code readability in some cases.
+	 * 
+	 * @return A boolean.
+	 */
+	public boolean isHorizontal() {
+		return this.name == "PlotOrientation.HORIZONTAL";
+	}
+
+	/**
+	 * Returns {@code true} if the orientation is {@code VERTICAL} and {@code false}
+	 * otherwise. This method isn't strictly required but using it can improve code
+	 * readability in some cases.
+	 * 
+	 * @return A boolean.
+	 */
+	public boolean isVertical() {
+		return this.name == "PlotOrientation.VERTICAL";
+	}
+
+	/**
+	 * Returns a string representing the object.
+	 *
+	 * @return The string (never {@code null}).
+	 */
+	public String toString() {
+		return this.name;
+	}
 
 }

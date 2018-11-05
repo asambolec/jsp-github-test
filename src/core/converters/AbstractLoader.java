@@ -45,8 +45,7 @@ public abstract class AbstractLoader implements Loader {
 	/**
 	 * Sets the retrieval mode.
 	 * 
-	 * @param mode
-	 *            the retrieval mode
+	 * @param mode the retrieval mode
 	 */
 	@Override
 	public void setRetrieval(int mode) {
@@ -67,10 +66,8 @@ public abstract class AbstractLoader implements Loader {
 	/**
 	 * Default implementation throws an IOException.
 	 * 
-	 * @param file
-	 *            the File
-	 * @exception IOException
-	 *                always
+	 * @param file the File
+	 * @exception IOException always
 	 */
 	@Override
 	public void setSource(File file) throws IOException {
@@ -91,10 +88,8 @@ public abstract class AbstractLoader implements Loader {
 	/**
 	 * Default implementation throws an IOException.
 	 * 
-	 * @param input
-	 *            the input stream
-	 * @exception IOException
-	 *                always
+	 * @param input the input stream
+	 * @exception IOException always
 	 */
 	@Override
 	public void setSource(InputStream input) throws IOException {

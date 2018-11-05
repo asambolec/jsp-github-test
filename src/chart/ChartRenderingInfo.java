@@ -68,186 +68,185 @@ import chart.util.SerialUtils;
  * JFreeChart.draw() method.
  * <P>
  * An instance of the {@link JFreeChart} class can draw itself within an
- * arbitrary rectangle on any <code>Graphics2D</code>.  It is assumed that
- * client code will sometimes render the same chart in more than one view, so
- * the {@link JFreeChart} instance does not retain any information about its
- * rendered dimensions.  This information can be useful sometimes, so you have
+ * arbitrary rectangle on any <code>Graphics2D</code>. It is assumed that client
+ * code will sometimes render the same chart in more than one view, so the
+ * {@link JFreeChart} instance does not retain any information about its
+ * rendered dimensions. This information can be useful sometimes, so you have
  * the option to collect the information at each call to
  * <code>JFreeChart.draw()</code>, by passing an instance of this
  * <code>ChartRenderingInfo</code> class.
  */
 public class ChartRenderingInfo implements Cloneable, Serializable {
 
-    /** For serialization. */
-    private static final long serialVersionUID = 2751952018173406822L;
+	/** For serialization. */
+	private static final long serialVersionUID = 2751952018173406822L;
 
-    /** The area in which the chart is drawn. */
-    private transient Rectangle2D chart_Area;
+	/** The area in which the chart is drawn. */
+	private transient Rectangle2D chart_Area;
 
-    /** Rendering info for the chart's plot (and subplots, if any). */
-    private PlotRenderingInfo plot_Info;
+	/** Rendering info for the chart's plot (and subplots, if any). */
+	private PlotRenderingInfo plot_Info;
 
-    /**
-     * Storage for the chart entities.  Since retaining entity information for
-     * charts with a large number of data points consumes a lot of memory, it
-     * is intended that you can set this to <code>null</code> to prevent the
-     * information being collected.
-     */
-    private EntityCollection entities;
+	/**
+	 * Storage for the chart entities. Since retaining entity information for charts
+	 * with a large number of data points consumes a lot of memory, it is intended
+	 * that you can set this to <code>null</code> to prevent the information being
+	 * collected.
+	 */
+	private EntityCollection entities;
 
-    /**
-     * Constructs a new ChartRenderingInfo structure that can be used to
-     * collect information about the dimensions of a rendered chart.
-     */
-    public ChartRenderingInfo() {
-        this(new StandardEntityCollection());
-    }
+	/**
+	 * Constructs a new ChartRenderingInfo structure that can be used to collect
+	 * information about the dimensions of a rendered chart.
+	 */
+	public ChartRenderingInfo() {
+		this(new StandardEntityCollection());
+	}
 
-    /**
-     * Constructs a new instance. If an entity collection is supplied, it will
-     * be populated with information about the entities in a chart.  If it is
-     * <code>null</code>, no entity information (including tool tips) will
-     * be collected.
-     *
-     * @param entities  an entity collection (<code>null</code> permitted).
-     */
-    public ChartRenderingInfo(EntityCollection entities) {
-        this.chart_Area = new Rectangle2D.Double();
-        this.plot_Info = new PlotRenderingInfo(this);
-        this.entities = entities;
-    }
+	/**
+	 * Constructs a new instance. If an entity collection is supplied, it will be
+	 * populated with information about the entities in a chart. If it is
+	 * <code>null</code>, no entity information (including tool tips) will be
+	 * collected.
+	 *
+	 * @param entities an entity collection (<code>null</code> permitted).
+	 */
+	public ChartRenderingInfo(EntityCollection entities) {
+		this.chart_Area = new Rectangle2D.Double();
+		this.plot_Info = new PlotRenderingInfo(this);
+		this.entities = entities;
+	}
 
-    /**
-     * Returns the area in which the chart was drawn.
-     *
-     * @return The area in which the chart was drawn.
-     *
-     * @see #setChartArea(Rectangle2D)
-     */
-    public Rectangle2D getChartArea() {
-        return this.chart_Area;
-    }
+	/**
+	 * Returns the area in which the chart was drawn.
+	 *
+	 * @return The area in which the chart was drawn.
+	 *
+	 * @see #setChartArea(Rectangle2D)
+	 */
+	public Rectangle2D getChartArea() {
+		return this.chart_Area;
+	}
 
-    /**
-     * Sets the area in which the chart was drawn.
-     *
-     * @param area  the chart area.
-     *
-     * @see #getChartArea()
-     */
-    public void setChartArea(Rectangle2D area) {
-        this.chart_Area.setRect(area);
-    }
+	/**
+	 * Sets the area in which the chart was drawn.
+	 *
+	 * @param area the chart area.
+	 *
+	 * @see #getChartArea()
+	 */
+	public void setChartArea(Rectangle2D area) {
+		this.chart_Area.setRect(area);
+	}
 
-    /**
-     * Returns the collection of entities maintained by this instance.
-     *
-     * @return The entity collection (possibly <code>null</code>).
-     *
-     * @see #setEntityCollection(EntityCollection)
-     */
-    public EntityCollection getEntityCollection() {
-        return this.entities;
-    }
+	/**
+	 * Returns the collection of entities maintained by this instance.
+	 *
+	 * @return The entity collection (possibly <code>null</code>).
+	 *
+	 * @see #setEntityCollection(EntityCollection)
+	 */
+	public EntityCollection getEntityCollection() {
+		return this.entities;
+	}
 
-    /**
-     * Sets the entity collection.
-     *
-     * @param entities  the entity collection (<code>null</code> permitted).
-     *
-     * @see #getEntityCollection()
-     */
-    public void setEntityCollection(EntityCollection entities) {
-        this.entities = entities;
-    }
+	/**
+	 * Sets the entity collection.
+	 *
+	 * @param entities the entity collection (<code>null</code> permitted).
+	 *
+	 * @see #getEntityCollection()
+	 */
+	public void setEntityCollection(EntityCollection entities) {
+		this.entities = entities;
+	}
 
-    /**
-     * Clears the information recorded by this object.
-     */
-    public void clear() {
-        this.chart_Area.setRect(0.0, 0.0, 0.0, 0.0);
-        this.plot_Info = new PlotRenderingInfo(this);
-        if (this.entities != null) {
-            this.entities.clear();
-        }
-    }
+	/**
+	 * Clears the information recorded by this object.
+	 */
+	public void clear() {
+		this.chart_Area.setRect(0.0, 0.0, 0.0, 0.0);
+		this.plot_Info = new PlotRenderingInfo(this);
+		if (this.entities != null) {
+			this.entities.clear();
+		}
+	}
 
-    /**
-     * Returns the rendering info for the chart's plot.
-     *
-     * @return The rendering info for the plot.
-     */
-    public PlotRenderingInfo getPlotInfo() {
-        return this.plot_Info;
-    }
+	/**
+	 * Returns the rendering info for the chart's plot.
+	 *
+	 * @return The rendering info for the plot.
+	 */
+	public PlotRenderingInfo getPlotInfo() {
+		return this.plot_Info;
+	}
 
-    /**
-     * Tests this object for equality with an arbitrary object.
-     *
-     * @param obj  the object to test against (<code>null</code> permitted).
-     *
-     * @return A boolean.
-     */
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof ChartRenderingInfo)) {
-            return false;
-        }
-        ChartRenderingInfo that = (ChartRenderingInfo) obj;
-        if (!ObjectUtils.equal(this.chart_Area, that.chart_Area)) 
-            return false;
-        if (!ObjectUtils.equal(this.plot_Info, that.plot_Info)) 
-            return false;
-        if (!ObjectUtils.equal(this.entities, that.entities)) 
-            return false;
-        return true;
-    }
+	/**
+	 * Tests this object for equality with an arbitrary object.
+	 *
+	 * @param obj the object to test against (<code>null</code> permitted).
+	 *
+	 * @return A boolean.
+	 */
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (!(obj instanceof ChartRenderingInfo)) {
+			return false;
+		}
+		ChartRenderingInfo that = (ChartRenderingInfo) obj;
+		if (!ObjectUtils.equal(this.chart_Area, that.chart_Area))
+			return false;
+		if (!ObjectUtils.equal(this.plot_Info, that.plot_Info))
+			return false;
+		if (!ObjectUtils.equal(this.entities, that.entities))
+			return false;
+		return true;
+	}
 
-    /**
-     * Returns a clone of this object.
-     *
-     * @return A clone.
-     *
-     * @throws CloneNotSupportedException if the object cannot be cloned.
-     */
-    public Object clone() throws CloneNotSupportedException {
-        ChartRenderingInfo clone = (ChartRenderingInfo) super.clone();
-        if (this.chart_Area != null) {
-            clone.chart_Area = (Rectangle2D) this.chart_Area.clone();
-        }
-        if (this.entities instanceof PublicCloneable) {
-            PublicCloneable pc = (PublicCloneable) this.entities;
-            clone.entities = (EntityCollection) pc.clone();
-        }
-        return clone;
-    }
+	/**
+	 * Returns a clone of this object.
+	 *
+	 * @return A clone.
+	 *
+	 * @throws CloneNotSupportedException if the object cannot be cloned.
+	 */
+	public Object clone() throws CloneNotSupportedException {
+		ChartRenderingInfo clone = (ChartRenderingInfo) super.clone();
+		if (this.chart_Area != null) {
+			clone.chart_Area = (Rectangle2D) this.chart_Area.clone();
+		}
+		if (this.entities instanceof PublicCloneable) {
+			PublicCloneable pc = (PublicCloneable) this.entities;
+			clone.entities = (EntityCollection) pc.clone();
+		}
+		return clone;
+	}
 
-    /**
-     * Provides serialization support.
-     *
-     * @param stream  the output stream.
-     *
-     * @throws IOException  if there is an I/O error.
-     */
-    private void writeObject(ObjectOutputStream stream) throws IOException {
-        stream.defaultWriteObject();
-        SerialUtils.writeShape(this.chart_Area, stream);
-    }
+	/**
+	 * Provides serialization support.
+	 *
+	 * @param stream the output stream.
+	 *
+	 * @throws IOException if there is an I/O error.
+	 */
+	private void writeObject(ObjectOutputStream stream) throws IOException {
+		stream.defaultWriteObject();
+		SerialUtils.writeShape(this.chart_Area, stream);
+	}
 
-    /**
-     * Provides serialization support.
-     *
-     * @param stream  the input stream.
-     *
-     * @throws IOException  if there is an I/O error.
-     * @throws ClassNotFoundException  if there is a classpath problem.
-     */
-    private void readObject(ObjectInputStream stream)
-        throws IOException, ClassNotFoundException {
-        stream.defaultReadObject();
-        this.chart_Area = (Rectangle2D) SerialUtils.readShape(stream);
-    }
+	/**
+	 * Provides serialization support.
+	 *
+	 * @param stream the input stream.
+	 *
+	 * @throws IOException            if there is an I/O error.
+	 * @throws ClassNotFoundException if there is a classpath problem.
+	 */
+	private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
+		stream.defaultReadObject();
+		this.chart_Area = (Rectangle2D) SerialUtils.readShape(stream);
+	}
 
 }

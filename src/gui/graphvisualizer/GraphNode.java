@@ -48,8 +48,8 @@ public class GraphNode extends Object implements GraphConstants {
 	/** The indices of parent nodes */
 	public int[] prnts; // parent nodes
 	/**
-	 * The indices of nodes to which there are edges from this node, plus the
-	 * type of edge
+	 * The indices of nodes to which there are edges from this node, plus the type
+	 * of edge
 	 */
 	public int[][] edges;
 	/** Type of node. Default is Normal node type */
@@ -76,8 +76,8 @@ public class GraphNode extends Object implements GraphConstants {
 	}
 
 	/**
-	 * Returns true if passed in argument is an instance of GraphNode and is
-	 * equal to this node. Implemented to enable the use of contains method in
+	 * Returns true if passed in argument is an instance of GraphNode and is equal
+	 * to this node. Implemented to enable the use of contains method in
 	 * Vector/FastVector class.
 	 */
 	@Override

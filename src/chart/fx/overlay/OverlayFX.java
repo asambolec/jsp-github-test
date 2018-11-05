@@ -51,12 +51,12 @@ import chart.panel.Overlay;
  */
 public interface OverlayFX extends Overlay {
 
-    /**
-     * Paints the content of the overlay onto the specified chart canvas.
-     *
-     * @param g2  the graphics target ({@code null} not permitted).
-     * @param chartCanvas  the chart canvas ({@code null} not permitted).
-     */
-    public void paintOverlay(Graphics2D g2, ChartCanvas chartCanvas);
+	/**
+	 * Paints the content of the overlay onto the specified chart canvas.
+	 *
+	 * @param g2          the graphics target ({@code null} not permitted).
+	 * @param chartCanvas the chart canvas ({@code null} not permitted).
+	 */
+	public void paintOverlay(Graphics2D g2, ChartCanvas chartCanvas);
 
 }

@@ -48,132 +48,130 @@ import java.io.Serializable;
 import chart.ChartPanel;
 
 /**
- * A handler for mouse events in a {@link ChartPanel}.  A handler can be
- * assigned a modifier and installed on the panel to be invoked by the user.
+ * A handler for mouse events in a {@link ChartPanel}. A handler can be assigned
+ * a modifier and installed on the panel to be invoked by the user.
  */
-public abstract class AbstractMouseHandler implements MouseListener,
-        MouseMotionListener, Serializable {
+public abstract class AbstractMouseHandler implements MouseListener, MouseMotionListener, Serializable {
 
-    /** a generated serial id. */
-    private static final long serialVersionUID = -2717376020576340947L;
+	/** a generated serial id. */
+	private static final long serialVersionUID = -2717376020576340947L;
 
-    /** The modifier used to invoke this handler. */
-    private int modifier;
+	/** The modifier used to invoke this handler. */
+	private int modifier;
 
-    /**
-     * Default constructor.
-     */
-    public AbstractMouseHandler() {
-        this.modifier = 0;
-    }
-    
-    /**
-     * Constructing with modifier.
-     * 
-     * @param modifier  the modifier.
-     */
-    public AbstractMouseHandler(int modifier) {
-        this.modifier = modifier;
-    }
+	/**
+	 * Default constructor.
+	 */
+	public AbstractMouseHandler() {
+		this.modifier = 0;
+	}
 
-    /**
-     * Returns the modifier for this handler.
-     *
-     * @return The modifier.
-     */
-    public int getModifier() {
-        return this.modifier;
-    }
+	/**
+	 * Constructing with modifier.
+	 * 
+	 * @param modifier the modifier.
+	 */
+	public AbstractMouseHandler(int modifier) {
+		this.modifier = modifier;
+	}
 
-    /**
-     * Sets the modifier for this handler.
-     *
-     * @param modifier  the modifier.
-     */
-    public void setModifier(int modifier) {
-        this.modifier = modifier;
-    }
+	/**
+	 * Returns the modifier for this handler.
+	 *
+	 * @return The modifier.
+	 */
+	public int getModifier() {
+		return this.modifier;
+	}
 
-    /**
-     * Handle a mouse pressed event.  This implementation does nothing -
-     * subclasses should override if necessary.
-     *
-     * @param e  the mouse event.
-     */
-    public void mousePressed(MouseEvent e) {
-        // override to do something
-    }
+	/**
+	 * Sets the modifier for this handler.
+	 *
+	 * @param modifier the modifier.
+	 */
+	public void setModifier(int modifier) {
+		this.modifier = modifier;
+	}
 
-    /**
-     * Handle a mouse released event.  This implementation does nothing -
-     * subclasses should override if necessary.
-     *
-     * @param e  the mouse event.
-     */
-    public void mouseReleased(MouseEvent e) {
-        // override if you need this method to do something
-    }
+	/**
+	 * Handle a mouse pressed event. This implementation does nothing - subclasses
+	 * should override if necessary.
+	 *
+	 * @param e the mouse event.
+	 */
+	public void mousePressed(MouseEvent e) {
+		// override to do something
+	}
 
-    /**
-     * Handle a mouse clicked event.  This implementation does nothing -
-     * subclasses should override if necessary.
-     *
-     * @param e  the mouse event.
-     */
-    public void mouseClicked(MouseEvent e) {
-        // override if you need this method to do something
-    }
+	/**
+	 * Handle a mouse released event. This implementation does nothing - subclasses
+	 * should override if necessary.
+	 *
+	 * @param e the mouse event.
+	 */
+	public void mouseReleased(MouseEvent e) {
+		// override if you need this method to do something
+	}
 
-    /**
-     * Handle a mouse entered event.  This implementation does nothing -
-     * subclasses should override if necessary.
-     *
-     * @param e  the mouse event.
-     */
-    public void mouseEntered(MouseEvent e) {
-        // override if you need this method to do something
-    }
+	/**
+	 * Handle a mouse clicked event. This implementation does nothing - subclasses
+	 * should override if necessary.
+	 *
+	 * @param e the mouse event.
+	 */
+	public void mouseClicked(MouseEvent e) {
+		// override if you need this method to do something
+	}
 
-    /**
-     * Handle a mouse moved event.  This implementation does nothing -
-     * subclasses should override if necessary.
-     *
-     * @param e  the mouse event.
-     */
-    public void mouseMoved(MouseEvent e) {
-        // override if you need this method to do something
-    }
+	/**
+	 * Handle a mouse entered event. This implementation does nothing - subclasses
+	 * should override if necessary.
+	 *
+	 * @param e the mouse event.
+	 */
+	public void mouseEntered(MouseEvent e) {
+		// override if you need this method to do something
+	}
 
-    /**
-     * Handle a mouse exited event.  This implementation does nothing -
-     * subclasses should override if necessary.
-     *
-     * @param e  the mouse event.
-     */
-    public void mouseExited(MouseEvent e) {
-        // override if you need this method to do something
-    }
+	/**
+	 * Handle a mouse moved event. This implementation does nothing - subclasses
+	 * should override if necessary.
+	 *
+	 * @param e the mouse event.
+	 */
+	public void mouseMoved(MouseEvent e) {
+		// override if you need this method to do something
+	}
 
-    /**
-     * Handle a mouse dragged event.  This implementation does nothing -
-     * subclasses should override if necessary.
-     *
-     * @param e  the mouse event.
-     */
-    public void mouseDragged(MouseEvent e) {
-        // override if you need this method to do something
-    }
+	/**
+	 * Handle a mouse exited event. This implementation does nothing - subclasses
+	 * should override if necessary.
+	 *
+	 * @param e the mouse event.
+	 */
+	public void mouseExited(MouseEvent e) {
+		// override if you need this method to do something
+	}
 
-    /**
-     * A mouse handler is either an live handler or an auxiliary handler. While
-     * there can be only one active live handler at a time many auxiliary 
-     * handlers can be used together.  E.g. rectangle zooming and rectangle 
-     * selection should be implemented as live handlers because they both draw 
-     * on the panel and shouldn't be combined. In contrast a click selection 
-     * does not interfere with e.g. a double click selection both handlers can 
-     * be active at the same time. 
-     * 
-     * @return true if this is a live handler
-     */
-    public abstract boolean isLiveHandler();
+	/**
+	 * Handle a mouse dragged event. This implementation does nothing - subclasses
+	 * should override if necessary.
+	 *
+	 * @param e the mouse event.
+	 */
+	public void mouseDragged(MouseEvent e) {
+		// override if you need this method to do something
+	}
+
+	/**
+	 * A mouse handler is either an live handler or an auxiliary handler. While
+	 * there can be only one active live handler at a time many auxiliary handlers
+	 * can be used together. E.g. rectangle zooming and rectangle selection should
+	 * be implemented as live handlers because they both draw on the panel and
+	 * shouldn't be combined. In contrast a click selection does not interfere with
+	 * e.g. a double click selection both handlers can be active at the same time.
+	 * 
+	 * @return true if this is a live handler
+	 */
+	public abstract boolean isLiveHandler();
 }

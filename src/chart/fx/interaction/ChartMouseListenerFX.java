@@ -44,30 +44,31 @@ import chart.ChartMouseListener;
 import chart.fx.ChartViewer;
 
 /**
- * A mouse listener that can receive event notifications from a (JavaFX) 
- * {@link ChartViewer} instance.  This interface is equivalent to the 
+ * A mouse listener that can receive event notifications from a (JavaFX)
+ * {@link ChartViewer} instance. This interface is equivalent to the
  * {@link ChartMouseListener} interface used for charts in Swing.
  * 
- * <p>THE API FOR THIS CLASS IS SUBJECT TO CHANGE IN FUTURE RELEASES.  This is
- * so that we can incorporate feedback on the (new) JavaFX support in 
- * JFreeChart.</p>
+ * <p>
+ * THE API FOR THIS CLASS IS SUBJECT TO CHANGE IN FUTURE RELEASES. This is so
+ * that we can incorporate feedback on the (new) JavaFX support in JFreeChart.
+ * </p>
  * 
  * @since 1.0.18
  */
 public interface ChartMouseListenerFX {
-    
-    /**
-     * Receives notification of a mouse click on a chart.
-     * 
-     * @param event  event information (never <code>null</code>). 
-     */
-    void chartMouseClicked(ChartMouseEventFX event);
 
-    /**
-     * Receives notification of a mouse move event on a chart.
-     *
-     * @param event  event information (never <code>null</code>). 
-     */
-    void chartMouseMoved(ChartMouseEventFX event);
+	/**
+	 * Receives notification of a mouse click on a chart.
+	 * 
+	 * @param event event information (never <code>null</code>).
+	 */
+	void chartMouseClicked(ChartMouseEventFX event);
+
+	/**
+	 * Receives notification of a mouse move event on a chart.
+	 *
+	 * @param event event information (never <code>null</code>).
+	 */
+	void chartMouseMoved(ChartMouseEventFX event);
 
 }

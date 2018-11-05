@@ -45,17 +45,17 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
 /**
- * An interface for an object that can draw itself within an arbitrary 
- * rectangle using Java2D's <code>Graphics2D</code> API.
+ * An interface for an object that can draw itself within an arbitrary rectangle
+ * using Java2D's <code>Graphics2D</code> API.
  */
 public interface Drawable {
 
-    /**
-     * Draws the object.
-     *
-     * @param g2  the graphics device (<code>null</code> not permitted).
-     * @param area  the drawing bounds (<code>null</code> not permitted).
-     */
-    public void draw(Graphics2D g2, Rectangle2D area);
+	/**
+	 * Draws the object.
+	 *
+	 * @param g2   the graphics device (<code>null</code> not permitted).
+	 * @param area the drawing bounds (<code>null</code> not permitted).
+	 */
+	public void draw(Graphics2D g2, Rectangle2D area);
 
 }

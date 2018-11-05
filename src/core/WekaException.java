@@ -44,8 +44,7 @@ public class WekaException extends Exception {
 	/**
 	 * Creates a new WekaException.
 	 * 
-	 * @param message
-	 *            the reason for raising an exception.
+	 * @param message the reason for raising an exception.
 	 */
 	public WekaException(String message) {
 
@@ -55,10 +54,8 @@ public class WekaException extends Exception {
 	/**
 	 * Constructor with message and cause
 	 * 
-	 * @param message
-	 *            the message for the exception
-	 * @param cause
-	 *            the root cause Throwable
+	 * @param message the message for the exception
+	 * @param cause   the root cause Throwable
 	 */
 	public WekaException(String message, Throwable cause) {
 		this(message);
@@ -69,8 +66,7 @@ public class WekaException extends Exception {
 	/**
 	 * Constructor with cause argument
 	 * 
-	 * @param cause
-	 *            the root cause Throwable
+	 * @param cause the root cause Throwable
 	 */
 	public WekaException(Throwable cause) {
 		this(cause.getMessage(), cause);

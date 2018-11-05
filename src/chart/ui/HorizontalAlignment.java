@@ -48,35 +48,35 @@ package chart.ui;
  */
 public enum HorizontalAlignment {
 
-    /** Left alignment. */
-    LEFT("HorizontalAlignment.LEFT"),
+	/** Left alignment. */
+	LEFT("HorizontalAlignment.LEFT"),
 
-    /** Right alignment. */
-    RIGHT("HorizontalAlignment.RIGHT"),
+	/** Right alignment. */
+	RIGHT("HorizontalAlignment.RIGHT"),
 
-    /** Center alignment. */
-    CENTER("HorizontalAlignment.CENTER");
+	/** Center alignment. */
+	CENTER("HorizontalAlignment.CENTER");
 
-    /** The name. */
-    private String name;
+	/** The name. */
+	private String name;
 
-    /**
-     * Private constructor.
-     *
-     * @param name  the name.
-     */
-    private HorizontalAlignment(final String name) {
-        this.name = name;
-    }
+	/**
+	 * Private constructor.
+	 *
+	 * @param name the name.
+	 */
+	private HorizontalAlignment(final String name) {
+		this.name = name;
+	}
 
-    /**
-     * Returns a string representing the object.
-     *
-     * @return The string.
-     */
-    @Override
-    public String toString() {
-        return this.name;
-    }
+	/**
+	 * Returns a string representing the object.
+	 *
+	 * @return The string.
+	 */
+	@Override
+	public String toString() {
+		return this.name;
+	}
 
 }

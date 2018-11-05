@@ -106,8 +106,7 @@ public class ConverterFileChooser extends JFileChooser {
 	protected Capabilities m_CapabilitiesFilter;
 
 	/**
-	 * whether to popup a dialog in case the file already exists (only save
-	 * dialog).
+	 * whether to popup a dialog in case the file already exists (only save dialog).
 	 */
 	protected boolean m_OverwriteWarning = true;
 
@@ -146,8 +145,7 @@ public class ConverterFileChooser extends JFileChooser {
 	/**
 	 * Constructs a FileChooser using the given File as the path.
 	 * 
-	 * @param currentDirectory
-	 *            the path to start in
+	 * @param currentDirectory the path to start in
 	 */
 	public ConverterFileChooser(File currentDirectory) {
 		super(currentDirectory);
@@ -157,8 +155,7 @@ public class ConverterFileChooser extends JFileChooser {
 	/**
 	 * Constructs a FileChooser using the given path.
 	 * 
-	 * @param currentDirectory
-	 *            the path to start in
+	 * @param currentDirectory the path to start in
 	 */
 	public ConverterFileChooser(String currentDirectory) {
 		super(currentDirectory);
@@ -218,7 +215,7 @@ public class ConverterFileChooser extends JFileChooser {
 			}
 		});
 	}
-	
+
 	/**
 	 * Opens an object from a file selected by the user.
 	 * 
@@ -226,15 +223,13 @@ public class ConverterFileChooser extends JFileChooser {
 	 */
 	protected Object openObject(File selected) {
 
-		try {
-			ObjectInputStream oi = SerializationHelper
-					.getObjectInputStream(new BufferedInputStream(new FileInputStream(selected)));
+		try (ObjectInputStream oi = SerializationHelper
+				.getObjectInputStream(new BufferedInputStream(new FileInputStream(selected)))) {
 			/*
 			 * ObjectInputStream oi = new ObjectInputStream(new BufferedInputStream( new
 			 * FileInputStream(selected)));
 			 */
 			Object obj = oi.readObject();
-			oi.close();
 			return obj;
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(this, "Couldn't read object: " + selected.getName() + "\n" + ex.getMessage(),
@@ -242,12 +237,11 @@ public class ConverterFileChooser extends JFileChooser {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * filters out all non-core loaders if only those should be displayed.
 	 * 
-	 * @param list
-	 *            the list of filters to check
+	 * @param list the list of filters to check
 	 * @return the filtered list of filters
 	 * @see #m_CoreConvertersOnly
 	 */
@@ -276,8 +270,7 @@ public class ConverterFileChooser extends JFileChooser {
 	/**
 	 * filters out all non-core savers if only those should be displayed.
 	 * 
-	 * @param list
-	 *            the list of filters to check
+	 * @param list the list of filters to check
 	 * @return the filtered list of filters
 	 * @see #m_CoreConvertersOnly
 	 */
@@ -304,11 +297,9 @@ public class ConverterFileChooser extends JFileChooser {
 	}
 
 	/**
-	 * filters the list of file filters according to the currently set.
-	 * Capabilities
+	 * filters the list of file filters according to the currently set. Capabilities
 	 * 
-	 * @param list
-	 *            the filters to check
+	 * @param list the filters to check
 	 * @return the filtered list of filters
 	 */
 	protected Vector<ExtensionFileFilter> filterSaverFileFilters(Vector<ExtensionFileFilter> list) {
@@ -337,10 +328,8 @@ public class ConverterFileChooser extends JFileChooser {
 	/**
 	 * initializes the ExtensionFileFilters.
 	 * 
-	 * @param loader
-	 *            if true then the loader filter are initialized
-	 * @param classnames
-	 *            the classnames of the converters
+	 * @param loader     if true then the loader filter are initialized
+	 * @param classnames the classnames of the converters
 	 */
 	protected static void initFilters(boolean loader, Vector<String> classnames) {
 		int n;
@@ -395,8 +384,7 @@ public class ConverterFileChooser extends JFileChooser {
 	/**
 	 * initializes the GUI.
 	 * 
-	 * @param dialogType
-	 *            the type of dialog to setup the GUI for
+	 * @param dialogType the type of dialog to setup the GUI for
 	 */
 	protected void initGUI(int dialogType) {
 		Vector<ExtensionFileFilter> list;
@@ -413,9 +401,9 @@ public class ConverterFileChooser extends JFileChooser {
 		} else {
 			list = filterSaverFileFilters(filterNonCoreSaverFileFilters(m_SaverFileFilters));
 		}
-		for (ExtensionFileFilter iterator : list) {
+		list.forEach(iterator -> {
 			addChoosableFileFilter(iterator);
-		}
+		});
 		if (list.size() > 0) {
 			if ((m_LastFilter == null) || (!list.contains(m_LastFilter))) {
 				setFileFilter(list.get(0));
@@ -452,11 +440,10 @@ public class ConverterFileChooser extends JFileChooser {
 	}
 
 	/**
-	 * sets the capabilities that the savers must have. use null if all should
-	 * be listed.
+	 * sets the capabilities that the savers must have. use null if all should be
+	 * listed.
 	 * 
-	 * @param value
-	 *            the minimum Capabilities the savers must have
+	 * @param value the minimum Capabilities the savers must have
 	 */
 	public void setCapabilitiesFilter(Capabilities value) {
 		m_CapabilitiesFilter = (Capabilities) value.clone();
@@ -477,19 +464,18 @@ public class ConverterFileChooser extends JFileChooser {
 	}
 
 	/**
-	 * Whether a warning is popped up if the file that is to be saved already
-	 * exists (only save dialog).
+	 * Whether a warning is popped up if the file that is to be saved already exists
+	 * (only save dialog).
 	 * 
-	 * @param value
-	 *            if true a warning will be popup
+	 * @param value if true a warning will be popup
 	 */
 	public void setOverwriteWarning(boolean value) {
 		m_OverwriteWarning = value;
 	}
 
 	/**
-	 * Returns whether a popup appears with a warning that the file already
-	 * exists (only save dialog).
+	 * Returns whether a popup appears with a warning that the file already exists
+	 * (only save dialog).
 	 * 
 	 * @return true if a warning pops up
 	 */
@@ -500,8 +486,7 @@ public class ConverterFileChooser extends JFileChooser {
 	/**
 	 * Whether the selected file must exst (only open dialog).
 	 * 
-	 * @param value
-	 *            if true the file must exist
+	 * @param value if true the file must exist
 	 */
 	public void setFileMustExist(boolean value) {
 		m_FileMustExist = value;
@@ -520,8 +505,7 @@ public class ConverterFileChooser extends JFileChooser {
 	 * Whether to display only the hardocded core converters. Necessary for
 	 * RMI/Remote Experiments (dynamic class discovery doesn't work there!).
 	 * 
-	 * @param value
-	 *            if true only the core converters will be displayed
+	 * @param value if true only the core converters will be displayed
 	 * @see #m_CoreConvertersOnly
 	 */
 	public void setCoreConvertersOnly(boolean value) {
@@ -529,9 +513,8 @@ public class ConverterFileChooser extends JFileChooser {
 	}
 
 	/**
-	 * Returns whether only the hardcoded core converters are displayed.
-	 * Necessary for RMI/REmote Experiments (dynamic class discovery doesn't
-	 * work there!).
+	 * Returns whether only the hardcoded core converters are displayed. Necessary
+	 * for RMI/REmote Experiments (dynamic class discovery doesn't work there!).
 	 * 
 	 * @return true if the file must exist
 	 * @see #m_CoreConvertersOnly
@@ -544,10 +527,8 @@ public class ConverterFileChooser extends JFileChooser {
 	 * Pops a custom file chooser dialog with a custom approve button. Throws an
 	 * exception, if the dialog type is UNHANDLED_DIALOG.
 	 * 
-	 * @param parent
-	 *            the parent of this dialog
-	 * @param approveButtonText
-	 *            the text for the OK button
+	 * @param parent            the parent of this dialog
+	 * @param approveButtonText the text for the OK button
 	 * @return the user's action
 	 */
 	@Override
@@ -562,8 +543,7 @@ public class ConverterFileChooser extends JFileChooser {
 	/**
 	 * Pops up an "Open File" file chooser dialog.
 	 * 
-	 * @param parent
-	 *            the parent of this file chooser
+	 * @param parent the parent of this file chooser
 	 * @return the result of the user's action
 	 */
 	@Override
@@ -627,8 +607,7 @@ public class ConverterFileChooser extends JFileChooser {
 	/**
 	 * Pops up an "Save File" file chooser dialog.
 	 * 
-	 * @param parent
-	 *            the parent of this file chooser
+	 * @param parent the parent of this file chooser
 	 * @return the result of the user's action
 	 */
 	@Override
@@ -712,8 +691,8 @@ public class ConverterFileChooser extends JFileChooser {
 	}
 
 	/**
-	 * returns the loader that was chosen by the user, can be null in case the
-	 * user aborted the dialog or the save dialog was shown.
+	 * returns the loader that was chosen by the user, can be null in case the user
+	 * aborted the dialog or the save dialog was shown.
 	 * 
 	 * @return the chosen loader, if any
 	 */
@@ -728,8 +707,8 @@ public class ConverterFileChooser extends JFileChooser {
 	}
 
 	/**
-	 * returns the saver that was chosen by the user, can be null in case the
-	 * user aborted the dialog or the open dialog was shown.
+	 * returns the saver that was chosen by the user, can be null in case the user
+	 * aborted the dialog or the open dialog was shown.
 	 * 
 	 * @return the chosen saver, if any
 	 */
@@ -783,8 +762,7 @@ public class ConverterFileChooser extends JFileChooser {
 	/**
 	 * configures the current converter.
 	 * 
-	 * @param dialogType
-	 *            the type of dialog to configure for
+	 * @param dialogType the type of dialog to configure for
 	 */
 	protected void configureCurrentConverter(int dialogType) {
 		String filename;
@@ -824,10 +802,8 @@ public class ConverterFileChooser extends JFileChooser {
 	/**
 	 * For testing the file chooser.
 	 * 
-	 * @param args
-	 *            the commandline options - ignored
-	 * @throws Exception
-	 *             if something goes wrong with loading/saving
+	 * @param args the commandline options - ignored
+	 * @throws Exception if something goes wrong with loading/saving
 	 */
 	public static void main(String[] args) throws Exception {
 		ConverterFileChooser fc;

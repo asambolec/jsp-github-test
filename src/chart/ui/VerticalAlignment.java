@@ -47,35 +47,35 @@ package chart.ui;
  */
 public enum VerticalAlignment {
 
-    /** Top alignment. */
-    TOP("VerticalAlignment.TOP"),
+	/** Top alignment. */
+	TOP("VerticalAlignment.TOP"),
 
-    /** Bottom alignment. */
-    BOTTOM("VerticalAlignment.BOTTOM"),
+	/** Bottom alignment. */
+	BOTTOM("VerticalAlignment.BOTTOM"),
 
-    /** Center alignment. */
-    CENTER("VerticalAlignment.CENTER");
+	/** Center alignment. */
+	CENTER("VerticalAlignment.CENTER");
 
-    /** The name. */
-    private String name;
+	/** The name. */
+	private String name;
 
-    /**
-     * Private constructor.
-     *
-     * @param name  the name.
-     */
-    private VerticalAlignment(final String name) {
-        this.name = name;
-    }
+	/**
+	 * Private constructor.
+	 *
+	 * @param name the name.
+	 */
+	private VerticalAlignment(final String name) {
+		this.name = name;
+	}
 
-    /**
-     * Returns a string representing the object.
-     *
-     * @return the string.
-     */
-    @Override
-    public String toString() {
-        return this.name;
-    }
+	/**
+	 * Returns a string representing the object.
+	 *
+	 * @return the string.
+	 */
+	@Override
+	public String toString() {
+		return this.name;
+	}
 
 }

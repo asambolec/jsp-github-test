@@ -50,11 +50,11 @@ import chart.panel.Overlay;
  */
 public interface OverlayChangeListener extends EventListener {
 
-    /**
-     * This method is called to notify a listener of a change event.
-     *
-     * @param event  the event.
-     */
-    public void overlayChanged(OverlayChangeEvent event);
+	/**
+	 * This method is called to notify a listener of a change event.
+	 *
+	 * @param event the event.
+	 */
+	public void overlayChanged(OverlayChangeEvent event);
 
 }

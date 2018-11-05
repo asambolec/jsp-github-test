@@ -136,14 +136,13 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 	MarginCalculator m_marginCalculator = null;
 
 	/**
-	 * used for calculating marginals in Bayesian netwowrks when evidence is
-	 * present
+	 * used for calculating marginals in Bayesian netwowrks when evidence is present
 	 */
 	MarginCalculator m_marginCalculatorWithEvidence = null;
 
 	/**
-	 * flag indicating whether marginal distributions of each of the nodes
-	 * should be shown in display.
+	 * flag indicating whether marginal distributions of each of the nodes should be
+	 * shown in display.
 	 */
 	boolean m_bViewMargins = false;
 
@@ -510,9 +509,9 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 	}
 
 	/**
-	 * This method sets the node size that is appropriate considering the
-	 * maximum label size that is present. It is used internally when custom
-	 * node size checkbox is unchecked.
+	 * This method sets the node size that is appropriate considering the maximum
+	 * label size that is present. It is used internally when custom node size
+	 * checkbox is unchecked.
 	 */
 	protected void setAppropriateNodeSize() {
 		int strWidth;
@@ -527,8 +526,8 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 	}
 
 	/**
-	 * Sets the preferred size for m_GraphPanel GraphPanel to the minimum size
-	 * that is neccessary to display the graph.
+	 * Sets the preferred size for m_GraphPanel GraphPanel to the minimum size that
+	 * is neccessary to display the graph.
 	 */
 	public void setAppropriateSize() {
 		int maxX = 0;
@@ -537,11 +536,11 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 	} // setAppropriateSize
 
 	/**
-	 * This method is an implementation for LayoutCompleteEventListener class.
-	 * It sets the size appropriate for m_GraphPanel GraphPanel and and
-	 * revalidates it's container JScrollPane once a LayoutCompleteEvent is
-	 * received from the LayoutEngine. Also, it updates positions of the
-	 * Bayesian network stored in m_BayesNet.
+	 * This method is an implementation for LayoutCompleteEventListener class. It
+	 * sets the size appropriate for m_GraphPanel GraphPanel and and revalidates
+	 * it's container JScrollPane once a LayoutCompleteEvent is received from the
+	 * LayoutEngine. Also, it updates positions of the Bayesian network stored in
+	 * m_BayesNet.
 	 */
 	@Override
 	public void layoutCompleted(LayoutCompleteEvent le) {
@@ -575,8 +574,8 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 	} // readBIFFromFile
 
 	/*
-	 * read arff file from file sFileName and start new Bayesian network with
-	 * nodes representing attributes in data set.
+	 * read arff file from file sFileName and start new Bayesian network with nodes
+	 * representing attributes in data set.
 	 */
 	void initFromArffFile(String sFileName) {
 		try {
@@ -714,8 +713,8 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 	} // deleteArc
 
 	/*
-	 * Rename node with index nTargetNode. Pops up window that allwos for
-	 * entering a new name.
+	 * Rename node with index nTargetNode. Pops up window that allwos for entering a
+	 * new name.
 	 */
 	void renameNode(int nTargetNode) {
 		String sName = JOptionPane.showInputDialog(null, null, "New name for node", JOptionPane.OK_CANCEL_OPTION);
@@ -746,8 +745,8 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 	} // deleteNode
 
 	/*
-	 * Add a value to currently selected node. Shows window that allows to enter
-	 * the name of the value.
+	 * Add a value to currently selected node. Shows window that allows to enter the
+	 * name of the value.
 	 */
 	void addValue() {
 		// GraphNode n = (GraphNode) m_nodes.elementAt(m_nCurrentNode);
@@ -926,9 +925,7 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 		if (args.length > 0) {
 			try {
 				g.readBIFFromFile(args[0]);
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			} catch (BIFFormatException bf) {
+			} catch (BIFFormatException | IOException bf) {
 				bf.printStackTrace();
 			}
 		}
@@ -1017,12 +1014,12 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 
 		public int getSumOfSelection() {
 			int sum = 0;
-			for(int n : m_selected) {
+			for (int n : m_selected) {
 				sum += n;
 			}
 			return sum;
 		} // getSum
-		
+
 		boolean contains(Rectangle rect, int iNode) {
 			return false;
 		} // contains
@@ -1065,7 +1062,7 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 				return;
 			}
 
-			for (Integer nNode : m_selected) {
+			m_selected.forEach(nNode -> {
 				int nPosX = 0;
 				int nPosY = 0;
 				g.setColor(Color.BLACK);
@@ -1076,7 +1073,7 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 				g.fillRect(nXRC, nYRC + mNNodeHeight, d, d);
 				g.fillRect(nXRC + mNNodeWidth, nYRC, d, d);
 				g.fillRect(nXRC + mNNodeWidth, nYRC + mNNodeHeight, d, d);
-			}
+			});
 		} // draw
 	} // Selection
 
@@ -1104,8 +1101,8 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 	} // class ClipBoard
 
 	/**
-	 * Base class used for definining actions with a name, tool tip text,
-	 * possibly an icon and accelerator key.
+	 * Base class used for definining actions with a name, tool tip text, possibly
+	 * an icon and accelerator key.
 	 */
 	class MyAction extends AbstractAction {
 		/** for serialization */
@@ -1968,10 +1965,8 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 		} // saveAs
 
 		protected void saveFile(String sFileName) {
-			try {
-				FileWriter outfile = new FileWriter(sFileName);
+			try (FileWriter outfile = new FileWriter(sFileName)) {
 				outfile.write(m_jStatusBar.getText());
-				outfile.close();
 				m_sFileName = sFileName;
 				m_jStatusBar.setText("Saved as " + m_sFileName);
 			} catch (IOException e) {
@@ -2297,8 +2292,7 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 		final static int NORMAL = 0;
 
 		/**
-		 * number of the clique being drawn. Used for selecting the color of the
-		 * clique
+		 * number of the clique being drawn. Used for selecting the color of the clique
 		 */
 		int m_nClique = 1;
 
@@ -2317,8 +2311,8 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 			int nPosX = 0;
 			int nPosY = 0;
 			String sStr = new String("");
-			for (int j = 0; j < nodes.length; j++) {
-				sStr = sStr + " " + nodes[j];
+			for (int node1 : nodes) {
+				sStr = sStr + " " + node1;
 			}
 			m_nClique++;
 			nPosX /= nodes.length;
@@ -2330,8 +2324,8 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 		} // viewCliques
 
 		/*
-		 * Draw a node with index iNode on Graphics g at position Drawing mode
-		 * can be NORMAL or HIGHLIGHTED.
+		 * Draw a node with index iNode on Graphics g at position Drawing mode can be
+		 * NORMAL or HIGHLIGHTED.
 		 */
 		protected void drawNode(Graphics g, int iNode, int mode) {
 			int nPosX = iNode;
@@ -2384,11 +2378,10 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 		} // drawNode
 
 		/**
-		 * This method draws an arrow on a line from (x1,y1) to (x2,y2). The
-		 * arrow head is seated on (x2,y2) and is in the direction of the line.
-		 * If the arrow is needed to be drawn in the opposite direction then
-		 * simply swap the order of (x1, y1) and (x2, y2) when calling this
-		 * function.
+		 * This method draws an arrow on a line from (x1,y1) to (x2,y2). The arrow head
+		 * is seated on (x2,y2) and is in the direction of the line. If the arrow is
+		 * needed to be drawn in the opposite direction then simply swap the order of
+		 * (x1, y1) and (x2, y2) when calling this function.
 		 */
 		protected void drawArrow(Graphics g, int nPosX1, int nPosY1, int nPosX2, int nPosY2) {
 			g.drawLine(nPosX1, nPosY1, nPosX2, nPosY2);
@@ -2450,8 +2443,7 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 		} // drawArrow
 
 		/**
-		 * This method highlights a given node and all its incoming and outgoing
-		 * arcs
+		 * This method highlights a given node and all its incoming and outgoing arcs
 		 */
 		public void highLight(int iNode) {
 			RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -2531,8 +2523,7 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 		/**
 		 * return name of specified colum
 		 * 
-		 * @param iCol
-		 *            index of the column
+		 * @param iCol index of the column
 		 */
 		@Override
 		public String getColumnName(int iCol) {
@@ -2542,10 +2533,8 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 		/**
 		 * return data point
 		 * 
-		 * @param iRow
-		 *            index of row in table
-		 * @param iCol
-		 *            index of column in table
+		 * @param iRow index of row in table
+		 * @param iCol index of column in table
 		 */
 		@Override
 		public Object getValueAt(int iRow, int iCol) {
@@ -2553,17 +2542,13 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 		}
 
 		/**
-		 * Set data point, assigns value to CPT entry specified by row and
-		 * column. The remainder of the CPT is normalized so that the values add
-		 * up to 1. IF a value below zero of over 1 is given, no changes take
-		 * place.
+		 * Set data point, assigns value to CPT entry specified by row and column. The
+		 * remainder of the CPT is normalized so that the values add up to 1. IF a value
+		 * below zero of over 1 is given, no changes take place.
 		 * 
-		 * @param oProb
-		 *            data point
-		 * @param iRow
-		 *            index of row in table
-		 * @param iCol
-		 *            index of column in table
+		 * @param oProb data point
+		 * @param iRow  index of row in table
+		 * @param iCol  index of column in table
 		 */
 		@Override
 		public void setValueAt(Object oProb, int iRow, int iCol) {
@@ -2575,8 +2560,8 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 		} // setData
 
 		/*
-		 * JTable uses this method to determine the default renderer/ editor for
-		 * each cell.
+		 * JTable uses this method to determine the default renderer/ editor for each
+		 * cell.
 		 */
 		@Override
 		public Class<?> getColumnClass(int c) {
@@ -2605,10 +2590,9 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 		int m_nPosY = 0;
 
 		/**
-		 * A left mouseclick on a node adds node to selection (depending on
-		 * shift and ctrl keys). A right mouseclick on a node pops up menu with
-		 * actions to be performed on the node. A right mouseclick outside
-		 * another node pops up menu.
+		 * A left mouseclick on a node adds node to selection (depending on shift and
+		 * ctrl keys). A right mouseclick on a node pops up menu with actions to be
+		 * performed on the node. A right mouseclick outside another node pops up menu.
 		 */
 		@Override
 		public void mouseClicked(MouseEvent me) {
@@ -2627,8 +2611,7 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 		/*
 		 * update selection (non-Javadoc)
 		 * 
-		 * @see
-		 * java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
+		 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
 		 */
 		@Override
 		public void mouseReleased(MouseEvent me) {
@@ -2647,8 +2630,8 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 		} // mouseReleased
 
 		/*
-		 * pop up menu with actions that apply in general or to selection (if
-		 * any exists)
+		 * pop up menu with actions that apply in general or to selection (if any
+		 * exists)
 		 */
 		void handleRightClick(MouseEvent me, int nPosX, int nPosY) {
 
@@ -2670,7 +2653,7 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 
 			ArrayList<Integer> selected = m_Selection.getSelected();
 			int sum = 0;
-			for(int n : selected) {
+			for (int n : selected) {
 				sum += n;
 			}
 			JMenu addArcMenu = new JMenu("Add parent");
@@ -2680,9 +2663,9 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 			} else {
 				int nNodes = sum;
 				boolean[] isNotAllowedAsParent = new boolean[nNodes];
-				for (Integer iterator : selected) {
+				selected.forEach(iterator -> {
 					isNotAllowedAsParent[iterator] = true;
-				}
+				});
 				// prevent a descendant being a parent, since it introduces
 				// cycles
 				for (int i = 0; i < nNodes; i++) {
@@ -2694,11 +2677,11 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 						}
 					}
 				}
-				for (Integer nNode : selected) {
+				selected.forEach(nNode -> {
 					for (int iParent = 0; iParent < nNodes; iParent++) {
 						isNotAllowedAsParent[nNode] = true;
 					}
-				}
+				});
 				ActionListener addParentAction = new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent ae) {
@@ -2873,8 +2856,8 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 	} // class GraphVisualizerMouseListener
 
 	/**
-	 * private class for handling mouseMoved events to highlight nodes if the
-	 * the mouse is moved on one, move it around or move selection around
+	 * private class for handling mouseMoved events to highlight nodes if the the
+	 * mouse is moved on one, move it around or move selection around
 	 */
 	private class GraphVisualizerMouseMotionListener extends MouseMotionAdapter {
 
@@ -2887,8 +2870,7 @@ public class GUI extends JPanel implements LayoutCompleteEventListener {
 		/*
 		 * identify the node under the mouse
 		 * 
-		 * @returns node index of node under mouse, or -1 if there is no such
-		 * node
+		 * @returns node index of node under mouse, or -1 if there is no such node
 		 */
 		int getGraphNode(MouseEvent me) {
 			m_nPosX = m_nPosY = 0;

@@ -30,7 +30,7 @@ package gui.graphvisualizer;
 public class GraphEdge extends Object {
 
 	public int src, dest, type;
-	
+
 	public String srcLbl, destLbl;
 
 	public GraphEdge(int s, int d, int t) {

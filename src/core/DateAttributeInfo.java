@@ -32,7 +32,7 @@ public class DateAttributeInfo implements AttributeInfo {
 	 * 
 	 */
 	private long serialVersionUID = 1L;
-	
+
 	/** Date format specification for date attributes */
 	protected SimpleDateFormat m_DateFormat;
 
@@ -47,7 +47,7 @@ public class DateAttributeInfo implements AttributeInfo {
 		}
 		m_DateFormat.setLenient(false);
 	}
-	
+
 	/**
 	 * Get begin date.
 	 * 

@@ -89,8 +89,7 @@ public class LookAndFeel {
 	/**
 	 * sets the look and feel to the specified class
 	 * 
-	 * @param classname
-	 *            the look and feel to use
+	 * @param classname the look and feel to use
 	 * @return whether setting was successful
 	 */
 	public static boolean setLookAndFeel(String classname) {
@@ -136,12 +135,9 @@ public class LookAndFeel {
 	/**
 	 * Set the look and feel from loaded settings
 	 *
-	 * @param appID
-	 *            the ID of the application to load settings for
-	 * @param lookAndFeelKey
-	 *            the key to look up the look and feel in the settings
-	 * @throws IOException
-	 *             if a problem occurs when loading settings
+	 * @param appID          the ID of the application to load settings for
+	 * @param lookAndFeelKey the key to look up the look and feel in the settings
+	 * @throws IOException if a problem occurs when loading settings
 	 */
 	public static void setLookAndFeel(String appID, String lookAndFeelKey, String defaultLookAndFeel)
 			throws IOException {
@@ -157,8 +153,8 @@ public class LookAndFeel {
 	}
 
 	/**
-	 * sets the look and feel to the one in the props-file or if not set the
-	 * default one of the system
+	 * sets the look and feel to the one in the props-file or if not set the default
+	 * one of the system
 	 * 
 	 * @return whether setting was successful
 	 */
@@ -212,8 +208,7 @@ public class LookAndFeel {
 	/**
 	 * prints all the available LnFs to stdout
 	 * 
-	 * @param args
-	 *            the commandline options
+	 * @param args the commandline options
 	 */
 	public static void main(String[] args) {
 		String[] list;

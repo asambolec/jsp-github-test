@@ -31,8 +31,8 @@ package core;
 public interface MultiInstanceCapabilitiesHandler extends CapabilitiesHandler {
 
 	/**
-	 * Returns the capabilities of this multi-instance classifier for the
-	 * relational data (i.e., the bags).
+	 * Returns the capabilities of this multi-instance classifier for the relational
+	 * data (i.e., the bags).
 	 *
 	 * @return the capabilities of this object
 	 * @see Capabilities

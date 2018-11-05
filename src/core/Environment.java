@@ -45,17 +45,17 @@ public class Environment implements RevisionHandler {
 	private static final Map<String, String> mEnvVars = new TreeMap<>();
 
 	/**
-	 * Constructs a new Environment object with all environment variables and
-	 * java properties set.
+	 * Constructs a new Environment object with all environment variables and java
+	 * properties set.
 	 */
 	public Environment() {
 		// get the env variables first
 		Map<String, String> env = System.getenv();
 		Set<String> keys = env.keySet();
-		for (String kv : keys) {
+		keys.forEach(kv -> {
 			String value = env.get(kv);
 			mEnvVars.put(kv, value);
-		}
+		});
 
 		// get the java properties
 		Properties jvmProps = System.getProperties();
@@ -69,19 +69,18 @@ public class Environment implements RevisionHandler {
 	}
 
 	/**
-	 * Constructor that makes a new Environment object containing all the
-	 * entries in the supplied one
+	 * Constructor that makes a new Environment object containing all the entries in
+	 * the supplied one
 	 *
-	 * @param other
-	 *            the Environment object to copy to this one
+	 * @param other the Environment object to copy to this one
 	 */
 	public Environment(Environment other) {
 		mEnvVars.putAll(other.mEnvVars);
 	}
 
 	/**
-	 * Get the singleton system-wide (visible to every class in the running VM)
-	 * set of environment variables.
+	 * Get the singleton system-wide (visible to every class in the running VM) set
+	 * of environment variables.
 	 * 
 	 * @return the system-wide set of environment variables.
 	 */
@@ -92,8 +91,7 @@ public class Environment implements RevisionHandler {
 	/**
 	 * Tests for the presence of environment variables.
 	 * 
-	 * @param source
-	 *            the string to test
+	 * @param source the string to test
 	 * @return true if the argument contains one or more environment variables
 	 */
 	public static boolean containsEnvVariables(String source) {
@@ -103,11 +101,9 @@ public class Environment implements RevisionHandler {
 	/**
 	 * Substitute a variable names for their values in the given string.
 	 * 
-	 * @param source
-	 *            the source string to replace variables in
+	 * @param source the source string to replace variables in
 	 * @return a String with all variable names replaced with their values
-	 * @throws Exception
-	 *             if an unknown variable name is encountered
+	 * @throws Exception if an unknown variable name is encountered
 	 */
 	public String substitute(String source) throws Exception {
 		// Grab each variable out of the string
@@ -138,10 +134,8 @@ public class Environment implements RevisionHandler {
 	/**
 	 * Add a variable to the internal map of this properties object.
 	 * 
-	 * @param key
-	 *            the name of the variable
-	 * @param value
-	 *            its value
+	 * @param key   the name of the variable
+	 * @param value its value
 	 */
 	public void addVariable(String key, String value) {
 		mEnvVars.put(key, value);
@@ -151,10 +145,8 @@ public class Environment implements RevisionHandler {
 	 * Add a a variable to the internal map of this properties object and to the
 	 * global system-wide environment;
 	 * 
-	 * @param key
-	 *            the name of the variable
-	 * @param value
-	 *            its value
+	 * @param key   the name of the variable
+	 * @param value its value
 	 */
 	public void addVariableSystemWide(String key, String value) {
 		addVariable(key, value); // local
@@ -169,8 +161,7 @@ public class Environment implements RevisionHandler {
 	/**
 	 * Remove a named variable from the map.
 	 * 
-	 * @param key
-	 *            the name of the varaible to remove.
+	 * @param key the name of the varaible to remove.
 	 */
 	public void removeVariable(String key) {
 		mEnvVars.remove(key);
@@ -188,10 +179,9 @@ public class Environment implements RevisionHandler {
 	/**
 	 * Get the value for a particular variable.
 	 * 
-	 * @param key
-	 *            the name of the variable to get
-	 * @return the associated value or null if this variable is not in the
-	 *         internal map
+	 * @param key the name of the variable to get
+	 * @return the associated value or null if this variable is not in the internal
+	 *         map
 	 */
 	public String getVariableValue(String key) {
 		return mEnvVars.get(key);
@@ -200,9 +190,8 @@ public class Environment implements RevisionHandler {
 	/**
 	 * Main method for testing this class.
 	 * 
-	 * @param args
-	 *            a list of strings to replace variables in (e.g. "\${os.name}
-	 *            "\${java.version}")
+	 * @param args a list of strings to replace variables in (e.g. "\${os.name}
+	 *             "\${java.version}")
 	 */
 	public static void main(String[] args) {
 		Environment t = new Environment();

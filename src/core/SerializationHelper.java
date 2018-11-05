@@ -51,11 +51,9 @@ public class SerializationHelper implements RevisionHandler {
 	/**
 	 * checks whether a class is serializable.
 	 * 
-	 * @param classname
-	 *            the class to check
-	 * @return true if the class or one of its ancestors implements the
-	 *         Serializable interface, otherwise false (also if the class cannot
-	 *         be loaded)
+	 * @param classname the class to check
+	 * @return true if the class or one of its ancestors implements the Serializable
+	 *         interface, otherwise false (also if the class cannot be loaded)
 	 */
 	public static boolean isSerializable(String classname) {
 		boolean result;
@@ -73,10 +71,9 @@ public class SerializationHelper implements RevisionHandler {
 	/**
 	 * checks whether a class is serializable.
 	 * 
-	 * @param c
-	 *            the class to check
-	 * @return true if the class or one of its ancestors implements the
-	 *         Serializable interface, otherwise false
+	 * @param c the class to check
+	 * @return true if the class or one of its ancestors implements the Serializable
+	 *         interface, otherwise false
 	 */
 	public static boolean isSerializable(Class<?> c) {
 		return ClassDiscovery.hasInterface(Serializable.class, c);
@@ -85,11 +82,9 @@ public class SerializationHelper implements RevisionHandler {
 	/**
 	 * checks whether the given class contains a serialVersionUID.
 	 * 
-	 * @param classname
-	 *            the class to check
-	 * @return true if the class contains a serialVersionUID, otherwise false
-	 *         (also if the class is not implementing serializable or cannot be
-	 *         loaded)
+	 * @param classname the class to check
+	 * @return true if the class contains a serialVersionUID, otherwise false (also
+	 *         if the class is not implementing serializable or cannot be loaded)
 	 */
 	public static boolean hasUID(String classname) {
 		boolean result;
@@ -107,10 +102,9 @@ public class SerializationHelper implements RevisionHandler {
 	/**
 	 * checks whether the given class contains a serialVersionUID.
 	 * 
-	 * @param c
-	 *            the class to check
-	 * @return true if the class contains a serialVersionUID, otherwise false
-	 *         (also if the class is not implementing serializable)
+	 * @param c the class to check
+	 * @return true if the class contains a serialVersionUID, otherwise false (also
+	 *         if the class is not implementing serializable)
 	 */
 	public static boolean hasUID(Class<?> c) {
 		boolean result;
@@ -134,10 +128,9 @@ public class SerializationHelper implements RevisionHandler {
 	 * implements the java.io.Serializable interface but doesn't declare a
 	 * serialVersionUID.
 	 * 
-	 * @param classname
-	 *            the class to check
-	 * @return true if the class needs to declare one, false otherwise (also if
-	 *         the class cannot be loaded!)
+	 * @param classname the class to check
+	 * @return true if the class needs to declare one, false otherwise (also if the
+	 *         class cannot be loaded!)
 	 */
 	public static boolean needsUID(String classname) {
 		boolean result;
@@ -157,8 +150,7 @@ public class SerializationHelper implements RevisionHandler {
 	 * implements the java.io.Serializable interface but doesn't declare a
 	 * serialVersionUID.
 	 * 
-	 * @param c
-	 *            the class to check
+	 * @param c the class to check
 	 * @return true if the class needs to declare one, false otherwise
 	 */
 	public static boolean needsUID(Class<?> c) {
@@ -176,10 +168,9 @@ public class SerializationHelper implements RevisionHandler {
 	/**
 	 * reads or creates the serialVersionUID for the given class.
 	 * 
-	 * @param classname
-	 *            the class to get the serialVersionUID for
-	 * @return the UID, 0L for non-serializable classes (or if the class cannot
-	 *         be loaded)
+	 * @param classname the class to get the serialVersionUID for
+	 * @return the UID, 0L for non-serializable classes (or if the class cannot be
+	 *         loaded)
 	 */
 	public static long getUID(String classname) {
 		long result;
@@ -197,8 +188,7 @@ public class SerializationHelper implements RevisionHandler {
 	/**
 	 * reads or creates the serialVersionUID for the given class.
 	 * 
-	 * @param c
-	 *            the class to get the serialVersionUID for
+	 * @param c the class to get the serialVersionUID for
 	 * @return the UID, 0L for non-serializable classes
 	 */
 	public static long getUID(Class<?> c) {
@@ -208,12 +198,9 @@ public class SerializationHelper implements RevisionHandler {
 	/**
 	 * serializes the given object to the specified file.
 	 * 
-	 * @param filename
-	 *            the file to write the object to
-	 * @param o
-	 *            the object to serialize
-	 * @throws Exception
-	 *             if serialization fails
+	 * @param filename the file to write the object to
+	 * @param o        the object to serialize
+	 * @throws Exception if serialization fails
 	 */
 	public static void write(String filename, Object o) throws Exception {
 		write(new FileOutputStream(filename), o);
@@ -222,12 +209,9 @@ public class SerializationHelper implements RevisionHandler {
 	/**
 	 * serializes the given object to the specified stream.
 	 * 
-	 * @param stream
-	 *            the stream to write the object to
-	 * @param o
-	 *            the object to serialize
-	 * @throws Exception
-	 *             if serialization fails
+	 * @param stream the stream to write the object to
+	 * @param o      the object to serialize
+	 * @throws Exception if serialization fails
 	 */
 	public static void write(OutputStream stream, Object o) throws Exception {
 		ObjectOutputStream oos;
@@ -245,12 +229,9 @@ public class SerializationHelper implements RevisionHandler {
 	/**
 	 * serializes the given objects to the specified file.
 	 * 
-	 * @param filename
-	 *            the file to write the object to
-	 * @param o
-	 *            the objects to serialize
-	 * @throws Exception
-	 *             if serialization fails
+	 * @param filename the file to write the object to
+	 * @param o        the objects to serialize
+	 * @throws Exception if serialization fails
 	 */
 	public static void writeAll(String filename, Object[] o) throws Exception {
 		writeAll(new FileOutputStream(filename), o);
@@ -259,12 +240,9 @@ public class SerializationHelper implements RevisionHandler {
 	/**
 	 * serializes the given objects to the specified stream.
 	 * 
-	 * @param stream
-	 *            the stream to write the object to
-	 * @param o
-	 *            the objects to serialize
-	 * @throws Exception
-	 *             if serialization fails
+	 * @param stream the stream to write the object to
+	 * @param o      the objects to serialize
+	 * @throws Exception if serialization fails
 	 */
 	public static void writeAll(OutputStream stream, Object[] o) throws Exception {
 		ObjectOutputStream oos;
@@ -283,11 +261,9 @@ public class SerializationHelper implements RevisionHandler {
 	/**
 	 * deserializes the given file and returns the object from it.
 	 * 
-	 * @param filename
-	 *            the file to deserialize from
+	 * @param filename the file to deserialize from
 	 * @return the deserialized object
-	 * @throws Exception
-	 *             if deserialization fails
+	 * @throws Exception if deserialization fails
 	 */
 	public static Object read(String filename) throws Exception {
 		return read(new FileInputStream(filename));
@@ -296,11 +272,9 @@ public class SerializationHelper implements RevisionHandler {
 	/**
 	 * deserializes from the given stream and returns the object from it.
 	 * 
-	 * @param stream
-	 *            the stream to deserialize from
+	 * @param stream the stream to deserialize from
 	 * @return the deserialized object
-	 * @throws Exception
-	 *             if deserialization fails
+	 * @throws Exception if deserialization fails
 	 */
 	public static Object read(InputStream stream) throws Exception {
 		ObjectInputStream ois;
@@ -314,15 +288,13 @@ public class SerializationHelper implements RevisionHandler {
 	}
 
 	/**
-	 * Get a (Weka package classloader aware) {@code ObjectInputStream} instance
-	 * for reading objects from the supplied input stream
+	 * Get a (Weka package classloader aware) {@code ObjectInputStream} instance for
+	 * reading objects from the supplied input stream
 	 *
-	 * @param stream
-	 *            the stream to wrap
+	 * @param stream the stream to wrap
 	 * @return an {@code ObjectInputStream} instance that is aware of of Weka
 	 *         package classloaders
-	 * @throws IOException
-	 *             if a problem occurs
+	 * @throws IOException if a problem occurs
 	 */
 	public static ObjectInputStream getObjectInputStream(InputStream stream) throws IOException {
 		if (!(stream instanceof BufferedInputStream)) {
@@ -335,11 +307,9 @@ public class SerializationHelper implements RevisionHandler {
 	/**
 	 * deserializes the given file and returns the objects from it.
 	 * 
-	 * @param filename
-	 *            the file to deserialize from
+	 * @param filename the file to deserialize from
 	 * @return the deserialized objects
-	 * @throws Exception
-	 *             if deserialization fails
+	 * @throws Exception if deserialization fails
 	 */
 	public static Object[] readAll(String filename) throws Exception {
 		return readAll(new FileInputStream(filename));
@@ -348,11 +318,9 @@ public class SerializationHelper implements RevisionHandler {
 	/**
 	 * deserializes from the given stream and returns the object from it.
 	 * 
-	 * @param stream
-	 *            the stream to deserialize from
+	 * @param stream the stream to deserialize from
 	 * @return the deserialized object
-	 * @throws Exception
-	 *             if deserialization fails
+	 * @throws Exception if deserialization fails
 	 */
 	public static Object[] readAll(InputStream stream) throws Exception {
 		ObjectInputStream ois;
@@ -387,10 +355,8 @@ public class SerializationHelper implements RevisionHandler {
 	 * Outputs information about a class on the commandline, takes class name as
 	 * arguments.
 	 * 
-	 * @param args
-	 *            the classnames to check
-	 * @throws Exception
-	 *             if something goes wrong
+	 * @param args the classnames to check
+	 * @throws Exception if something goes wrong
 	 */
 	public static void main(String[] args) throws Exception {
 		if (args.length == 0) {

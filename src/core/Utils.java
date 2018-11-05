@@ -86,16 +86,13 @@ public final class Utils implements RevisionHandler {
 	};
 
 	/**
-	 * Turns a given date string into Java's internal representation
-	 * (milliseconds from 1 January 1970).
+	 * Turns a given date string into Java's internal representation (milliseconds
+	 * from 1 January 1970).
 	 *
-	 * @param dateString
-	 *            the string representing the date
-	 * @param dateFormat
-	 *            the date format as a string
+	 * @param dateString the string representing the date
+	 * @param dateFormat the date format as a string
 	 *
-	 * @return milliseconds since 1 January 1970 (as a double converted from
-	 *         long)
+	 * @return milliseconds since 1 January 1970 (as a double converted from long)
 	 */
 	public static double dateToMillis(String dateString, String dateFormat) throws ParseException {
 		return new java.text.SimpleDateFormat(dateFormat).parse(dateString).getTime();
@@ -104,8 +101,7 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Tests if the given value codes "missing".
 	 * 
-	 * @param val
-	 *            the value to be tested
+	 * @param val the value to be tested
 	 * @return true if val codes "missing"
 	 */
 	public static boolean isMissingValue(double val) {
@@ -114,9 +110,9 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Returns the value used to code a missing value. Note that equality tests
-	 * on this value will always return false, so use isMissingValue(double val)
-	 * for testing..
+	 * Returns the value used to code a missing value. Note that equality tests on
+	 * this value will always return false, so use isMissingValue(double val) for
+	 * testing..
 	 * 
 	 * @return the value used as missing value.
 	 */
@@ -126,8 +122,8 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Casting an object without "unchecked" compile-time warnings. Use only
-	 * when absolutely necessary (e.g. when using clone()).
+	 * Casting an object without "unchecked" compile-time warnings. Use only when
+	 * absolutely necessary (e.g. when using clone()).
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T cast(Object x) {
@@ -139,20 +135,18 @@ public final class Utils implements RevisionHandler {
 	 * defined in the system resource location (i.e. in the CLASSPATH). These
 	 * default properties must exist. Properties optionally defined in the user
 	 * properties location (WekaPackageManager.PROPERTIES_DIR) override default
-	 * settings. Properties defined in the current directory (optional) override
-	 * all these settings.
+	 * settings. Properties defined in the current directory (optional) override all
+	 * these settings.
 	 *
-	 * @param resourceName
-	 *            the location of the resource that should be loaded. e.g.:
-	 *            "weka/core/Utils.props". (The use of hardcoded forward slashes
-	 *            here is OK - see jdk1.1/docs/guide/misc/resources.html) This
-	 *            routine will also look for the file (in this case)
-	 *            "Utils.props" in the users home directory and the current
-	 *            directory.
+	 * @param resourceName the location of the resource that should be loaded. e.g.:
+	 *                     "weka/core/Utils.props". (The use of hardcoded forward
+	 *                     slashes here is OK - see
+	 *                     jdk1.1/docs/guide/misc/resources.html) This routine will
+	 *                     also look for the file (in this case) "Utils.props" in
+	 *                     the users home directory and the current directory.
 	 * @return the Properties
-	 * @exception Exception
-	 *                if no default properties are defined, or if an error
-	 *                occurs reading the properties files.
+	 * @exception Exception if no default properties are defined, or if an error
+	 *                      occurs reading the properties files.
 	 */
 	public static Properties readProperties(String resourceName) throws Exception {
 		Utils utils = new Utils();
@@ -164,22 +158,19 @@ public final class Utils implements RevisionHandler {
 	 * defined in the system resource location (i.e. in the CLASSPATH). These
 	 * default properties must exist. Properties optionally defined in the user
 	 * properties location (WekaPackageManager.PROPERTIES_DIR) override default
-	 * settings. Properties defined in the current directory (optional) override
-	 * all these settings.
+	 * settings. Properties defined in the current directory (optional) override all
+	 * these settings.
 	 * 
-	 * @param resourceName
-	 *            the location of the resource that should be loaded. e.g.:
-	 *            "weka/core/Utils.props". (The use of hardcoded forward slashes
-	 *            here is OK - see jdk1.1/docs/guide/misc/resources.html) This
-	 *            routine will also look for the file (in this case)
-	 *            "Utils.props" in the users home directory and the current
-	 *            directory.
-	 * @param loader
-	 *            the class loader to use when loading properties
+	 * @param resourceName the location of the resource that should be loaded. e.g.:
+	 *                     "weka/core/Utils.props". (The use of hardcoded forward
+	 *                     slashes here is OK - see
+	 *                     jdk1.1/docs/guide/misc/resources.html) This routine will
+	 *                     also look for the file (in this case) "Utils.props" in
+	 *                     the users home directory and the current directory.
+	 * @param loader       the class loader to use when loading properties
 	 * @return the Properties
-	 * @exception Exception
-	 *                if no default properties are defined, or if an error
-	 *                occurs reading the properties files.
+	 * @exception Exception if no default properties are defined, or if an error
+	 *                      occurs reading the properties files.
 	 */
 	public static Properties readProperties(String resourceName, ClassLoader loader) throws Exception {
 
@@ -243,12 +234,9 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Returns the correlation coefficient of two double vectors.
 	 * 
-	 * @param y1
-	 *            double vector 1
-	 * @param y2
-	 *            double vector 2
-	 * @param n
-	 *            the length of two double vectors
+	 * @param y1 double vector 1
+	 * @param y2 double vector 2
+	 * @param n  the length of two double vectors
 	 * @return the correlation coefficient
 	 */
 	public static final double correlation(double y1[], double y2[], int n) {
@@ -287,10 +275,8 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Removes all occurrences of a string from another string.
 	 * 
-	 * @param inString
-	 *            the string to remove substrings from.
-	 * @param substring
-	 *            the substring to remove.
+	 * @param inString  the string to remove substrings from.
+	 * @param substring the substring to remove.
 	 * @return the input string with occurrences of substring removed.
 	 */
 	public static String removeSubstring(String inString, String substring) {
@@ -307,15 +293,11 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Replaces with a new string, all occurrences of a string from another
-	 * string.
+	 * Replaces with a new string, all occurrences of a string from another string.
 	 * 
-	 * @param inString
-	 *            the string to replace substrings in.
-	 * @param subString
-	 *            the substring to replace.
-	 * @param replaceString
-	 *            the replacement substring
+	 * @param inString      the string to replace substrings in.
+	 * @param subString     the substring to replace.
+	 * @param replaceString the replacement substring
 	 * @return the input string with occurrences of substring replaced.
 	 */
 	public static String replaceSubstring(String inString, String subString, String replaceString) {
@@ -336,10 +318,8 @@ public final class Utils implements RevisionHandler {
 	 * Pads a string to a specified length, inserting spaces on the left as
 	 * required. If the string is too long, it is simply returned unchanged.
 	 * 
-	 * @param inString
-	 *            the input string
-	 * @param length
-	 *            the desired length of the output string
+	 * @param inString the input string
+	 * @param length   the desired length of the output string
 	 * @return the output string
 	 */
 	public static String padLeftAndAllowOverflow(String inString, int length) {
@@ -351,10 +331,8 @@ public final class Utils implements RevisionHandler {
 	 * Pads a string to a specified length, inserting spaces on the right as
 	 * required. If the string is too long, it is simply returned unchanged.
 	 * 
-	 * @param inString
-	 *            the input string
-	 * @param length
-	 *            the desired length of the output string
+	 * @param inString the input string
+	 * @param length   the desired length of the output string
 	 * @return the output string
 	 */
 	public static String padRightAndAllowOverflow(String inString, int length) {
@@ -364,13 +342,10 @@ public final class Utils implements RevisionHandler {
 
 	/**
 	 * Pads a string to a specified length, inserting spaces on the left as
-	 * required. If the string is too long, characters are removed (from the
-	 * right).
+	 * required. If the string is too long, characters are removed (from the right).
 	 * 
-	 * @param inString
-	 *            the input string
-	 * @param length
-	 *            the desired length of the output string
+	 * @param inString the input string
+	 * @param length   the desired length of the output string
 	 * @return the output string
 	 */
 	public static String padLeft(String inString, int length) {
@@ -380,13 +355,10 @@ public final class Utils implements RevisionHandler {
 
 	/**
 	 * Pads a string to a specified length, inserting spaces on the right as
-	 * required. If the string is too long, characters are removed (from the
-	 * right).
+	 * required. If the string is too long, characters are removed (from the right).
 	 * 
-	 * @param inString
-	 *            the input string
-	 * @param length
-	 *            the desired length of the output string
+	 * @param inString the input string
+	 * @param length   the desired length of the output string
 	 * @return the output string
 	 */
 	public static String padRight(String inString, int length) {
@@ -397,11 +369,9 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Rounds a double and converts it into String.
 	 * 
-	 * @param value
-	 *            the double value
-	 * @param afterDecimalPoint
-	 *            the (maximum) number of digits permitted after the decimal
-	 *            point
+	 * @param value             the double value
+	 * @param afterDecimalPoint the (maximum) number of digits permitted after the
+	 *                          decimal point
 	 * @return the double as a formatted string
 	 */
 	public static/* @pure@ */String doubleToString(double value, int afterDecimalPoint) {
@@ -411,15 +381,12 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Rounds a double and converts it into a formatted decimal-justified
-	 * String. Trailing 0's are replaced with spaces.
+	 * Rounds a double and converts it into a formatted decimal-justified String.
+	 * Trailing 0's are replaced with spaces.
 	 * 
-	 * @param value
-	 *            the double value
-	 * @param width
-	 *            the width of the string
-	 * @param afterDecimalPoint
-	 *            the number of digits after the decimal point
+	 * @param value             the double value
+	 * @param width             the width of the string
+	 * @param afterDecimalPoint the number of digits after the decimal point
 	 * @return the double as a formatted string
 	 */
 	public static/* @pure@ */String doubleToString(double value, int width, int afterDecimalPoint) {
@@ -474,11 +441,9 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Returns the basic class of an array class (handles multi-dimensional
-	 * arrays).
+	 * Returns the basic class of an array class (handles multi-dimensional arrays).
 	 * 
-	 * @param c
-	 *            the array to inspect
+	 * @param c the array to inspect
 	 * @return the class of the innermost elements
 	 */
 	public static Class<?> getArrayClass(Class<?> c) {
@@ -490,12 +455,10 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Returns the dimensions of the given array. Even though the parameter is
-	 * of type "Object" one can hand over primitve arrays, e.g. int[3] or
-	 * double[2][4].
+	 * Returns the dimensions of the given array. Even though the parameter is of
+	 * type "Object" one can hand over primitve arrays, e.g. int[3] or double[2][4].
 	 * 
-	 * @param array
-	 *            the array to determine the dimensions for
+	 * @param array the array to determine the dimensions for
 	 * @return the dimensions of the array
 	 */
 	public static int getArrayDimensions(Class<?> array) {
@@ -507,12 +470,10 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Returns the dimensions of the given array. Even though the parameter is
-	 * of type "Object" one can hand over primitve arrays, e.g. int[3] or
-	 * double[2][4].
+	 * Returns the dimensions of the given array. Even though the parameter is of
+	 * type "Object" one can hand over primitve arrays, e.g. int[3] or double[2][4].
 	 * 
-	 * @param array
-	 *            the array to determine the dimensions for
+	 * @param array the array to determine the dimensions for
 	 * @return the dimensions of the array
 	 */
 	public static int getArrayDimensions(Object array) {
@@ -520,12 +481,11 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Returns the given Array in a string representation. Even though the
-	 * parameter is of type "Object" one can hand over primitve arrays, e.g.
-	 * int[3] or double[2][4].
+	 * Returns the given Array in a string representation. Even though the parameter
+	 * is of type "Object" one can hand over primitve arrays, e.g. int[3] or
+	 * double[2][4].
 	 * 
-	 * @param array
-	 *            the array to return in a string representation
+	 * @param array the array to return in a string representation
 	 * @return the array as string
 	 */
 	public static String arrayToString(Object array) {
@@ -564,10 +524,8 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Tests if a is equal to b.
 	 * 
-	 * @param a
-	 *            a double
-	 * @param b
-	 *            a double
+	 * @param a a double
+	 * @param b a double
 	 */
 	public static/* @pure@ */boolean eq(double a, double b) {
 
@@ -577,10 +535,8 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Checks if the given array contains any non-empty options.
 	 * 
-	 * @param options
-	 *            an array of strings
-	 * @exception Exception
-	 *                if there are any non-empty options
+	 * @param options an array of strings
+	 * @exception Exception if there are any non-empty options
 	 */
 	public static void checkForRemainingOptions(String[] options) throws Exception {
 
@@ -602,17 +558,14 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Checks if the given array contains the flag "-Char". Stops searching at
-	 * the first marker "--". If the flag is found, it is replaced with the
-	 * empty string.
+	 * Checks if the given array contains the flag "-Char". Stops searching at the
+	 * first marker "--". If the flag is found, it is replaced with the empty
+	 * string.
 	 * 
-	 * @param flag
-	 *            the character indicating the flag.
-	 * @param options
-	 *            the array of strings containing all the options.
+	 * @param flag    the character indicating the flag.
+	 * @param options the array of strings containing all the options.
 	 * @return true if the flag was found
-	 * @exception Exception
-	 *                if an illegal option was found
+	 * @exception Exception if an illegal option was found
 	 */
 	public static boolean getFlag(char flag, String[] options) throws Exception {
 
@@ -620,17 +573,14 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Checks if the given array contains the flag "-String". Stops searching at
-	 * the first marker "--". If the flag is found, it is replaced with the
-	 * empty string.
+	 * Checks if the given array contains the flag "-String". Stops searching at the
+	 * first marker "--". If the flag is found, it is replaced with the empty
+	 * string.
 	 * 
-	 * @param flag
-	 *            the String indicating the flag.
-	 * @param options
-	 *            the array of strings containing all the options.
+	 * @param flag    the String indicating the flag.
+	 * @param options the array of strings containing all the options.
 	 * @return true if the flag was found
-	 * @exception Exception
-	 *                if an illegal option was found
+	 * @exception Exception if an illegal option was found
 	 */
 	public static boolean getFlag(String flag, String[] options) throws Exception {
 
@@ -644,17 +594,14 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Gets an option indicated by a flag "-Char" from the given array of
-	 * strings. Stops searching at the first marker "--". Replaces flag and
-	 * option with empty strings.
+	 * Gets an option indicated by a flag "-Char" from the given array of strings.
+	 * Stops searching at the first marker "--". Replaces flag and option with empty
+	 * strings.
 	 * 
-	 * @param flag
-	 *            the character indicating the option.
-	 * @param options
-	 *            the array of strings containing all the options.
+	 * @param flag    the character indicating the option.
+	 * @param options the array of strings containing all the options.
 	 * @return the indicated option or an empty string
-	 * @exception Exception
-	 *                if the option indicated by the flag can't be found
+	 * @exception Exception if the option indicated by the flag can't be found
 	 */
 	public static/* @non_null@ */String getOption(char flag, String[] options) throws Exception {
 
@@ -662,17 +609,14 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Gets an option indicated by a flag "-String" from the given array of
-	 * strings. Stops searching at the first marker "--". Replaces flag and
-	 * option with empty strings.
+	 * Gets an option indicated by a flag "-String" from the given array of strings.
+	 * Stops searching at the first marker "--". Replaces flag and option with empty
+	 * strings.
 	 * 
-	 * @param flag
-	 *            the String indicating the option.
-	 * @param options
-	 *            the array of strings containing all the options.
+	 * @param flag    the String indicating the option.
+	 * @param options the array of strings containing all the options.
 	 * @return the indicated option or an empty string
-	 * @exception Exception
-	 *                if the option indicated by the flag can't be found
+	 * @exception Exception if the option indicated by the flag can't be found
 	 */
 	public static/* @non_null@ */String getOption(String flag, String[] options) throws Exception {
 
@@ -701,10 +645,8 @@ public final class Utils implements RevisionHandler {
 	 * Gets the index of an option or flag indicated by a flag "-Char" from the
 	 * given array of strings. Stops searching at the first marker "--".
 	 * 
-	 * @param flag
-	 *            the character indicating the option.
-	 * @param options
-	 *            the array of strings containing all the options.
+	 * @param flag    the character indicating the option.
+	 * @param options the array of strings containing all the options.
 	 * @return the position if found, or -1 otherwise
 	 */
 	public static int getOptionPos(char flag, String[] options) {
@@ -712,13 +654,11 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Gets the index of an option or flag indicated by a flag "-String" from
-	 * the given array of strings. Stops searching at the first marker "--".
+	 * Gets the index of an option or flag indicated by a flag "-String" from the
+	 * given array of strings. Stops searching at the first marker "--".
 	 * 
-	 * @param flag
-	 *            the String indicating the option.
-	 * @param options
-	 *            the array of strings containing all the options.
+	 * @param flag    the String indicating the option.
+	 * @param options the array of strings containing all the options.
 	 * @return the position if found, or -1 otherwise
 	 */
 	public static int getOptionPos(String flag, String[] options) {
@@ -752,18 +692,16 @@ public final class Utils implements RevisionHandler {
 	 * 
 	 * The following rules are applied:
 	 * 
-	 * A character is backquoted version of it is one of
-	 * <tt>" ' % \ \n \r \t</tt> .
+	 * A character is backquoted version of it is one of <tt>" ' % \ \n \r \t</tt> .
 	 * 
-	 * A string is enclosed within single quotes if a character has been
-	 * backquoted using the previous rule above or contains <tt>{ }</tt> or is
-	 * exactly equal to the strings <tt>, ? space or ""</tt> (empty string).
+	 * A string is enclosed within single quotes if a character has been backquoted
+	 * using the previous rule above or contains <tt>{ }</tt> or is exactly equal to
+	 * the strings <tt>, ? space or ""</tt> (empty string).
 	 * 
 	 * A quoted question mark distinguishes it from the missing value which is
 	 * represented as an unquoted question mark in arff files.
 	 * 
-	 * @param string
-	 *            the string to be quoted
+	 * @param string the string to be quoted
 	 * @return the string (possibly quoted)
 	 * @see #unquote(String)
 	 */
@@ -792,8 +730,7 @@ public final class Utils implements RevisionHandler {
 	 * unquotes are previously quoted string (but only if necessary), i.e., it
 	 * removes the single quotes around it. Inverse to quote(String).
 	 * 
-	 * @param string
-	 *            the string to process
+	 * @param string the string to process
 	 * @return the unquoted string
 	 * @see #quote(String)
 	 */
@@ -815,8 +752,7 @@ public final class Utils implements RevisionHandler {
 	 * Converts carriage returns and new lines in a string into \r and \n.
 	 * Backquotes the following characters: ` " \ \t and %
 	 * 
-	 * @param string
-	 *            the string
+	 * @param string the string
 	 * @return the converted string
 	 * @see #unbackQuoteChars(String)
 	 */
@@ -853,8 +789,7 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Converts carriage returns and new lines in a string into \r and \n.
 	 * 
-	 * @param string
-	 *            the string
+	 * @param string the string
 	 * @return the converted string
 	 */
 	public static String convertNewLines(String string) {
@@ -898,8 +833,7 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Reverts \r and \n in a string into carriage returns and new lines.
 	 * 
-	 * @param string
-	 *            the string
+	 * @param string the string
 	 * @return the converted string
 	 */
 	public static String revertNewLines(String string) {
@@ -941,11 +875,10 @@ public final class Utils implements RevisionHandler {
 
 	/**
 	 * Returns the secondary set of options (if any) contained in the supplied
-	 * options array. The secondary set is defined to be any options after the
-	 * first "--". These options are removed from the original options array.
+	 * options array. The secondary set is defined to be any options after the first
+	 * "--". These options are removed from the original options array.
 	 * 
-	 * @param options
-	 *            the input array of options
+	 * @param options the input array of options
 	 * @return the array of secondary options
 	 */
 	public static String[] partitionOptions(String[] options) {
@@ -966,11 +899,10 @@ public final class Utils implements RevisionHandler {
 
 	/**
 	 * The inverse operation of backQuoteChars(). Converts back-quoted carriage
-	 * returns and new lines in a string to the corresponding character ('\r'
-	 * and '\n'). Also "un"-back-quotes the following characters: ` " \ \t and %
+	 * returns and new lines in a string to the corresponding character ('\r' and
+	 * '\n'). Also "un"-back-quotes the following characters: ` " \ \t and %
 	 * 
-	 * @param string
-	 *            the string
+	 * @param string the string
 	 * @return the converted string
 	 * @see #backQuoteChars(String)
 	 */
@@ -1014,15 +946,13 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Split up a string containing options into an array of strings, one for
-	 * each option.
+	 * Split up a string containing options into an array of strings, one for each
+	 * option.
 	 * 
-	 * @param quotedOptionString
-	 *            the string containing the options
+	 * @param quotedOptionString the string containing the options
 	 * @return the array of options
-	 * @throws Exception
-	 *             in case of an unterminated string, unknown character or a
-	 *             parse error
+	 * @throws Exception in case of an unterminated string, unknown character or a
+	 *                   parse error
 	 */
 	public static String[] splitOptions(String quotedOptionString) throws Exception {
 
@@ -1093,11 +1023,10 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Joins all the options in an option array into a single string, as might
-	 * be used on the command line.
+	 * Joins all the options in an option array into a single string, as might be
+	 * used on the command line.
 	 * 
-	 * @param optionArray
-	 *            the array of options
+	 * @param optionArray the array of options
 	 * @return the string containing all options.
 	 */
 	public static String joinOptions(String[] optionArray) {
@@ -1140,21 +1069,17 @@ public final class Utils implements RevisionHandler {
 	 * setClassifier(c);
 	 * </pre></code>
 	 * 
-	 * @param classType
-	 *            the class that the instantiated object should be assignable to
-	 *            -- an exception is thrown if this is not the case
-	 * @param className
-	 *            the fully qualified class name of the object
-	 * @param options
-	 *            an array of options suitable for passing to setOptions. May be
-	 *            null. Any options accepted by the object will be removed from
-	 *            the array.
-	 * @return the newly created object, ready for use (if it is an array, it
-	 *         will have size zero).
-	 * @exception Exception
-	 *                if the class name is invalid, or if the class is not
-	 *                assignable to the desired class type, or the options
-	 *                supplied are not acceptable to the object
+	 * @param classType the class that the instantiated object should be assignable
+	 *                  to -- an exception is thrown if this is not the case
+	 * @param className the fully qualified class name of the object
+	 * @param options   an array of options suitable for passing to setOptions. May
+	 *                  be null. Any options accepted by the object will be removed
+	 *                  from the array.
+	 * @return the newly created object, ready for use (if it is an array, it will
+	 *         have size zero).
+	 * @exception Exception if the class name is invalid, or if the class is not
+	 *                      assignable to the desired class type, or the options
+	 *                      supplied are not acceptable to the object
 	 */
 	public static Object forName(Class<?> classType, String className, String[] options) throws Exception {
 
@@ -1172,16 +1097,16 @@ public final class Utils implements RevisionHandler {
 
 		if (matches.size() > 1) {
 			StringBuffer sb = new StringBuffer("More than one possibility matched '" + className + "':\n");
-			for (String s : matches) {
+			matches.forEach(s -> {
 				sb.append("  " + s + '\n');
-			}
+			});
 			throw new Exception(sb.toString());
 		}
 
 		className = matches.get(0);
 
 		Class<?> c = null;
-		
+
 		Object o = c.newInstance();
 		if ((o instanceof OptionHandler) && (options != null)) {
 			((OptionHandler) o).setOptions(options);
@@ -1205,20 +1130,16 @@ public final class Utils implements RevisionHandler {
 	 * setClassifier(c);
 	 * </pre></code>
 	 * 
-	 * @param classType
-	 *            the class that the instantiated object should be assignable to
-	 *            -- an exception is thrown if this is not the case
-	 * @param className
-	 *            the fully qualified class name of the object
-	 * @param options
-	 *            an array of options suitable for passing to setOptions. May be
-	 *            null. Any options accepted by the object will be removed from
-	 *            the array.
+	 * @param classType the class that the instantiated object should be assignable
+	 *                  to -- an exception is thrown if this is not the case
+	 * @param className the fully qualified class name of the object
+	 * @param options   an array of options suitable for passing to setOptions. May
+	 *                  be null. Any options accepted by the object will be removed
+	 *                  from the array.
 	 * @return the newly created object, ready for use.
-	 * @exception Exception
-	 *                if the class name is invalid, or if the class is not
-	 *                assignable to the desired class type, or the options
-	 *                supplied are not acceptable to the object
+	 * @exception Exception if the class name is invalid, or if the class is not
+	 *                      assignable to the desired class type, or the options
+	 *                      supplied are not acceptable to the object
 	 */
 	@SuppressWarnings("unchecked")
 	protected static Object forNameNoSchemeMatch(Class classType, String className, String[] options) throws Exception {
@@ -1243,11 +1164,10 @@ public final class Utils implements RevisionHandler {
 
 	/**
 	 * Generates a commandline of the given object. If the object is not
-	 * implementing OptionHandler, then it will only return the classname,
-	 * otherwise also the options.
+	 * implementing OptionHandler, then it will only return the classname, otherwise
+	 * also the options.
 	 * 
-	 * @param obj
-	 *            the object to turn into a commandline
+	 * @param obj the object to turn into a commandline
 	 * @return the commandline
 	 */
 	public static String toCommandLine(Object obj) {
@@ -1268,10 +1188,9 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Computes entropy for an array of integers.
 	 * 
-	 * @param counts
-	 *            array of counts
-	 * @return - a log2 a - b log2 b - c log2 c + (a+b+c) log2 (a+b+c) when
-	 *         given array [a b c]
+	 * @param counts array of counts
+	 * @return - a log2 a - b log2 b - c log2 c + (a+b+c) log2 (a+b+c) when given
+	 *         array [a b c]
 	 */
 	public static/* @pure@ */double info(int counts[]) {
 
@@ -1287,10 +1206,8 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Tests if a is smaller or equal to b.
 	 * 
-	 * @param a
-	 *            a double
-	 * @param b
-	 *            a double
+	 * @param a a double
+	 * @param b a double
 	 */
 	public static/* @pure@ */boolean smOrEq(double a, double b) {
 
@@ -1300,10 +1217,8 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Tests if a is greater or equal to b.
 	 * 
-	 * @param a
-	 *            a double
-	 * @param b
-	 *            a double
+	 * @param a a double
+	 * @param b a double
 	 */
 	public static/* @pure@ */boolean grOrEq(double a, double b) {
 
@@ -1313,10 +1228,8 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Tests if a is smaller than b.
 	 * 
-	 * @param a
-	 *            a double
-	 * @param b
-	 *            a double
+	 * @param a a double
+	 * @param b a double
 	 */
 	public static/* @pure@ */boolean sm(double a, double b) {
 
@@ -1326,10 +1239,8 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Tests if a is greater than b.
 	 * 
-	 * @param a
-	 *            a double
-	 * @param b
-	 *            a double
+	 * @param a a double
+	 * @param b a double
 	 */
 	public static/* @pure@ */boolean gr(double a, double b) {
 
@@ -1339,10 +1250,8 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Returns the kth-smallest value in the array.
 	 * 
-	 * @param array
-	 *            the array of integers
-	 * @param k
-	 *            the value of k
+	 * @param array the array of integers
+	 * @param k     the value of k
 	 * @return the kth-smallest value
 	 */
 	public static int kthSmallestValue(int[] array, int k) {
@@ -1354,10 +1263,8 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Returns the kth-smallest value in the array
 	 * 
-	 * @param array
-	 *            the array of double
-	 * @param k
-	 *            the value of k
+	 * @param array the array of double
+	 * @param k     the value of k
 	 * @return the kth-smallest value
 	 */
 	public static double kthSmallestValue(double[] array, int k) {
@@ -1369,8 +1276,7 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Returns the logarithm of a for base 2.
 	 * 
-	 * @param a
-	 *            a double
+	 * @param a a double
 	 * @return the logarithm for base 2
 	 */
 	public static/* @pure@ */double log2(double a) {
@@ -1379,11 +1285,10 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Returns index of maximum element in a given array of doubles. First
-	 * maximum is returned.
+	 * Returns index of maximum element in a given array of doubles. First maximum
+	 * is returned.
 	 * 
-	 * @param doubles
-	 *            the array of doubles
+	 * @param doubles the array of doubles
 	 * @return the index of the maximum element
 	 */
 	public static/* @pure@ */int maxIndex(double[] doubles) {
@@ -1402,11 +1307,10 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Returns index of maximum element in a given array of integers. First
-	 * maximum is returned.
+	 * Returns index of maximum element in a given array of integers. First maximum
+	 * is returned.
 	 * 
-	 * @param ints
-	 *            the array of integers
+	 * @param ints the array of integers
 	 * @return the index of the maximum element
 	 */
 	public static/* @pure@ */int maxIndex(int[] ints) {
@@ -1427,8 +1331,7 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Computes the mean for an array of doubles.
 	 * 
-	 * @param vector
-	 *            the array
+	 * @param vector the array
 	 * @return the mean
 	 */
 	public static/* @pure@ */double mean(double[] vector) {
@@ -1445,11 +1348,10 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Returns index of minimum element in a given array of integers. First
-	 * minimum is returned.
+	 * Returns index of minimum element in a given array of integers. First minimum
+	 * is returned.
 	 * 
-	 * @param ints
-	 *            the array of integers
+	 * @param ints the array of integers
 	 * @return the index of the minimum element
 	 */
 	public static/* @pure@ */int minIndex(int[] ints) {
@@ -1468,11 +1370,10 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Returns index of minimum element in a given array of doubles. First
-	 * minimum is returned.
+	 * Returns index of minimum element in a given array of doubles. First minimum
+	 * is returned.
 	 * 
-	 * @param doubles
-	 *            the array of doubles
+	 * @param doubles the array of doubles
 	 * @return the index of the minimum element
 	 */
 	public static/* @pure@ */int minIndex(double[] doubles) {
@@ -1493,10 +1394,8 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Normalizes the doubles in the array by their sum.
 	 * 
-	 * @param doubles
-	 *            the array of double
-	 * @exception IllegalArgumentException
-	 *                if sum is Zero or NaN
+	 * @param doubles the array of double
+	 * @exception IllegalArgumentException if sum is Zero or NaN
 	 */
 	public static void normalize(double[] doubles) {
 
@@ -1510,12 +1409,9 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Normalizes the doubles in the array using the given value.
 	 * 
-	 * @param doubles
-	 *            the array of double
-	 * @param sum
-	 *            the value by which the doubles are to be normalized
-	 * @exception IllegalArgumentException
-	 *                if sum is zero or NaN
+	 * @param doubles the array of double
+	 * @param sum     the value by which the doubles are to be normalized
+	 * @exception IllegalArgumentException if sum is zero or NaN
 	 */
 	public static void normalize(double[] doubles, double sum) {
 
@@ -1532,12 +1428,11 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Converts an array containing the natural logarithms of probabilities
-	 * stored in a vector back into probabilities. The probabilities are assumed
-	 * to sum to one.
+	 * Converts an array containing the natural logarithms of probabilities stored
+	 * in a vector back into probabilities. The probabilities are assumed to sum to
+	 * one.
 	 * 
-	 * @param a
-	 *            an array holding the natural logarithms of the probabilities
+	 * @param a an array holding the natural logarithms of the probabilities
 	 * @return the converted array
 	 */
 	public static double[] logs2probs(double[] a) {
@@ -1559,11 +1454,10 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Returns the log-odds for a given probabilitiy.
 	 * 
-	 * @param prob
-	 *            the probabilitiy
+	 * @param prob the probabilitiy
 	 * 
-	 * @return the log-odds after the probability has been mapped to
-	 *         [Utils.SMALL, 1-Utils.SMALL]
+	 * @return the log-odds after the probability has been mapped to [Utils.SMALL,
+	 *         1-Utils.SMALL]
 	 */
 	public static/* @pure@ */double probToLogOdds(double prob) {
 
@@ -1578,8 +1472,7 @@ public final class Utils implements RevisionHandler {
 	 * Rounds a double to the next nearest integer value. The JDK version of it
 	 * doesn't work properly.
 	 * 
-	 * @param value
-	 *            the double value
+	 * @param value the double value
 	 * @return the resulting integer value
 	 */
 	public static/* @pure@ */int round(double value) {
@@ -1590,16 +1483,13 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Rounds a double to the next nearest integer value in a probabilistic
-	 * fashion (e.g. 0.8 has a 20% chance of being rounded down to 0 and a 80%
-	 * chance of being rounded up to 1). In the limit, the average of the
-	 * rounded numbers generated by this procedure should converge to the
-	 * original double.
+	 * Rounds a double to the next nearest integer value in a probabilistic fashion
+	 * (e.g. 0.8 has a 20% chance of being rounded down to 0 and a 80% chance of
+	 * being rounded up to 1). In the limit, the average of the rounded numbers
+	 * generated by this procedure should converge to the original double.
 	 * 
-	 * @param value
-	 *            the double value
-	 * @param rand
-	 *            the random number generator
+	 * @param value the double value
+	 * @param rand  the random number generator
 	 * @return the resulting integer value
 	 */
 	public static int probRound(double value, Random rand) {
@@ -1627,25 +1517,22 @@ public final class Utils implements RevisionHandler {
 	 * Replaces all "missing values" in the given array of double values with
 	 * MAX_VALUE.
 	 * 
-	 * @param array
-	 *            the array to be modified.
+	 * @param array the array to be modified.
 	 */
 	public static void replaceMissingWithMAX_VALUE(double[] array) {
 
 		for (int i = 0; i < array.length; i++) {
-			if (isMissingValue(array[i])) 
+			if (isMissingValue(array[i]))
 				array[i] = Double.MAX_VALUE;
-			
+
 		}
 	}
 
 	/**
 	 * Rounds a double to the given number of decimal places.
 	 * 
-	 * @param value
-	 *            the double value
-	 * @param afterDecimalPoint
-	 *            the number of digits after the decimal point
+	 * @param value             the double value
+	 * @param afterDecimalPoint the number of digits after the decimal point
 	 * @return the double rounded to the given precision
 	 */
 	public static/* @pure@ */double roundDouble(double value, int afterDecimalPoint) {
@@ -1656,13 +1543,12 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Sorts a given array of integers in ascending order and returns an array
-	 * of integers with the positions of the elements of the original array in
-	 * the sorted array. The sort is stable. (Equal elements remain in their
-	 * original order.)
+	 * Sorts a given array of integers in ascending order and returns an array of
+	 * integers with the positions of the elements of the original array in the
+	 * sorted array. The sort is stable. (Equal elements remain in their original
+	 * order.)
 	 * 
-	 * @param array
-	 *            this array is not changed by the method!
+	 * @param array this array is not changed by the method!
 	 * @return an array of integers with the positions in the sorted array.
 	 */
 	public static/* @pure@ */int[] sort(int[] array) {
@@ -1702,12 +1588,11 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Sorts a given array of doubles in ascending order and returns an array of
 	 * integers with the positions of the elements of the original array in the
-	 * sorted array. NOTE THESE CHANGES: the sort is no longer stable and it
-	 * doesn't use safe floating-point comparisons anymore. Occurrences of
-	 * Double.NaN are treated as Double.MAX_VALUE.
+	 * sorted array. NOTE THESE CHANGES: the sort is no longer stable and it doesn't
+	 * use safe floating-point comparisons anymore. Occurrences of Double.NaN are
+	 * treated as Double.MAX_VALUE.
 	 * 
-	 * @param array
-	 *            this array is not changed by the method!
+	 * @param array this array is not changed by the method!
 	 * @return an array of integers with the positions in the sorted array.
 	 */
 	public static/* @pure@ */int[] sort(/* @non_null@ */double[] array) {
@@ -1727,9 +1612,8 @@ public final class Utils implements RevisionHandler {
 	 * sorted array. Missing values in the given array are replaced by
 	 * Double.MAX_VALUE, so the array is modified in that case!
 	 * 
-	 * @param array
-	 *            the array to be sorted, which is modified if it has missing
-	 *            values
+	 * @param array the array to be sorted, which is modified if it has missing
+	 *              values
 	 * @return an array of integers with the positions in the sorted array.
 	 */
 	public static/* @pure@ */int[] sortWithNoMissingValues(/* @non_null@ */double[] array) {
@@ -1747,8 +1631,7 @@ public final class Utils implements RevisionHandler {
 	 * sorted array. The sort is stable (Equal elements remain in their original
 	 * order.) Occurrences of Double.NaN are treated as Double.MAX_VALUE
 	 * 
-	 * @param array
-	 *            this array is not changed by the method!
+	 * @param array this array is not changed by the method!
 	 * @return an array of integers with the positions in the sorted array.
 	 */
 	public static/* @pure@ */int[] stableSort(double[] array) {
@@ -1797,8 +1680,7 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Computes the variance for an array of doubles.
 	 * 
-	 * @param vector
-	 *            the array
+	 * @param vector the array
 	 * @return the variance
 	 */
 	public static/* @pure@ */double variance(double[] vector) {
@@ -1829,8 +1711,7 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Computes the sum of the elements of an array of doubles.
 	 * 
-	 * @param doubles
-	 *            the array of double
+	 * @param doubles the array of double
 	 * @return the sum of the elements
 	 */
 	public static/* @pure@ */double sum(double[] doubles) {
@@ -1846,8 +1727,7 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Computes the sum of the elements of an array of integers.
 	 * 
-	 * @param ints
-	 *            the array of integers
+	 * @param ints the array of integers
 	 * @return the sum of the elements
 	 */
 	public static/* @pure@ */int sum(int[] ints) {
@@ -1863,8 +1743,7 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Returns c*log2(c) for a given integer value c.
 	 * 
-	 * @param c
-	 *            an integer value
+	 * @param c an integer value
 	 * @return c*log2(c) (but is careful to return 0 if c is 0)
 	 */
 	public static/* @pure@ */double xlogx(int c) {
@@ -1926,14 +1805,10 @@ public final class Utils implements RevisionHandler {
 	 * Partitions the instances around a pivot. Used by quicksort and
 	 * kthSmallestValue.
 	 * 
-	 * @param array
-	 *            the array of doubles to be sorted
-	 * @param index
-	 *            the index into the array of doubles
-	 * @param l
-	 *            the first index of the subset
-	 * @param r
-	 *            the last index of the subset
+	 * @param array the array of doubles to be sorted
+	 * @param index the index into the array of doubles
+	 * @param l     the first index of the subset
+	 * @param r     the last index of the subset
 	 * 
 	 * @return the index of the middle element
 	 */
@@ -1941,15 +1816,15 @@ public final class Utils implements RevisionHandler {
 
 		r--;
 		while (true) {
-			while ((array[index[++l]] < pivot)) 
+			while ((array[index[++l]] < pivot))
 				;
-			
-			while ((array[index[--r]] > pivot)) 
+
+			while ((array[index[--r]] > pivot))
 				;
-			
-			if (l >= r) 
+
+			if (l >= r)
 				return l;
-			
+
 			swap(index, l, r);
 		}
 	}
@@ -1958,14 +1833,10 @@ public final class Utils implements RevisionHandler {
 	 * Partitions the instances around a pivot. Used by quicksort and
 	 * kthSmallestValue.
 	 * 
-	 * @param array
-	 *            the array of integers to be sorted
-	 * @param index
-	 *            the index into the array of integers
-	 * @param l
-	 *            the first index of the subset
-	 * @param r
-	 *            the last index of the subset
+	 * @param array the array of integers to be sorted
+	 * @param index the index into the array of integers
+	 * @param l     the first index of the subset
+	 * @param r     the last index of the subset
 	 * 
 	 * @return the index of the middle element
 	 */
@@ -2000,14 +1871,10 @@ public final class Utils implements RevisionHandler {
 	 * Implements quicksort with median-of-three method and explicit sort for
 	 * problems of size three or less.
 	 * 
-	 * @param array
-	 *            the array of doubles to be sorted
-	 * @param index
-	 *            the index into the array of doubles
-	 * @param left
-	 *            the first index of the subset to be sorted
-	 * @param right
-	 *            the last index of the subset to be sorted
+	 * @param array the array of doubles to be sorted
+	 * @param index the index into the array of doubles
+	 * @param left  the first index of the subset to be sorted
+	 * @param right the last index of the subset to be sorted
 	 */
 	// @ requires 0 <= first && first <= right && right < array.length;
 	// @ requires (\forall int i; 0 <= i && i < index.length; 0 <= index[i] &&
@@ -2055,14 +1922,10 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Implements quicksort according to Manber's "Introduction to Algorithms".
 	 * 
-	 * @param array
-	 *            the array of integers to be sorted
-	 * @param index
-	 *            the index into the array of integers
-	 * @param left
-	 *            the first index of the subset to be sorted
-	 * @param right
-	 *            the last index of the subset to be sorted
+	 * @param array the array of integers to be sorted
+	 * @param index the index into the array of integers
+	 * @param left  the first index of the subset to be sorted
+	 * @param right the last index of the subset to be sorted
 	 */
 	// @ requires 0 <= first && first <= right && right < array.length;
 	// @ requires (\forall int i; 0 <= i && i < index.length; 0 <= index[i] &&
@@ -2083,16 +1946,11 @@ public final class Utils implements RevisionHandler {
 	 * Implements computation of the kth-smallest element according to Manber's
 	 * "Introduction to Algorithms".
 	 * 
-	 * @param array
-	 *            the array of double
-	 * @param index
-	 *            the index into the array of doubles
-	 * @param left
-	 *            the first index of the subset
-	 * @param right
-	 *            the last index of the subset
-	 * @param k
-	 *            the value of k
+	 * @param array the array of double
+	 * @param index the index into the array of doubles
+	 * @param left  the first index of the subset
+	 * @param right the last index of the subset
+	 * @param k     the value of k
 	 * 
 	 * @return the index of the kth-smallest element
 	 */
@@ -2139,14 +1997,12 @@ public final class Utils implements RevisionHandler {
 
 	/**
 	 * Converts a File's absolute path to a path relative to the user (ie start)
-	 * directory. Includes an additional workaround for Cygwin, which doesn't
-	 * like upper case drive letters.
+	 * directory. Includes an additional workaround for Cygwin, which doesn't like
+	 * upper case drive letters.
 	 * 
-	 * @param absolute
-	 *            the File to convert to relative path
+	 * @param absolute the File to convert to relative path
 	 * @return a File with a path that is relative to the user's directory
-	 * @exception Exception
-	 *                if the path cannot be constructed
+	 * @exception Exception if the path cannot be constructed
 	 */
 	public static File convertToRelativePath(File absolute) throws Exception {
 		File result;
@@ -2176,11 +2032,9 @@ public final class Utils implements RevisionHandler {
 	 * Converts a File's absolute path to a path relative to the user (ie start)
 	 * directory.
 	 * 
-	 * @param absolute
-	 *            the File to convert to relative path
+	 * @param absolute the File to convert to relative path
 	 * @return a File with a path that is relative to the user's directory
-	 * @exception Exception
-	 *                if the path cannot be constructed
+	 * @exception Exception if the path cannot be constructed
 	 */
 	protected static File createRelativePath(File absolute) throws Exception {
 		File userDir = new File(System.getProperty("user.dir"));
@@ -2249,16 +2103,11 @@ public final class Utils implements RevisionHandler {
 	 * Implements computation of the kth-smallest element according to Manber's
 	 * "Introduction to Algorithms".
 	 * 
-	 * @param array
-	 *            the array of integers
-	 * @param index
-	 *            the index into the array of integers
-	 * @param left
-	 *            the first index of the subset
-	 * @param right
-	 *            the last index of the subset
-	 * @param k
-	 *            the value of k
+	 * @param array the array of integers
+	 * @param index the index into the array of integers
+	 * @param left  the first index of the subset
+	 * @param right the last index of the subset
+	 * @param k     the value of k
 	 * 
 	 * @return the index of the kth-smallest element
 	 */
@@ -2279,12 +2128,11 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * For a named dialog, returns true if the user has opted not to view it
-	 * again in the future.
+	 * For a named dialog, returns true if the user has opted not to view it again
+	 * in the future.
 	 * 
-	 * @param dialogName
-	 *            the name of the dialog to check (e.g.
-	 *            weka.gui.GUICHooser.HowToFindPackageManager).
+	 * @param dialogName the name of the dialog to check (e.g.
+	 *                   weka.gui.GUICHooser.HowToFindPackageManager).
 	 * @return true if the user has opted not to view the named dialog in the
 	 *         future.
 	 */
@@ -2308,13 +2156,11 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Specify that the named dialog is not to be displayed in the future.
 	 * 
-	 * @param dialogName
-	 *            the name of the dialog not to show again (e.g.
-	 *            weka.gui.GUIChooser.HowToFindPackageManager).
-	 * @throws Exception
-	 *             if the marker file that is used to indicate that a named
-	 *             dialog is not to be shown can't be created. This file lives
-	 *             in $WEKA_HOME/systemDialogs
+	 * @param dialogName the name of the dialog not to show again (e.g.
+	 *                   weka.gui.GUIChooser.HowToFindPackageManager).
+	 * @throws Exception if the marker file that is used to indicate that a named
+	 *                   dialog is not to be shown can't be created. This file lives
+	 *                   in $WEKA_HOME/systemDialogs
 	 */
 	public static void setDontShowDialog(String dialogName) throws Exception {
 		File wekaHome = new File(File.pathSeparator);
@@ -2335,16 +2181,15 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * For a named dialog, if the user has opted not to view it again, returns
-	 * the answer the answer the user supplied when they closed the dialog.
-	 * Returns null if the user did opt to view the dialog again.
+	 * For a named dialog, if the user has opted not to view it again, returns the
+	 * answer the answer the user supplied when they closed the dialog. Returns null
+	 * if the user did opt to view the dialog again.
 	 * 
-	 * @param dialogName
-	 *            the name of the dialog to check (e.g.
-	 *            weka.gui.GUICHooser.HowToFindPackageManager).
+	 * @param dialogName the name of the dialog to check (e.g.
+	 *                   weka.gui.GUICHooser.HowToFindPackageManager).
 	 * @return the answer the user supplied the last time they viewed the named
-	 *         dialog (if they opted not to view it again in the future) or null
-	 *         if the user opted to view the dialog again in the future.
+	 *         dialog (if they opted not to view it again in the future) or null if
+	 *         the user opted to view the dialog again in the future.
 	 */
 	public static String getDontShowDialogResponse(String dialogName) throws Exception {
 		if (!getDontShowDialog(dialogName)) {
@@ -2363,15 +2208,12 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Specify that the named dialog is not to be shown again in the future.
-	 * Also records the answer that the user chose when closing the dialog.
+	 * Specify that the named dialog is not to be shown again in the future. Also
+	 * records the answer that the user chose when closing the dialog.
 	 * 
-	 * @param dialogName
-	 *            the name of the dialog to no longer display
-	 * @param response
-	 *            the user selected response when they closed the dialog
-	 * @throws Exception
-	 *             if there is a problem saving the information
+	 * @param dialogName the name of the dialog to no longer display
+	 * @param response   the user selected response when they closed the dialog
+	 * @throws Exception if there is a problem saving the information
 	 */
 	public static void setDontShowDialogResponse(String dialogName, String response) throws Exception {
 
@@ -2398,10 +2240,8 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Breaks up the string, if wider than "columns" characters.
 	 * 
-	 * @param s
-	 *            the string to process
-	 * @param columns
-	 *            the width in columns
+	 * @param s       the string to process
+	 * @param columns the width in columns
 	 * @return the processed string
 	 */
 	public static String[] breakUp(String s, int columns) {
@@ -2451,13 +2291,12 @@ public final class Utils implements RevisionHandler {
 
 	/**
 	 * Utility method for grabbing the global info help (if it exists) from an
-	 * arbitrary object. Can also append capabilities information if the object
-	 * is a CapabilitiesHandler.
+	 * arbitrary object. Can also append capabilities information if the object is a
+	 * CapabilitiesHandler.
 	 * 
-	 * @param object
-	 *            the object to grab global info from
-	 * @param addCapabilities
-	 *            true if capabilities information is to be added to the result
+	 * @param object          the object to grab global info from
+	 * @param addCapabilities true if capabilities information is to be added to the
+	 *                        result
 	 * @return the global help info or null if global info does not exist
 	 */
 	public static String getGlobalInfo(Object object, boolean addCapabilities) {
@@ -2544,15 +2383,13 @@ public final class Utils implements RevisionHandler {
 	}
 
 	/**
-	 * Implements simple line breaking. Reformats the given string by
-	 * introducing line breaks so that, ideally, no line exceeds the given
-	 * number of characters. Line breaks are assumed to be indicated by newline
-	 * characters. Existing line breaks are left in the input text.
+	 * Implements simple line breaking. Reformats the given string by introducing
+	 * line breaks so that, ideally, no line exceeds the given number of characters.
+	 * Line breaks are assumed to be indicated by newline characters. Existing line
+	 * breaks are left in the input text.
 	 * 
-	 * @param input
-	 *            the string to line wrap
-	 * @param maxLineWidth
-	 *            the maximum permitted number of characters in a line
+	 * @param input        the string to line wrap
+	 * @param maxLineWidth the maximum permitted number of characters in a line
 	 * @return the processed string
 	 */
 	public static String lineWrap(String input, int maxLineWidth) {
@@ -2597,8 +2434,7 @@ public final class Utils implements RevisionHandler {
 	/**
 	 * Main method for testing this class.
 	 * 
-	 * @param ops
-	 *            some dummy options
+	 * @param ops some dummy options
 	 */
 	public static void main(String[] ops) {
 

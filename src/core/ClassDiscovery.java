@@ -49,8 +49,7 @@ public class ClassDiscovery implements RevisionHandler {
 	public final static boolean VERBOSE = false;
 
 	/**
-	 * for caching queries (classname+packagename &lt;-&gt; Vector with
-	 * classnames).
+	 * for caching queries (classname+packagename &lt;-&gt; Vector with classnames).
 	 */
 	protected static Hashtable<String, Vector<String>> m_Cache;
 
@@ -67,11 +66,9 @@ public class ClassDiscovery implements RevisionHandler {
 	/**
 	 * Checks whether the "otherclass" is a subclass of the given "superclass".
 	 * 
-	 * @param superclass
-	 *            the superclass to check against
-	 * @param otherclass
-	 *            this class is checked whether it is a subclass of the the
-	 *            superclass
+	 * @param superclass the superclass to check against
+	 * @param otherclass this class is checked whether it is a subclass of the the
+	 *                   superclass
 	 * @return TRUE if "otherclass" is a true subclass
 	 */
 	public static boolean isSubclass(String superclass, String otherclass) {
@@ -87,11 +84,9 @@ public class ClassDiscovery implements RevisionHandler {
 	/**
 	 * Checks whether the "otherclass" is a subclass of the given "superclass".
 	 * 
-	 * @param superclass
-	 *            the superclass to check against
-	 * @param otherclass
-	 *            this class is checked whether it is a subclass of the the
-	 *            superclass
+	 * @param superclass the superclass to check against
+	 * @param otherclass this class is checked whether it is a subclass of the the
+	 *                   superclass
 	 * @return TRUE if "otherclass" is a true subclass
 	 */
 	public static boolean isSubclass(Class<?> superclass, Class<?> otherclass) {
@@ -119,10 +114,8 @@ public class ClassDiscovery implements RevisionHandler {
 	/**
 	 * Checks whether the given class implements the given interface.
 	 * 
-	 * @param intf
-	 *            the interface to look for in the given class
-	 * @param cls
-	 *            the class to check for the interface
+	 * @param intf the interface to look for in the given class
+	 * @param cls  the class to check for the interface
 	 * @return TRUE if the class contains the interface
 	 */
 	public static boolean hasInterface(String intf, String cls) {
@@ -137,10 +130,8 @@ public class ClassDiscovery implements RevisionHandler {
 	/**
 	 * Checks whether the given class implements the given interface.
 	 * 
-	 * @param intf
-	 *            the interface to look for in the given class
-	 * @param cls
-	 *            the class to check for the interface
+	 * @param intf the interface to look for in the given class
+	 * @param cls  the class to check for the interface
 	 * @return TRUE if the class contains the interface
 	 */
 	public static boolean hasInterface(Class<?> intf, Class<?> cls) {
@@ -176,13 +167,11 @@ public class ClassDiscovery implements RevisionHandler {
 	}
 
 	/**
-	 * If the given package can be found in this part of the classpath then an
-	 * URL object is returned, otherwise <code>null</code>.
+	 * If the given package can be found in this part of the classpath then an URL
+	 * object is returned, otherwise <code>null</code>.
 	 * 
-	 * @param classpathPart
-	 *            the part of the classpath to look for the package
-	 * @param pkgname
-	 *            the package to look for
+	 * @param classpathPart the part of the classpath to look for the package
+	 * @param pkgname       the package to look for
 	 * @return if found, the url as string, otherwise null
 	 */
 	protected static URL getURL(String classpathPart, String pkgname) {
@@ -238,14 +227,11 @@ public class ClassDiscovery implements RevisionHandler {
 	}
 
 	/**
-	 * Checks the given packages for classes that inherited from the given
-	 * class, in case it's a class, or implement this class, in case it's an
-	 * interface.
+	 * Checks the given packages for classes that inherited from the given class, in
+	 * case it's a class, or implement this class, in case it's an interface.
 	 * 
-	 * @param classname
-	 *            the class/interface to look for
-	 * @param pkgnames
-	 *            the packages to search in
+	 * @param classname the class/interface to look for
+	 * @param pkgnames  the packages to search in
 	 * @return a list with all the found classnames
 	 */
 	public static Vector<String> find(String classname, String[] pkgnames) {
@@ -266,13 +252,11 @@ public class ClassDiscovery implements RevisionHandler {
 	}
 
 	/**
-	 * Checks the given package for classes that inherited from the given class,
-	 * in case it's a class, or implement this class, in case it's an interface.
+	 * Checks the given package for classes that inherited from the given class, in
+	 * case it's a class, or implement this class, in case it's an interface.
 	 * 
-	 * @param classname
-	 *            the class/interface to look for
-	 * @param pkgname
-	 *            the package to search in
+	 * @param classname the class/interface to look for
+	 * @param pkgname   the package to search in
 	 * @return a list with all the found classnames
 	 */
 	public static Vector<String> find(String classname, String pkgname) {
@@ -293,14 +277,11 @@ public class ClassDiscovery implements RevisionHandler {
 	}
 
 	/**
-	 * Checks the given packages for classes that inherited from the given
-	 * class, in case it's a class, or implement this class, in case it's an
-	 * interface.
+	 * Checks the given packages for classes that inherited from the given class, in
+	 * case it's a class, or implement this class, in case it's an interface.
 	 * 
-	 * @param cls
-	 *            the class/interface to look for
-	 * @param pkgnames
-	 *            the packages to search in
+	 * @param cls      the class/interface to look for
+	 * @param pkgnames the packages to search in
 	 * @return a list with all the found classnames
 	 */
 	public static Vector<String> find(Class<?> cls, String[] pkgnames) {
@@ -324,8 +305,7 @@ public class ClassDiscovery implements RevisionHandler {
 	/**
 	 * Find all classes that have the supplied matchText String in their suffix.
 	 * 
-	 * @param matchText
-	 *            the text to match
+	 * @param matchText the text to match
 	 * @return an array list of matching fully qualified class names.
 	 */
 	public static ArrayList<String> find(String matchText) {
@@ -333,13 +313,11 @@ public class ClassDiscovery implements RevisionHandler {
 	}
 
 	/**
-	 * Checks the given package for classes that inherited from the given class,
-	 * in case it's a class, or implement this class, in case it's an interface.
+	 * Checks the given package for classes that inherited from the given class, in
+	 * case it's a class, or implement this class, in case it's an interface.
 	 * 
-	 * @param cls
-	 *            the class/interface to look for
-	 * @param pkgname
-	 *            the package to search in
+	 * @param cls     the class/interface to look for
+	 * @param pkgname the package to search in
 	 * @return a list with all the found classnames
 	 */
 	public static Vector<String> find(Class<?> cls, String pkgname) {
@@ -401,12 +379,9 @@ public class ClassDiscovery implements RevisionHandler {
 	/**
 	 * adds all the sub-directories recursively to the list.
 	 * 
-	 * @param prefix
-	 *            the path prefix
-	 * @param dir
-	 *            the directory to look in for sub-dirs
-	 * @param list
-	 *            the current list of sub-dirs
+	 * @param prefix the path prefix
+	 * @param dir    the directory to look in for sub-dirs
+	 * @param list   the current list of sub-dirs
 	 * @return the new list of sub-dirs
 	 */
 	protected static HashSet<String> getSubDirectories(String prefix, File dir, HashSet<String> list) {
@@ -476,12 +451,9 @@ public class ClassDiscovery implements RevisionHandler {
 	/**
 	 * adds the list of classnames to the cache.
 	 * 
-	 * @param cls
-	 *            the class to cache the classnames for
-	 * @param pkgname
-	 *            the package name the classes were found in
-	 * @param classnames
-	 *            the list of classnames to cache
+	 * @param cls        the class to cache the classnames for
+	 * @param pkgname    the package name the classes were found in
+	 * @param classnames the list of classnames to cache
 	 */
 	protected static void addCache(Class<?> cls, String pkgname, Vector<String> classnames) {
 		initCache();
@@ -492,10 +464,8 @@ public class ClassDiscovery implements RevisionHandler {
 	 * returns the list of classnames associated with this class and package, if
 	 * available, otherwise null.
 	 * 
-	 * @param cls
-	 *            the class to get the classnames for
-	 * @param pkgname
-	 *            the package name for the classes
+	 * @param cls     the class to get the classnames for
+	 * @param pkgname the package name for the classes
 	 * @return the classnames if found, otherwise null
 	 */
 	protected static Vector<String> getCache(Class<?> cls, String pkgname) {
@@ -536,13 +506,11 @@ public class ClassDiscovery implements RevisionHandler {
 	 * <ul>
 	 * <li>weka.core.ClassDiscovery &lt;packages&gt;<br/>
 	 * Prints all the packages in the current classpath</li>
-	 * <li>weka.core.ClassDiscovery &lt;classname&gt;
-	 * &lt;packagename(s)&gt;<br/>
+	 * <li>weka.core.ClassDiscovery &lt;classname&gt; &lt;packagename(s)&gt;<br/>
 	 * Prints the classes it found.</li>
 	 * </ul>
 	 * 
-	 * @param args
-	 *            the commandline arguments
+	 * @param args the commandline arguments
 	 */
 	public static void main(String[] args) {
 		Vector<String> list;
@@ -552,9 +520,9 @@ public class ClassDiscovery implements RevisionHandler {
 
 		if ((args.length == 1) && ("packages".equals(args[0]))) {
 			list = findPackages();
-			for (String iterator : list) {
+			list.forEach(iterator -> {
 				System.out.println(iterator);
-			}
+			});
 		} else if (args.length == 2) {
 			// packages
 			packages = new Vector<>();
@@ -598,10 +566,8 @@ public class ClassDiscovery implements RevisionHandler {
 		/**
 		 * appends blanks to the string if its shorter than <code>len</code>.
 		 * 
-		 * @param s
-		 *            the string to pad
-		 * @param len
-		 *            the minimum length for the string to have
+		 * @param s   the string to pad
+		 * @param len the minimum length for the string to have
 		 * @return the padded string
 		 */
 		private String fillUp(String s, int len) {
@@ -612,11 +578,9 @@ public class ClassDiscovery implements RevisionHandler {
 		}
 
 		/**
-		 * returns the group of the character: 0=special char, 1=number,
-		 * 2=letter.
+		 * returns the group of the character: 0=special char, 1=number, 2=letter.
 		 * 
-		 * @param c
-		 *            the character to check
+		 * @param c the character to check
 		 * @return the group
 		 */
 		private int charGroup(char c) {
@@ -636,10 +600,8 @@ public class ClassDiscovery implements RevisionHandler {
 		/**
 		 * Compares its two arguments for order.
 		 * 
-		 * @param o1
-		 *            the first object
-		 * @param o2
-		 *            the second object
+		 * @param o1 the first object
+		 * @param o2 the second object
 		 * @return -1 if o1&lt;o2, 0 if o1=o2 and 1 if o1&;gt;o2
 		 */
 		@Override
@@ -694,8 +656,7 @@ public class ClassDiscovery implements RevisionHandler {
 		/**
 		 * Indicates whether some other object is "equal to" this Comparator.
 		 * 
-		 * @param obj
-		 *            the object to compare with this Comparator
+		 * @param obj the object to compare with this Comparator
 		 * @return true if the object is a StringCompare object as well
 		 */
 		@Override

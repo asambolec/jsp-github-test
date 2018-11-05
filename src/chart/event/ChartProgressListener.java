@@ -48,11 +48,11 @@ import java.util.EventListener;
  */
 public interface ChartProgressListener extends EventListener {
 
-    /**
-     * Receives notification of a chart progress event.
-     *
-     * @param event  the event.
-     */
-    public void chartProgress(ChartProgressEvent event);
+	/**
+	 * Receives notification of a chart progress event.
+	 *
+	 * @param event the event.
+	 */
+	public void chartProgress(ChartProgressEvent event);
 
 }

@@ -78,8 +78,7 @@ public class PropertyPanel extends JPanel {
 	/**
 	 * Create the panel with the supplied property editor.
 	 * 
-	 * @param pe
-	 *            the PropertyEditor
+	 * @param pe the PropertyEditor
 	 */
 	public PropertyPanel(PropertyEditor pe) {
 
@@ -87,13 +86,11 @@ public class PropertyPanel extends JPanel {
 	}
 
 	/**
-	 * Create the panel with the supplied property editor, optionally ignoring
-	 * any custom panel the editor can provide.
+	 * Create the panel with the supplied property editor, optionally ignoring any
+	 * custom panel the editor can provide.
 	 * 
-	 * @param pe
-	 *            the PropertyEditor
-	 * @param ignoreCustomPanel
-	 *            whether to make use of any available custom panel
+	 * @param pe                the PropertyEditor
+	 * @param ignoreCustomPanel whether to make use of any available custom panel
 	 */
 	public PropertyPanel(PropertyEditor pe, boolean ignoreCustomPanel) {
 
@@ -110,8 +107,7 @@ public class PropertyPanel extends JPanel {
 	}
 
 	/**
-	 * Creates the default style of panel for editors that do not supply their
-	 * own.
+	 * Creates the default style of panel for editors that do not supply their own.
 	 */
 	protected void createDefaultPanel() {
 
@@ -295,8 +291,7 @@ public class PropertyPanel extends JPanel {
 	/**
 	 * Passes on enabled/disabled status to the custom panel (if one is set).
 	 * 
-	 * @param enabled
-	 *            true if this panel (and the custom panel is enabled)
+	 * @param enabled true if this panel (and the custom panel is enabled)
 	 */
 	@Override
 	public void setEnabled(boolean enabled) {
@@ -310,8 +305,7 @@ public class PropertyPanel extends JPanel {
 	/**
 	 * Paints the component, using the property editor's paint method.
 	 * 
-	 * @param g
-	 *            the current graphics context
+	 * @param g the current graphics context
 	 */
 	@Override
 	public void paintComponent(Graphics g) {
@@ -338,8 +332,7 @@ public class PropertyPanel extends JPanel {
 	/**
 	 * Adds the specified value to the history.
 	 * 
-	 * @param obj
-	 *            the object to add to the history
+	 * @param obj the object to add to the history
 	 * @return true if successfully added (i.e., if editor is a GOE)
 	 */
 	public boolean addToHistory(Object obj) {

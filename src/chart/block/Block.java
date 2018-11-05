@@ -57,45 +57,45 @@ import chart.ui.Size2D;
  */
 public interface Block extends Drawable {
 
-    /**
-     * Returns an ID for the block.
-     *
-     * @return An ID.
-     */
-    public String getID();
+	/**
+	 * Returns an ID for the block.
+	 *
+	 * @return An ID.
+	 */
+	public String getID();
 
-    /**
-     * Sets the ID for the block.
-     *
-     * @param id  the ID.
-     */
-    public void setID(String id);
+	/**
+	 * Sets the ID for the block.
+	 *
+	 * @param id the ID.
+	 */
+	public void setID(String id);
 
-    /**
-     * Returns the current bounds of the block.
-     *
-     * @return The bounds.
-     */
-    public Rectangle2D getBounds();
+	/**
+	 * Returns the current bounds of the block.
+	 *
+	 * @return The bounds.
+	 */
+	public Rectangle2D getBounds();
 
-    /**
-     * Sets the bounds of the block.
-     *
-     * @param bounds  the bounds.
-     */
-    public void setBounds(Rectangle2D bounds);
+	/**
+	 * Sets the bounds of the block.
+	 *
+	 * @param bounds the bounds.
+	 */
+	public void setBounds(Rectangle2D bounds);
 
-    /**
-     * Draws the block within the specified area.  Refer to the documentation
-     * for the implementing class for information about the <code>params</code>
-     * and return value supported.
-     *
-     * @param g2  the graphics device.
-     * @param area  the area.
-     * @param params  optional parameters (<code>null</code> permitted).
-     *
-     * @return An optional return value (possibly <code>null</code>).
-     */
-    public Object draw(Graphics2D g2, Rectangle2D area, Object params);
+	/**
+	 * Draws the block within the specified area. Refer to the documentation for the
+	 * implementing class for information about the <code>params</code> and return
+	 * value supported.
+	 *
+	 * @param g2     the graphics device.
+	 * @param area   the area.
+	 * @param params optional parameters (<code>null</code> permitted).
+	 *
+	 * @return An optional return value (possibly <code>null</code>).
+	 */
+	public Object draw(Graphics2D g2, Rectangle2D area, Object params);
 
 }

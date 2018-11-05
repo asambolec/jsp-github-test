@@ -35,8 +35,7 @@ public interface EnvironmentHandler {
 	/**
 	 * Set environment variables to use.
 	 * 
-	 * @param env
-	 *            the environment variables to use
+	 * @param env the environment variables to use
 	 */
 	void setEnvironment(Environment env);
 }

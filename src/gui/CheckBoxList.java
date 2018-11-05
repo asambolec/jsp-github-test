@@ -59,8 +59,7 @@ public class CheckBoxList extends JList {
 	/**
 	 * initializes the list with the given CheckBoxListModel
 	 * 
-	 * @param model
-	 *            the model to initialize with
+	 * @param model the model to initialize with
 	 */
 	public CheckBoxList(CheckBoxListModel model) {
 		super();
@@ -100,10 +99,9 @@ public class CheckBoxList extends JList {
 	/**
 	 * sets the model - must be an instance of CheckBoxListModel
 	 * 
-	 * @param model
-	 *            the model to use
-	 * @throws IllegalArgumentException
-	 *             if the model is not an instance of CheckBoxListModel
+	 * @param model the model to use
+	 * @throws IllegalArgumentException if the model is not an instance of
+	 *                                  CheckBoxListModel
 	 * @see CheckBoxListModel
 	 */
 	@Override
@@ -119,8 +117,7 @@ public class CheckBoxList extends JList {
 	 * Constructs a CheckBoxListModel from an array of objects and then applies
 	 * setModel to it.
 	 * 
-	 * @param listData
-	 *            the data to use
+	 * @param listData the data to use
 	 */
 	@Override
 	public void setListData(Object[] listData) {
@@ -128,8 +125,7 @@ public class CheckBoxList extends JList {
 	}
 
 	/**
-	 * Constructs a CheckBoxListModel from a Vector and then applies setModel to
-	 * it.
+	 * Constructs a CheckBoxListModel from a Vector and then applies setModel to it.
 	 */
 	@Override
 	public void setListData(@SuppressWarnings("rawtypes") Vector listData) {
@@ -139,8 +135,7 @@ public class CheckBoxList extends JList {
 	/**
 	 * returns the checked state of the element at the given index
 	 * 
-	 * @param index
-	 *            the index of the element to return the checked state for
+	 * @param index the index of the element to return the checked state for
 	 * @return the checked state of the specifed element
 	 */
 	public boolean getChecked(int index) {
@@ -150,10 +145,8 @@ public class CheckBoxList extends JList {
 	/**
 	 * sets the checked state of the element at the given index
 	 * 
-	 * @param index
-	 *            the index of the element to set the checked state for
-	 * @param checked
-	 *            the new checked state
+	 * @param index   the index of the element to set the checked state for
+	 * @param checked the new checked state
 	 */
 	public void setChecked(int index, boolean checked) {
 		((CheckBoxListModel) getModel()).setChecked(index, checked);
@@ -203,21 +196,17 @@ public class CheckBoxList extends JList {
 		/**
 		 * initializes the item with the given object and initially unchecked
 		 * 
-		 * @param o
-		 *            the content object
+		 * @param o the content object
 		 */
 		public CheckBoxListItem(Object o) {
 			this(o, false);
 		}
 
 		/**
-		 * initializes the item with the given object and whether it's checked
-		 * initially
+		 * initializes the item with the given object and whether it's checked initially
 		 * 
-		 * @param o
-		 *            the content object
-		 * @param checked
-		 *            whether the item should be checked initially
+		 * @param o       the content object
+		 * @param checked whether the item should be checked initially
 		 */
 		public CheckBoxListItem(Object o, boolean checked) {
 			mChecked = checked;
@@ -257,10 +246,9 @@ public class CheckBoxList extends JList {
 		 * returns true if the "payload" objects of the current and the given
 		 * CheckBoxListItem are the same.
 		 * 
-		 * @param o
-		 *            the CheckBoxListItem to check
-		 * @throws IllegalArgumentException
-		 *             if the provided object is not a CheckBoxListItem
+		 * @param o the CheckBoxListItem to check
+		 * @throws IllegalArgumentException if the provided object is not a
+		 *                                  CheckBoxListItem
 		 */
 		@Override
 		public boolean equals(Object o) {
@@ -292,11 +280,10 @@ public class CheckBoxList extends JList {
 		}
 
 		/**
-		 * Constructs a CheckBoxListModel from an array of objects and then
-		 * applies setModel to it.
+		 * Constructs a CheckBoxListModel from an array of objects and then applies
+		 * setModel to it.
 		 * 
-		 * @param listData
-		 *            the data to use
+		 * @param listData the data to use
 		 */
 		public CheckBoxListModel(Object[] listData) {
 			for (Object element : listData) {
@@ -305,8 +292,7 @@ public class CheckBoxList extends JList {
 		}
 
 		/**
-		 * Constructs a CheckBoxListModel from a Vector and then applies
-		 * setModel to it.
+		 * Constructs a CheckBoxListModel from a Vector and then applies setModel to it.
 		 */
 		public CheckBoxListModel(Vector listData) {
 			for (int i = 0; i < listData.size(); i++) {
@@ -317,10 +303,8 @@ public class CheckBoxList extends JList {
 		/**
 		 * Inserts the specified element at the specified position in this list.
 		 * 
-		 * @param index
-		 *            index at which the specified element is to be inserted
-		 * @param element
-		 *            element to be inserted
+		 * @param index   index at which the specified element is to be inserted
+		 * @param element element to be inserted
 		 */
 		@Override
 		public void add(int index, Object element) {
@@ -334,8 +318,7 @@ public class CheckBoxList extends JList {
 		/**
 		 * Adds the specified component to the end of this list.
 		 * 
-		 * @param obj
-		 *            the component to be added
+		 * @param obj the component to be added
 		 */
 		@Override
 		public void addElement(Object obj) {
@@ -349,8 +332,7 @@ public class CheckBoxList extends JList {
 		/**
 		 * Tests whether the specified object is a component in this list.
 		 * 
-		 * @param elem
-		 *            the element to check
+		 * @param elem the element to check
 		 * @return true if the element is in the list
 		 */
 		@Override
@@ -365,10 +347,8 @@ public class CheckBoxList extends JList {
 		/**
 		 * Copies the components of this list into the specified array.
 		 * 
-		 * @param anArray
-		 *            the array into which the components get copied
-		 * @throws IndexOutOfBoundsException
-		 *             if the array is not big enough
+		 * @param anArray the array into which the components get copied
+		 * @throws IndexOutOfBoundsException if the array is not big enough
 		 */
 		@Override
 		public void copyInto(Object[] anArray) {
@@ -383,11 +363,10 @@ public class CheckBoxList extends JList {
 
 		/**
 		 * Returns the component at the specified index. Throws an
-		 * ArrayIndexOutOfBoundsException if the index is negative or not less
-		 * than the size of the list.
+		 * ArrayIndexOutOfBoundsException if the index is negative or not less than the
+		 * size of the list.
 		 * 
-		 * @param index
-		 *            an index into this list
+		 * @param index an index into this list
 		 * @return the component at the specified index
 		 * @throws ArrayIndexOutOfBoundsException
 		 */
@@ -397,8 +376,8 @@ public class CheckBoxList extends JList {
 		}
 
 		/**
-		 * Returns the first component of this list. Throws a
-		 * NoSuchElementException if this vector has no components.
+		 * Returns the first component of this list. Throws a NoSuchElementException if
+		 * this vector has no components.
 		 * 
 		 * @return the first component of this list
 		 * @throws NoSuchElementException
@@ -411,8 +390,7 @@ public class CheckBoxList extends JList {
 		/**
 		 * Returns the element at the specified position in this list.
 		 * 
-		 * @param index
-		 *            of element to return
+		 * @param index of element to return
 		 * @throws ArrayIndexOutOfBoundsException
 		 */
 		@Override
@@ -423,8 +401,7 @@ public class CheckBoxList extends JList {
 		/**
 		 * Returns the component at the specified index.
 		 * 
-		 * @param index
-		 *            an index into this list
+		 * @param index an index into this list
 		 * @return the component at the specified index
 		 * @throws ArrayIndexOutOfBoundsException
 		 */
@@ -436,10 +413,9 @@ public class CheckBoxList extends JList {
 		/**
 		 * Searches for the first occurrence of elem.
 		 * 
-		 * @param elem
-		 *            an object
-		 * @return the index of the first occurrence of the argument in this
-		 *         list; returns -1 if the object is not found
+		 * @param elem an object
+		 * @return the index of the first occurrence of the argument in this list;
+		 *         returns -1 if the object is not found
 		 */
 		@Override
 		public int indexOf(Object elem) {
@@ -451,15 +427,12 @@ public class CheckBoxList extends JList {
 		}
 
 		/**
-		 * Searches for the first occurrence of elem, beginning the search at
-		 * index.
+		 * Searches for the first occurrence of elem, beginning the search at index.
 		 * 
-		 * @param elem
-		 *            the desired component
-		 * @param index
-		 *            the index from which to begin searching
-		 * @return the index where the first occurrence of elem is found after
-		 *         index; returns -1 if the elem is not found in the list
+		 * @param elem  the desired component
+		 * @param index the index from which to begin searching
+		 * @return the index where the first occurrence of elem is found after index;
+		 *         returns -1 if the elem is not found in the list
 		 */
 		@Override
 		public int indexOf(Object elem, int index) {
@@ -471,13 +444,11 @@ public class CheckBoxList extends JList {
 		}
 
 		/**
-		 * Inserts the specified object as a component in this list at the
-		 * specified index.
+		 * Inserts the specified object as a component in this list at the specified
+		 * index.
 		 * 
-		 * @param obj
-		 *            the component to insert
-		 * @param index
-		 *            where to insert the new component
+		 * @param obj   the component to insert
+		 * @param index where to insert the new component
 		 * @throws ArrayIndexOutOfBoundsException
 		 */
 		@Override
@@ -490,8 +461,8 @@ public class CheckBoxList extends JList {
 		}
 
 		/**
-		 * Returns the last component of the list. Throws a
-		 * NoSuchElementException if this vector has no components.
+		 * Returns the last component of the list. Throws a NoSuchElementException if
+		 * this vector has no components.
 		 * 
 		 * @return the last component of the list
 		 * @throws NoSuchElementException
@@ -504,10 +475,9 @@ public class CheckBoxList extends JList {
 		/**
 		 * Returns the index of the last occurrence of elem.
 		 * 
-		 * @param elem
-		 *            the desired component
-		 * @return the index of the last occurrence of elem in the list; returns
-		 *         -1 if the object is not found
+		 * @param elem the desired component
+		 * @return the index of the last occurrence of elem in the list; returns -1 if
+		 *         the object is not found
 		 */
 		@Override
 		public int lastIndexOf(Object elem) {
@@ -519,16 +489,13 @@ public class CheckBoxList extends JList {
 		}
 
 		/**
-		 * Searches backwards for elem, starting from the specified index, and
-		 * returns an index to it.
+		 * Searches backwards for elem, starting from the specified index, and returns
+		 * an index to it.
 		 * 
-		 * @param elem
-		 *            the desired component
-		 * @param index
-		 *            the index to start searching from
-		 * @return the index of the last occurrence of the elem in this list at
-		 *         position less than index; returns -1 if the object is not
-		 *         found
+		 * @param elem  the desired component
+		 * @param index the index to start searching from
+		 * @return the index of the last occurrence of the elem in this list at position
+		 *         less than index; returns -1 if the object is not found
 		 */
 		@Override
 		public int lastIndexOf(Object elem, int index) {
@@ -540,11 +507,10 @@ public class CheckBoxList extends JList {
 		}
 
 		/**
-		 * Removes the element at the specified position in this list. Returns
-		 * the element that was removed from the list.
+		 * Removes the element at the specified position in this list. Returns the
+		 * element that was removed from the list.
 		 * 
-		 * @param index
-		 *            the index of the element to removed
+		 * @param index the index of the element to removed
 		 * @throws ArrayIndexOutOfBoundsException
 		 */
 		@Override
@@ -553,13 +519,10 @@ public class CheckBoxList extends JList {
 		}
 
 		/**
-		 * Removes the first (lowest-indexed) occurrence of the argument from
-		 * this list.
+		 * Removes the first (lowest-indexed) occurrence of the argument from this list.
 		 * 
-		 * @param obj
-		 *            the component to be removed
-		 * @return true if the argument was a component of this list; false
-		 *         otherwise
+		 * @param obj the component to be removed
+		 * @return true if the argument was a component of this list; false otherwise
 		 */
 		@Override
 		public boolean removeElement(Object obj) {
@@ -574,10 +537,8 @@ public class CheckBoxList extends JList {
 		 * Replaces the element at the specified position in this list with the
 		 * specified element.
 		 * 
-		 * @param index
-		 *            index of element to replace
-		 * @param element
-		 *            element to be stored at the specified position
+		 * @param index   index of element to replace
+		 * @param element element to be stored at the specified position
 		 * @throws ArrayIndexOutOfBoundsException
 		 */
 		@Override
@@ -590,14 +551,11 @@ public class CheckBoxList extends JList {
 		}
 
 		/**
-		 * Sets the component at the specified index of this list to be the
-		 * specified object. The previous component at that position is
-		 * discarded.
+		 * Sets the component at the specified index of this list to be the specified
+		 * object. The previous component at that position is discarded.
 		 * 
-		 * @param obj
-		 *            what the component is to be set to
-		 * @param index
-		 *            the specified index
+		 * @param obj   what the component is to be set to
+		 * @param index the specified index
 		 * @throws ArrayIndexOutOfBoundsException
 		 */
 		@Override
@@ -610,8 +568,8 @@ public class CheckBoxList extends JList {
 		}
 
 		/**
-		 * Returns an array containing all of the elements in this list in the
-		 * correct order.
+		 * Returns an array containing all of the elements in this list in the correct
+		 * order.
 		 * 
 		 * @return an array containing the elements of the list
 		 */
@@ -634,8 +592,7 @@ public class CheckBoxList extends JList {
 		/**
 		 * returns the checked state of the element at the given index
 		 * 
-		 * @param index
-		 *            the index of the element to return the checked state for
+		 * @param index the index of the element to return the checked state for
 		 * @return the checked state of the specifed element
 		 */
 		public boolean getChecked(int index) {
@@ -645,10 +602,8 @@ public class CheckBoxList extends JList {
 		/**
 		 * sets the checked state of the element at the given index
 		 * 
-		 * @param index
-		 *            the index of the element to set the checked state for
-		 * @param checked
-		 *            the new checked state
+		 * @param index   the index of the element to set the checked state for
+		 * @param checked the new checked state
 		 */
 		public void setChecked(int index, boolean checked) {
 			((CheckBoxListItem) super.getElementAt(index)).setChecked(checked);
@@ -668,21 +623,15 @@ public class CheckBoxList extends JList {
 		private static final long serialVersionUID = 1059591605858524586L;
 
 		/**
-		 * Return a component that has been configured to display the specified
-		 * value.
+		 * Return a component that has been configured to display the specified value.
 		 * 
-		 * @param list
-		 *            The JList we're painting.
-		 * @param value
-		 *            The value returned by list.getModel().getElementAt(index).
-		 * @param index
-		 *            The cells index.
-		 * @param isSelected
-		 *            True if the specified cell was selected.
-		 * @param cellHasFocus
-		 *            True if the specified cell has the focus.
-		 * @return A component whose paint() method will render the specified
-		 *         value.
+		 * @param list         The JList we're painting.
+		 * @param value        The value returned by
+		 *                     list.getModel().getElementAt(index).
+		 * @param index        The cells index.
+		 * @param isSelected   True if the specified cell was selected.
+		 * @param cellHasFocus True if the specified cell has the focus.
+		 * @return A component whose paint() method will render the specified value.
 		 */
 		@Override
 		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,

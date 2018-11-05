@@ -56,12 +56,9 @@ public class BIFParser implements GraphConstants {
 	/**
 	 * Constructor (if our input is a String)
 	 * 
-	 * @param input
-	 *            the string to be parsed (should not be null)
-	 * @param nodes
-	 *            vector containing GraphNode objects (should be empty)
-	 * @param edges
-	 *            vector containing GraphEdge objects (should be empty)
+	 * @param input the string to be parsed (should not be null)
+	 * @param nodes vector containing GraphNode objects (should be empty)
+	 * @param edges vector containing GraphEdge objects (should be empty)
 	 */
 	public BIFParser(String input, ArrayList<GraphNode> nodes, ArrayList<GraphEdge> edges) {
 		m_nodes = nodes;
@@ -72,12 +69,9 @@ public class BIFParser implements GraphConstants {
 	/**
 	 * Constructor (if our input is an InputStream)
 	 * 
-	 * @param instream
-	 *            the InputStream to be parsed (should not be null)
-	 * @param nodes
-	 *            vector containing GraphNode objects (should be empty)
-	 * @param edges
-	 *            vector containing GraphEdge objects (should be empty)
+	 * @param instream the InputStream to be parsed (should not be null)
+	 * @param nodes    vector containing GraphNode objects (should be empty)
+	 * @param edges    vector containing GraphEdge objects (should be empty)
 	 */
 	public BIFParser(InputStream instream, ArrayList<GraphNode> nodes, ArrayList<GraphEdge> edges) {
 		m_nodes = nodes;
@@ -86,18 +80,16 @@ public class BIFParser implements GraphConstants {
 	}
 
 	/**
-	 * This method parses the string or the InputStream that we passed in
-	 * through the constructor and builds up the m_nodes and m_edges vectors
+	 * This method parses the string or the InputStream that we passed in through
+	 * the constructor and builds up the m_nodes and m_edges vectors
 	 * 
-	 * @exception Exception
-	 *                if both the inString and inStream are null, i.e. no input
-	 *                has been provided
-	 * @exception BIFFormatException
-	 *                if there is format of the input is not correct. The format
-	 *                should conform to XMLBIF version 0.3
-	 * @exception NumberFormatException
-	 *                if there is an invalid char in the probability table of a
-	 *                node.
+	 * @exception Exception             if both the inString and inStream are null,
+	 *                                  i.e. no input has been provided
+	 * @exception BIFFormatException    if there is format of the input is not
+	 *                                  correct. The format should conform to XMLBIF
+	 *                                  version 0.3
+	 * @exception NumberFormatException if there is an invalid char in the
+	 *                                  probability table of a node.
 	 * @return returns the name of the graph
 	 */
 	public String parse() throws Exception {
@@ -235,12 +227,12 @@ public class BIFParser implements GraphConstants {
 		// it
 		int noOfEdgesOfNode[] = new int[m_nodes.size()];
 		int noOfPrntsOfNode[] = new int[m_nodes.size()];
-		for (GraphEdge e : m_edges) {
+		m_edges.forEach(e -> {
 			noOfEdgesOfNode[e.src]++;
 			noOfPrntsOfNode[e.dest]++;
-		}
+		});
 
-		for (GraphEdge e : m_edges) {
+		m_edges.forEach(e -> {
 			GraphNode n = m_nodes.get(e.src);
 			GraphNode n2 = m_nodes.get(e.dest);
 			if (n.edges == null) {
@@ -268,7 +260,7 @@ public class BIFParser implements GraphConstants {
 				k++;
 			}
 			n2.prnts[k] = e.src;
-		}
+		});
 
 		// processGraph();
 		// setAppropriateSize();
@@ -276,19 +268,15 @@ public class BIFParser implements GraphConstants {
 	} // end readBIF
 
 	/**
-	 * This method writes a graph in XMLBIF ver. 0.3 format to a file. However,
-	 * if is reloaded in GraphVisualizer we would need to layout the graph again
-	 * to display it correctly.
+	 * This method writes a graph in XMLBIF ver. 0.3 format to a file. However, if
+	 * is reloaded in GraphVisualizer we would need to layout the graph again to
+	 * display it correctly.
 	 * 
-	 * @param filename
-	 *            The name of the file to write in. (will overwrite)
-	 * @param graphName
-	 *            The name of the graph. (will be the name of network tag in
-	 *            XMLBIF)
-	 * @param nodes
-	 *            Vector containing all the nodes
-	 * @param edges
-	 *            Vector containing all the edges
+	 * @param filename  The name of the file to write in. (will overwrite)
+	 * @param graphName The name of the graph. (will be the name of network tag in
+	 *                  XMLBIF)
+	 * @param nodes     Vector containing all the nodes
+	 * @param edges     Vector containing all the edges
 	 */
 	public static void writeXMLBIF03(String filename, String graphName, ArrayList<GraphNode> nodes,
 			ArrayList<GraphEdge> edges) {
@@ -384,8 +372,7 @@ public class BIFParser implements GraphConstants {
 	 * string V&D's is returned as V&amp;D&apos;s
 	 * 
 	 * @author Remco Bouckaert (rrb@xm.co.nz)
-	 * @param sStr
-	 *            string to normalize
+	 * @param sStr string to normalize
 	 * @return normalized string
 	 */
 	private static String XMLNormalize(String sStr) {

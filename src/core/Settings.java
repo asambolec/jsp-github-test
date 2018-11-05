@@ -52,8 +52,7 @@ public class Settings implements Serializable {
 	private static final long serialVersionUID = -4005372566372478008L;
 
 	/**
-	 * outer map keyed by perspective ID. Inner map - settings for a
-	 * perspective.
+	 * outer map keyed by perspective ID. Inner map - settings for a perspective.
 	 */
 	protected Map<String, Map<SettingKey, Object>> m_settings = new LinkedHashMap<>();
 
@@ -68,13 +67,11 @@ public class Settings implements Serializable {
 	protected String m_ID = new String("");
 
 	/**
-	 * Construct a new Settings object to be stored in the supplied store under
-	 * the given ID/name
+	 * Construct a new Settings object to be stored in the supplied store under the
+	 * given ID/name
 	 *
-	 * @param storeName
-	 *            the name of the store to load/save to in the metastore
-	 * @param ID
-	 *            the ID/name to use
+	 * @param storeName the name of the store to load/save to in the metastore
+	 * @param ID        the ID/name to use
 	 */
 	public Settings(String storeName, String ID) {
 		m_storeName = storeName;
@@ -89,8 +86,7 @@ public class Settings implements Serializable {
 	/**
 	 * Load the settings with ID m_ID from store m_storeName.
 	 *
-	 * @throws IOException
-	 *             if a problem occurs
+	 * @throws IOException if a problem occurs
 	 */
 	@SuppressWarnings("unchecked")
 	public void loadSettings() throws IOException {
@@ -115,7 +111,7 @@ public class Settings implements Serializable {
 					} catch (Exception ex) {
 						throw new IOException(ex);
 					}
-				} 
+				}
 			}
 		}
 	}
@@ -139,12 +135,11 @@ public class Settings implements Serializable {
 	}
 
 	/**
-	 * Applies a set of default settings. If the ID of default settings is not
-	 * known then a new entry is made for it. Otherwise we examine all settings
-	 * in the default set supplied and add any that we don't have a value for.
+	 * Applies a set of default settings. If the ID of default settings is not known
+	 * then a new entry is made for it. Otherwise we examine all settings in the
+	 * default set supplied and add any that we don't have a value for.
 	 *
-	 * @param defaults
-	 *            the defaults to apply
+	 * @param defaults the defaults to apply
 	 */
 	public void applyDefaults(Object defaults) {
 		if (defaults == null) {
@@ -160,8 +155,7 @@ public class Settings implements Serializable {
 	/**
 	 * Get the settings for a given ID
 	 *
-	 * @param settingsID
-	 *            the ID to get settings for
+	 * @param settingsID the ID to get settings for
 	 * @return a map of settings, or null if the given ID is unknown
 	 */
 	public Map<SettingKey, Object> getSettings(String settingsID) {
@@ -185,15 +179,11 @@ public class Settings implements Serializable {
 	/**
 	 * Get the value of a setting
 	 * 
-	 * @param ID
-	 *            the ID for settings map to lookup (typically the ID of a
-	 *            perspective)
-	 * @param key
-	 *            the name of the setting value to lookup
-	 * @param defaultValue
-	 *            the default value to use if the setting is not known
-	 * @param <T>
-	 *            the type of the vaue
+	 * @param ID           the ID for settings map to lookup (typically the ID of a
+	 *                     perspective)
+	 * @param key          the name of the setting value to lookup
+	 * @param defaultValue the default value to use if the setting is not known
+	 * @param              <T> the type of the vaue
 	 * @return the setting value, or the default value if not found
 	 */
 	public <T> T getSetting(String ID, SettingKey key, T defaultValue) {
@@ -203,18 +193,13 @@ public class Settings implements Serializable {
 	/**
 	 * Get the value of a setting
 	 *
-	 * @param ID
-	 *            the ID for settings map to lookup (typically the ID of a
-	 *            perspective)
-	 * @param key
-	 *            the name of the setting value to lookup
-	 * @param defaultValue
-	 *            the default value to use if the setting is not known
-	 * @param env
-	 *            environment variables to use. String setting values will have
-	 *            environment variables replaced automatically
-	 * @param <T>
-	 *            the type of the vaue
+	 * @param ID           the ID for settings map to lookup (typically the ID of a
+	 *                     perspective)
+	 * @param key          the name of the setting value to lookup
+	 * @param defaultValue the default value to use if the setting is not known
+	 * @param env          environment variables to use. String setting values will
+	 *                     have environment variables replaced automatically
+	 * @param              <T> the type of the vaue
 	 * @return the setting value, or the default value if not found
 	 */
 	// TOOD new...
@@ -257,13 +242,10 @@ public class Settings implements Serializable {
 	/**
 	 * Set a value for a setting.
 	 *
-	 * @param ID
-	 *            the for the settings map to store the setting in (typically
-	 *            the ID of a perspective or application)
-	 * @param propName
-	 *            the name of the setting to store
-	 * @param value
-	 *            the value of the setting to store
+	 * @param ID       the for the settings map to store the setting in (typically
+	 *                 the ID of a perspective or application)
+	 * @param propName the name of the setting to store
+	 * @param value    the value of the setting to store
 	 */
 	public void setSetting(String ID, SettingKey propName, Object value) {
 		Map<SettingKey, Object> settingsForID = m_settings.get(ID);
@@ -277,8 +259,7 @@ public class Settings implements Serializable {
 	/**
 	 * Returns true if there are settings available for a given ID
 	 *
-	 * @param settingsID
-	 *            the ID to check
+	 * @param settingsID the ID to check
 	 * @return true if there are settings available for that ID
 	 */
 	public boolean hasSettings(String settingsID) {
@@ -288,10 +269,8 @@ public class Settings implements Serializable {
 	/**
 	 * Returns true if a given setting has a value
 	 *
-	 * @param settingsID
-	 *            the ID of the settings group
-	 * @param propName
-	 *            the actual setting to check for
+	 * @param settingsID the ID of the settings group
+	 * @param propName   the actual setting to check for
 	 * @return true if the setting has a value
 	 */
 	public boolean hasSetting(String settingsID, String propName) {
@@ -305,52 +284,48 @@ public class Settings implements Serializable {
 	/**
 	 * Save the settings to the metastore
 	 *
-	 * @throws IOException
-	 *             if a problem occurs
+	 * @throws IOException if a problem occurs
 	 */
 	public void saveSettings() throws IOException {
 		// shallow copy settings so that we can wrap any enums in EnumHelper
 		// objects before persisting
 		Map<String, Map<SettingKey, Object>> settingsCopy = new LinkedHashMap<>();
-		for (Map.Entry<String, Map<SettingKey, Object>> e : m_settings.entrySet()) {
+		m_settings.entrySet().forEach(e -> {
 			Map<SettingKey, Object> s = new LinkedHashMap<>();
 			settingsCopy.put(e.getKey(), s);
-		}
+		});
 	}
 
 	/**
 	 * Convert a setting value stored in a string to type T
 	 *
-	 * @param propVal
-	 *            the value of the setting as a string
-	 * @param defaultVal
-	 *            the default value for the setting (of type T)
-	 * @param <T>
-	 *            the type of the setting
+	 * @param propVal    the value of the setting as a string
+	 * @param defaultVal the default value for the setting (of type T)
+	 * @param            <T> the type of the setting
 	 * @return the setting as an instance of type T
 	 */
 	protected static <T> T stringToT(String propVal, T defaultVal) {
-		if (defaultVal instanceof String) 
+		if (defaultVal instanceof String)
 			return (T) propVal;
 
-		if (defaultVal instanceof Boolean) 
+		if (defaultVal instanceof Boolean)
 			return (T) (new Boolean(propVal));
 
-		if (defaultVal instanceof Double) 
+		if (defaultVal instanceof Double)
 			return (T) (new Double(propVal));
 
-		if (defaultVal instanceof Integer) 
+		if (defaultVal instanceof Integer)
 			return (T) (new Integer(propVal));
 
-		if (defaultVal instanceof Long) 
+		if (defaultVal instanceof Long)
 			return (T) (new Long(propVal));
 
 		return null;
 	}
 
 	/**
-	 * Class implementing a key for a setting. Has a unique key, description,
-	 * tool tip text and map of arbitrary other metadata
+	 * Class implementing a key for a setting. Has a unique key, description, tool
+	 * tip text and map of arbitrary other metadata
 	 */
 	public static class SettingKey implements java.io.Serializable {
 
@@ -374,8 +349,8 @@ public class Settings implements Serializable {
 		protected List<String> m_pickList;
 
 		/**
-		 * Metadata for this setting - e.g. file property could specify whether
-		 * it is files only, directories only or both
+		 * Metadata for this setting - e.g. file property could specify whether it is
+		 * files only, directories only or both
 		 */
 		protected Map<String, String> m_meta;
 
@@ -387,32 +362,24 @@ public class Settings implements Serializable {
 		}
 
 		/**
-		 * Construct a new SettingKey with the given key, description and tool
-		 * tip text
+		 * Construct a new SettingKey with the given key, description and tool tip text
 		 *
-		 * @param key
-		 *            the key of this SettingKey
-		 * @param description
-		 *            the description (display name of the setting)
-		 * @param toolTip
-		 *            the tool tip text for the setting
+		 * @param key         the key of this SettingKey
+		 * @param description the description (display name of the setting)
+		 * @param toolTip     the tool tip text for the setting
 		 */
 		public SettingKey(String key, String description, String toolTip) {
 			this(key, description, toolTip, null);
 		}
 
 		/**
-		 * Construct a new SettingKey with the given key, description, tool tip
-		 * and pick list
+		 * Construct a new SettingKey with the given key, description, tool tip and pick
+		 * list
 		 *
-		 * @param key
-		 *            the key of this SettingKey
-		 * @param description
-		 *            the description (display name of the setting)
-		 * @param toolTip
-		 *            the tool tip for the setting
-		 * @param pickList
-		 *            an optional list of legal values for a string setting
+		 * @param key         the key of this SettingKey
+		 * @param description the description (display name of the setting)
+		 * @param toolTip     the tool tip for the setting
+		 * @param pickList    an optional list of legal values for a string setting
 		 */
 		public SettingKey(String key, String description, String toolTip, List<String> pickList) {
 			m_key = key;
@@ -424,8 +391,7 @@ public class Settings implements Serializable {
 		/**
 		 * set the key of this setting
 		 *
-		 * @param key
-		 *            the key to use
+		 * @param key the key to use
 		 */
 		public void setKey(String key) {
 			m_key = key;
@@ -443,8 +409,7 @@ public class Settings implements Serializable {
 		/**
 		 * Set the description (display name) of this setting
 		 *
-		 * @param description
-		 *            the description of this setting
+		 * @param description the description of this setting
 		 */
 		public void setDescription(String description) {
 			m_description = description;
@@ -462,8 +427,7 @@ public class Settings implements Serializable {
 		/**
 		 * Set the tool tip text for this setting
 		 *
-		 * @param toolTip
-		 *            the tool tip text to use
+		 * @param toolTip the tool tip text to use
 		 */
 		public void setToolTip(String toolTip) {
 			m_toolTip = toolTip;
@@ -481,10 +445,8 @@ public class Settings implements Serializable {
 		/**
 		 * Set the value of a piece of metadata for this setting
 		 *
-		 * @param key
-		 *            the key for the metadata
-		 * @param value
-		 *            the value of the metadata
+		 * @param key   the key for the metadata
+		 * @param value the value of the metadata
 		 */
 		public void setMetadataElement(String key, String value) {
 			if (m_meta == null) {
@@ -497,8 +459,7 @@ public class Settings implements Serializable {
 		/**
 		 * Get a piece of metadata for this setting
 		 *
-		 * @param key
-		 *            the key of the metadata
+		 * @param key the key of the metadata
 		 * @return the corresponding value, or null if the key is not known
 		 */
 		public String getMetadataElement(String key) {
@@ -512,12 +473,9 @@ public class Settings implements Serializable {
 		/**
 		 * Get a peice of metadata for this setting
 		 *
-		 * @param key
-		 *            the key of the metadata
-		 * @param defaultValue
-		 *            the default value for the metadata
-		 * @return the corresponding value, or the default value if the key is
-		 *         not known
+		 * @param key          the key of the metadata
+		 * @param defaultValue the default value for the metadata
+		 * @return the corresponding value, or the default value if the key is not known
 		 */
 		public String getMetadataElement(String key, String defaultValue) {
 			String result = getMetadataElement(key);
@@ -527,8 +485,7 @@ public class Settings implements Serializable {
 		/**
 		 * Set the metadata for this setting
 		 *
-		 * @param metadata
-		 *            the metadata for this setting
+		 * @param metadata the metadata for this setting
 		 */
 		public void setMetadata(Map<String, String> metadata) {
 			m_meta = metadata;
@@ -556,9 +513,8 @@ public class Settings implements Serializable {
 		/**
 		 * Set the optional pick list for the setting
 		 *
-		 * @param pickList
-		 *            the optional pick list for the setting (can be null if not
-		 *            applicable)
+		 * @param pickList the optional pick list for the setting (can be null if not
+		 *                 applicable)
 		 */
 		public void setPickList(List<String> pickList) {
 			m_pickList = pickList;
@@ -577,8 +533,7 @@ public class Settings implements Serializable {
 		/**
 		 * Compares two setting keys for equality
 		 *
-		 * @param other
-		 *            the other setting key to compare to
+		 * @param other the other setting key to compare to
 		 * @return true if this setting key is equal to the supplied one
 		 */
 		@Override

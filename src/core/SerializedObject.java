@@ -61,10 +61,8 @@ public class SerializedObject implements Serializable, RevisionHandler {
 	/**
 	 * Creates a new serialized object (without compression).
 	 *
-	 * @param toStore
-	 *            the object to store
-	 * @exception Exception
-	 *                if the object couldn't be serialized
+	 * @param toStore the object to store
+	 * @exception Exception if the object couldn't be serialized
 	 */
 	public SerializedObject(Object toStore) throws Exception {
 
@@ -74,12 +72,9 @@ public class SerializedObject implements Serializable, RevisionHandler {
 	/**
 	 * Creates a new serialized object.
 	 *
-	 * @param toStore
-	 *            the object to store
-	 * @param compress
-	 *            whether or not to use compression
-	 * @exception Exception
-	 *                if the object couldn't be serialized
+	 * @param toStore  the object to store
+	 * @param compress whether or not to use compression
+	 * @exception Exception if the object couldn't be serialized
 	 */
 	public SerializedObject(Object toStore, boolean compress) throws Exception {
 
@@ -139,24 +134,22 @@ public class SerializedObject implements Serializable, RevisionHandler {
 	}
 
 	/**
-	 * Returns a serialized object. Uses org.python.util.PythonObjectInputStream
-	 * for Jython objects (read <a href=
-	 * "http://aspn.activestate.com/ASPN/Mail/Message/Jython-users/1001401"
+	 * Returns a serialized object. Uses org.python.util.PythonObjectInputStream for
+	 * Jython objects (read
+	 * <a href= "http://aspn.activestate.com/ASPN/Mail/Message/Jython-users/1001401"
 	 * >here</a> for more details).
 	 *
 	 * @return the restored object
 	 */
 	public Object getObject() {
-		try {
-			ByteArrayInputStream istream = new ByteArrayInputStream(mStoredObjectArray);
+		try (ByteArrayInputStream istream = new ByteArrayInputStream(mStoredObjectArray)) {
 			ObjectInputStream p;
 			Object toReturn = null;
 			if (mIsJython) {
 			} else {
-				
+
 				toReturn = null;
 			}
-			istream.close();
 			return toReturn;
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -58,159 +58,155 @@ import chart.util.SerialUtils;
  */
 public class JFreeChartEntity extends ChartEntity {
 
-    /** For serialization. */
-    private static final long serialVersionUID = -4445994133561919083L;
-            //same as for ChartEntity!
+	/** For serialization. */
+	private static final long serialVersionUID = -4445994133561919083L;
+	// same as for ChartEntity!
 
-    /** The chart. */
-    private JFreeChart chart;
+	/** The chart. */
+	private JFreeChart chart;
 
-    /**
-     * Creates a new chart entity.
-     *
-     * @param area  the area (<code>null</code> not permitted).
-     * @param chart  the chart (<code>null</code> not permitted).
-     */
-    public JFreeChartEntity(Shape area, JFreeChart chart) {
-        // defer argument checks...
-        this(area, chart, null);
-    }
+	/**
+	 * Creates a new chart entity.
+	 *
+	 * @param area  the area (<code>null</code> not permitted).
+	 * @param chart the chart (<code>null</code> not permitted).
+	 */
+	public JFreeChartEntity(Shape area, JFreeChart chart) {
+		// defer argument checks...
+		this(area, chart, null);
+	}
 
-    /**
-     * Creates a new chart entity.
-     *
-     * @param area  the area (<code>null</code> not permitted).
-     * @param chart  the chart (<code>null</code> not permitted).
-     * @param toolTipText  the tool tip text (<code>null</code> permitted).
-     */
-    public JFreeChartEntity(Shape area, JFreeChart chart, String toolTipText) {
-        // defer argument checks...
-        this(area, chart, toolTipText, null);
-    }
+	/**
+	 * Creates a new chart entity.
+	 *
+	 * @param area        the area (<code>null</code> not permitted).
+	 * @param chart       the chart (<code>null</code> not permitted).
+	 * @param toolTipText the tool tip text (<code>null</code> permitted).
+	 */
+	public JFreeChartEntity(Shape area, JFreeChart chart, String toolTipText) {
+		// defer argument checks...
+		this(area, chart, toolTipText, null);
+	}
 
-    /**
-     * Creates a new chart entity.
-     *
-     * @param area  the area (<code>null</code> not permitted).
-     * @param chart  the chart (<code>null</code> not permitted).
-     * @param toolTipText  the tool tip text (<code>null</code> permitted).
-     * @param urlText  the URL text for HTML image maps (<code>null</code>
-     *                 permitted).
-     */
-    public JFreeChartEntity(Shape area, JFreeChart chart, String toolTipText,
-            String urlText) {
-        super(area, toolTipText, urlText);
-        if (chart == null) {
-            throw new IllegalArgumentException("Null 'chart' argument.");
-        }
+	/**
+	 * Creates a new chart entity.
+	 *
+	 * @param area        the area (<code>null</code> not permitted).
+	 * @param chart       the chart (<code>null</code> not permitted).
+	 * @param toolTipText the tool tip text (<code>null</code> permitted).
+	 * @param urlText     the URL text for HTML image maps (<code>null</code>
+	 *                    permitted).
+	 */
+	public JFreeChartEntity(Shape area, JFreeChart chart, String toolTipText, String urlText) {
+		super(area, toolTipText, urlText);
+		if (chart == null) {
+			throw new IllegalArgumentException("Null 'chart' argument.");
+		}
 
-        this.chart = chart;
-    }
+		this.chart = chart;
+	}
 
-    /**
-     * Returns the chart that occupies the entity area.
-     *
-     * @return The chart (never <code>null</code>).
-     */
-    public JFreeChart getChart() {
-        return this.chart;
-    }
+	/**
+	 * Returns the chart that occupies the entity area.
+	 *
+	 * @return The chart (never <code>null</code>).
+	 */
+	public JFreeChart getChart() {
+		return this.chart;
+	}
 
-    /**
-     * Returns a string representation of the chart entity, useful for
-     * debugging.
-     *
-     * @return A string.
-     */
-    @Override
-    public String toString() {
-        StringBuilder buf = new StringBuilder("JFreeChartEntity: ");
-        buf.append("tooltip = ");
-        buf.append(getToolTipText());
-        return buf.toString();
-    }
+	/**
+	 * Returns a string representation of the chart entity, useful for debugging.
+	 *
+	 * @return A string.
+	 */
+	@Override
+	public String toString() {
+		StringBuilder buf = new StringBuilder("JFreeChartEntity: ");
+		buf.append("tooltip = ");
+		buf.append(getToolTipText());
+		return buf.toString();
+	}
 
-    /**
-     * Tests the entity for equality with an arbitrary object.
-     *
-     * @param obj  the object to test against (<code>null</code> permitted).
-     *
-     * @return A boolean.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof JFreeChartEntity)) {
-            return false;
-        }
-        JFreeChartEntity that = (JFreeChartEntity) obj;
-        if (!getArea().equals(that.getArea())) {
-            return false;
-        }
-        if (!ObjectUtils.equal(getToolTipText(), that.getToolTipText())) {
-            return false;
-        }
-        if (!ObjectUtils.equal(getURLText(), that.getURLText())) {
-            return false;
-        }
-        if (!(this.chart.equals(that.chart))) {
-            return false;
-        }
-        return true;
-    }
+	/**
+	 * Tests the entity for equality with an arbitrary object.
+	 *
+	 * @param obj the object to test against (<code>null</code> permitted).
+	 *
+	 * @return A boolean.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (!(obj instanceof JFreeChartEntity)) {
+			return false;
+		}
+		JFreeChartEntity that = (JFreeChartEntity) obj;
+		if (!getArea().equals(that.getArea())) {
+			return false;
+		}
+		if (!ObjectUtils.equal(getToolTipText(), that.getToolTipText())) {
+			return false;
+		}
+		if (!ObjectUtils.equal(getURLText(), that.getURLText())) {
+			return false;
+		}
+		if (!(this.chart.equals(that.chart))) {
+			return false;
+		}
+		return true;
+	}
 
-    /**
-     * Returns a hash code for this instance.
-     *
-     * @return A hash code.
-     */
-    @Override
-    public int hashCode() {
-        int result = 39;
-        result = HashUtils.hashCode(result, getToolTipText());
-        result = HashUtils.hashCode(result, getURLText());
-        return result;
-    }
+	/**
+	 * Returns a hash code for this instance.
+	 *
+	 * @return A hash code.
+	 */
+	@Override
+	public int hashCode() {
+		int result = 39;
+		result = HashUtils.hashCode(result, getToolTipText());
+		result = HashUtils.hashCode(result, getURLText());
+		return result;
+	}
 
-    /**
-     * Returns a clone of the entity.
-     *
-     * @return A clone.
-     *
-     * @throws CloneNotSupportedException if there is a problem cloning the
-     *         entity.
-     */
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
+	/**
+	 * Returns a clone of the entity.
+	 *
+	 * @return A clone.
+	 *
+	 * @throws CloneNotSupportedException if there is a problem cloning the entity.
+	 */
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 
-    /**
-     * Provides serialization support.
-     *
-     * @param stream  the output stream.
-     *
-     * @throws IOException  if there is an I/O error.
-     */
-    private void writeObject(ObjectOutputStream stream) throws IOException {
-        stream.defaultWriteObject();
-        SerialUtils.writeShape(getArea(), stream);
-     }
+	/**
+	 * Provides serialization support.
+	 *
+	 * @param stream the output stream.
+	 *
+	 * @throws IOException if there is an I/O error.
+	 */
+	private void writeObject(ObjectOutputStream stream) throws IOException {
+		stream.defaultWriteObject();
+		SerialUtils.writeShape(getArea(), stream);
+	}
 
-    /**
-     * Provides serialization support.
-     *
-     * @param stream  the input stream.
-     *
-     * @throws IOException  if there is an I/O error.
-     * @throws ClassNotFoundException  if there is a classpath problem.
-     */
-    private void readObject(ObjectInputStream stream)
-        throws IOException, ClassNotFoundException {
-        stream.defaultReadObject();
-        setArea(SerialUtils.readShape(stream));
-    }
+	/**
+	 * Provides serialization support.
+	 *
+	 * @param stream the input stream.
+	 *
+	 * @throws IOException            if there is an I/O error.
+	 * @throws ClassNotFoundException if there is a classpath problem.
+	 */
+	private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
+		stream.defaultReadObject();
+		setArea(SerialUtils.readShape(stream));
+	}
 
 }

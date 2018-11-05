@@ -31,8 +31,7 @@ public class RevisionUtils {
 	/**
 	 * Extracts the revision string returned by the RevisionHandler.
 	 * 
-	 * @param handler
-	 *            the RevisionHandler to get the revision for
+	 * @param handler the RevisionHandler to get the revision for
 	 * @return the actual revision string
 	 */
 	public static String extract(RevisionHandler handler) {
@@ -42,8 +41,7 @@ public class RevisionUtils {
 	/**
 	 * Extracts the revision string.
 	 * 
-	 * @param s
-	 *            the string to get the revision string from
+	 * @param s the string to get the revision string from
 	 * @return the actual revision string
 	 */
 	public static String extract(String s) {
@@ -61,8 +59,7 @@ public class RevisionUtils {
 	 * Determines the type of a (sanitized) revision string returned by the
 	 * RevisionHandler.
 	 * 
-	 * @param handler
-	 *            the RevisionHandler to determine the type for
+	 * @param handler the RevisionHandler to determine the type for
 	 * @return the type, UNKNOWN if it cannot be determined
 	 */
 	public static Type getType(RevisionHandler handler) {
@@ -73,8 +70,7 @@ public class RevisionUtils {
 	 * Determines the type of a (sanitized) revision string. Use extract(String)
 	 * method to extract the revision first before calling this method.
 	 * 
-	 * @param revision
-	 *            the revision to get the type for
+	 * @param revision the revision to get the type for
 	 * @return the type, UNKNOWN if it cannot be determined
 	 * @see #extract(String)
 	 */
@@ -125,10 +121,8 @@ public class RevisionUtils {
 	 * For testing only. The first parameter must be a classname of a class
 	 * implementing the weka.core.RevisionHandler interface.
 	 * 
-	 * @param args
-	 *            the commandline arguments
-	 * @throws Exception
-	 *             if something goes wrong
+	 * @param args the commandline arguments
+	 * @throws Exception if something goes wrong
 	 */
 	public static void main(String[] args) throws Exception {
 		if (args.length != 1) {

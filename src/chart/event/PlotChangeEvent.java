@@ -52,26 +52,26 @@ import chart.plot.Plot;
  */
 public class PlotChangeEvent extends ChartChangeEvent {
 
-    /** The plot that generated the event. */
-    private Plot plot;
+	/** The plot that generated the event. */
+	private Plot plot;
 
-    /**
-     * Creates a new PlotChangeEvent.
-     *
-     * @param plot  the plot that generated the event.
-     */
-    public PlotChangeEvent(Plot plot) {
-        super(plot);
-        this.plot = plot;
-    }
+	/**
+	 * Creates a new PlotChangeEvent.
+	 *
+	 * @param plot the plot that generated the event.
+	 */
+	public PlotChangeEvent(Plot plot) {
+		super(plot);
+		this.plot = plot;
+	}
 
-    /**
-     * Returns the plot that generated the event.
-     *
-     * @return The plot that generated the event.
-     */
-    public Plot getPlot() {
-        return this.plot;
-    }
+	/**
+	 * Returns the plot that generated the event.
+	 *
+	 * @return The plot that generated the event.
+	 */
+	public Plot getPlot() {
+		return this.plot;
+	}
 
 }

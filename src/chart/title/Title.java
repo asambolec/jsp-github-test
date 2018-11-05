@@ -85,389 +85,371 @@ import chart.event.TitleChangeListener;
 import chart.util.ParamChecks;
 
 /**
- * The base class for all chart titles.  A chart can have multiple titles,
+ * The base class for all chart titles. A chart can have multiple titles,
  * appearing at the top, bottom, left or right of the chart.
  * <P>
- * Concrete implementations of this class will render text and images, and
- * hence do the actual work of drawing titles.
+ * Concrete implementations of this class will render text and images, and hence
+ * do the actual work of drawing titles.
  */
-public abstract class Title extends AbstractBlock
-            implements Block, Cloneable, Serializable {
+public abstract class Title extends AbstractBlock implements Block, Cloneable, Serializable {
 
-    /** For serialization. */
-    private static final long serialVersionUID = -6675162505277817221L;
+	/** For serialization. */
+	private static final long serialVersionUID = -6675162505277817221L;
 
-    /** The default title position. */
-    public static final RectangleEdge DEFAULT_POSITION = RectangleEdge.TOP;
+	/** The default title position. */
+	public static final RectangleEdge DEFAULT_POSITION = RectangleEdge.TOP;
 
-    /** The default horizontal alignment. */
-    public static final HorizontalAlignment
-            DEFAULT_HORIZONTAL_ALIGNMENT = HorizontalAlignment.LEFT;
+	/** The default horizontal alignment. */
+	public static final HorizontalAlignment DEFAULT_HORIZONTAL_ALIGNMENT = HorizontalAlignment.LEFT;
 
-    /** The default vertical alignment. */
-    public static final VerticalAlignment
-            DEFAULT_VERTICAL_ALIGNMENT = VerticalAlignment.CENTER;
+	/** The default vertical alignment. */
+	public static final VerticalAlignment DEFAULT_VERTICAL_ALIGNMENT = VerticalAlignment.CENTER;
 
-    /** Default title padding. */
-    public static final RectangleInsets DEFAULT_PADDING = new RectangleInsets(
-            1, 1, 1, 1);
+	/** Default title padding. */
+	public static final RectangleInsets DEFAULT_PADDING = new RectangleInsets(1, 1, 1, 1);
 
-    /**
-     * The following verbs always use ambiguous pronouns in a reflexive
-     * sense in the corpus.
-     */
-    private static final Set<String> parameters = new HashSet<>(Arrays.asList(
-            "visible",
-            "position",
-            "horizontalAlignment",
-            "verticalAlignment"
-    ));
-    /**
-     * A flag that controls whether or not the title is visible.
-     *
-     * @since 1.0.11
-     */
-    public boolean visible;
+	/**
+	 * The following verbs always use ambiguous pronouns in a reflexive sense in the
+	 * corpus.
+	 */
+	private static final Set<String> parameters = new HashSet<>(
+			Arrays.asList("visible", "position", "horizontalAlignment", "verticalAlignment"));
+	/**
+	 * A flag that controls whether or not the title is visible.
+	 *
+	 * @since 1.0.11
+	 */
+	public boolean visible;
 
-    /** The title position. */
-    private RectangleEdge position;
+	/** The title position. */
+	private RectangleEdge position;
 
-    /** The horizontal alignment of the title content. */
-    private HorizontalAlignment horizontalAlignment;
+	/** The horizontal alignment of the title content. */
+	private HorizontalAlignment horizontalAlignment;
 
-    /** The vertical alignment of the title content. */
-    private VerticalAlignment verticalAlignment;
+	/** The vertical alignment of the title content. */
+	private VerticalAlignment verticalAlignment;
 
-    /** Storage for registered change listeners. */
-    private transient EventListenerList listenerList;
+	/** Storage for registered change listeners. */
+	private transient EventListenerList listenerList;
 
-    /**
-     * A flag that can be used to temporarily disable the listener mechanism.
-     */
-    private boolean notify;
+	/**
+	 * A flag that can be used to temporarily disable the listener mechanism.
+	 */
+	private boolean notify;
 
-    /**
-     * Creates a new title, using default attributes where necessary.
-     */
-    protected Title() {
-        this(Title.DEFAULT_POSITION,
-                Title.DEFAULT_HORIZONTAL_ALIGNMENT,
-                Title.DEFAULT_VERTICAL_ALIGNMENT, Title.DEFAULT_PADDING);
-    }
+	/**
+	 * Creates a new title, using default attributes where necessary.
+	 */
+	protected Title() {
+		this(Title.DEFAULT_POSITION, Title.DEFAULT_HORIZONTAL_ALIGNMENT, Title.DEFAULT_VERTICAL_ALIGNMENT,
+				Title.DEFAULT_PADDING);
+	}
 
-    /**
-     * Creates a new title, using default attributes where necessary.
-     *
-     * @param position  the position of the title (<code>null</code> not
-     *                  permitted).
-     * @param horizontalAlignment  the horizontal alignment of the title
-     *                             (<code>null</code> not permitted).
-     * @param verticalAlignment  the vertical alignment of the title
-     *                           (<code>null</code> not permitted).
-     */
-    protected Title(RectangleEdge position,
-            HorizontalAlignment horizontalAlignment, 
-            VerticalAlignment verticalAlignment) {
-        this(position, horizontalAlignment, verticalAlignment,
-                Title.DEFAULT_PADDING);
-    }
+	/**
+	 * Creates a new title, using default attributes where necessary.
+	 *
+	 * @param position            the position of the title (<code>null</code> not
+	 *                            permitted).
+	 * @param horizontalAlignment the horizontal alignment of the title
+	 *                            (<code>null</code> not permitted).
+	 * @param verticalAlignment   the vertical alignment of the title
+	 *                            (<code>null</code> not permitted).
+	 */
+	protected Title(RectangleEdge position, HorizontalAlignment horizontalAlignment,
+			VerticalAlignment verticalAlignment) {
+		this(position, horizontalAlignment, verticalAlignment, Title.DEFAULT_PADDING);
+	}
 
-    /**
-     * Creates a new title.
-     *
-     * @param position  the position of the title (<code>null</code> not
-     *                  permitted).
-     * @param horizontalAlignment  the horizontal alignment of the title (LEFT,
-     *     CENTER or RIGHT, <code>null</code> not permitted).
-     * @param verticalAlignment  the vertical alignment of the title (TOP,
-     *     MIDDLE or BOTTOM, <code>null</code> not permitted).
-     * @param padding  the amount of space to leave around the outside of the
-     *     title (<code>null</code> not permitted).
-     */
-    protected Title(RectangleEdge position, 
-            HorizontalAlignment horizontalAlignment,
-            VerticalAlignment verticalAlignment, RectangleInsets padding) {
+	/**
+	 * Creates a new title.
+	 *
+	 * @param position            the position of the title (<code>null</code> not
+	 *                            permitted).
+	 * @param horizontalAlignment the horizontal alignment of the title (LEFT,
+	 *                            CENTER or RIGHT, <code>null</code> not permitted).
+	 * @param verticalAlignment   the vertical alignment of the title (TOP, MIDDLE
+	 *                            or BOTTOM, <code>null</code> not permitted).
+	 * @param padding             the amount of space to leave around the outside of
+	 *                            the title (<code>null</code> not permitted).
+	 */
+	protected Title(RectangleEdge position, HorizontalAlignment horizontalAlignment,
+			VerticalAlignment verticalAlignment, RectangleInsets padding) {
 
-        ParamChecks.nullNotPermitted(position, "position");
-        ParamChecks.nullNotPermitted(horizontalAlignment, 
-                "horizontalAlignment");
-        ParamChecks.nullNotPermitted(verticalAlignment, "verticalAlignment");
-        ParamChecks.nullNotPermitted(padding, "padding");
-        this.visible = true;
-        this.position = position;
-        this.horizontalAlignment = horizontalAlignment;
-        this.verticalAlignment = verticalAlignment;
-        this.listenerList = new EventListenerList();
-        this.notify = true;
-    }
+		ParamChecks.nullNotPermitted(position, "position");
+		ParamChecks.nullNotPermitted(horizontalAlignment, "horizontalAlignment");
+		ParamChecks.nullNotPermitted(verticalAlignment, "verticalAlignment");
+		ParamChecks.nullNotPermitted(padding, "padding");
+		this.visible = true;
+		this.position = position;
+		this.horizontalAlignment = horizontalAlignment;
+		this.verticalAlignment = verticalAlignment;
+		this.listenerList = new EventListenerList();
+		this.notify = true;
+	}
 
-    /**
-     * Returns a flag that controls whether or not the title should be
-     * drawn.  The default value is <code>true</code>.
-     *
-     * @return A boolean.
-     *
-     * @see #setVisible(boolean)
-     *
-     * @since 1.0.11
-     */
-    public boolean isVisible() {
-        return this.visible;
-    }
+	/**
+	 * Returns a flag that controls whether or not the title should be drawn. The
+	 * default value is <code>true</code>.
+	 *
+	 * @return A boolean.
+	 *
+	 * @see #setVisible(boolean)
+	 *
+	 * @since 1.0.11
+	 */
+	public boolean isVisible() {
+		return this.visible;
+	}
 
-    /**
-     * Sets a flag that controls whether or not the title should be drawn, and
-     * sends a {@link TitleChangeEvent} to all registered listeners.
-     *
-     * @param visible  the new flag value.
-     *
-     * @see #isVisible()
-     *
-     * @since 1.0.11
-     */
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-        fireChangeEvent();
-    }
+	/**
+	 * Sets a flag that controls whether or not the title should be drawn, and sends
+	 * a {@link TitleChangeEvent} to all registered listeners.
+	 *
+	 * @param visible the new flag value.
+	 *
+	 * @see #isVisible()
+	 *
+	 * @since 1.0.11
+	 */
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+		fireChangeEvent();
+	}
 
-    /**
-     * Returns the position of the title.
-     *
-     * @return The title position (never <code>null</code>).
-     */
-    public RectangleEdge getPosition() {
-        return this.position;
-    }
+	/**
+	 * Returns the position of the title.
+	 *
+	 * @return The title position (never <code>null</code>).
+	 */
+	public RectangleEdge getPosition() {
+		return this.position;
+	}
 
-    /**
-     * Sets the position for the title and sends a {@link TitleChangeEvent} to
-     * all registered listeners.
-     *
-     * @param position  the position (<code>null</code> not permitted).
-     */
-    public void setPosition(RectangleEdge position) {
-        ParamChecks.nullNotPermitted(position, "position");
-        this.position = position;
-        fireChangeEvent();
-    }
+	/**
+	 * Sets the position for the title and sends a {@link TitleChangeEvent} to all
+	 * registered listeners.
+	 *
+	 * @param position the position (<code>null</code> not permitted).
+	 */
+	public void setPosition(RectangleEdge position) {
+		ParamChecks.nullNotPermitted(position, "position");
+		this.position = position;
+		fireChangeEvent();
+	}
 
-    /**
-     * Returns the horizontal alignment of the title.
-     *
-     * @return The horizontal alignment (never <code>null</code>).
-     */
-    public HorizontalAlignment getHorizontalAlignment() {
-        return this.horizontalAlignment;
-    }
+	/**
+	 * Returns the horizontal alignment of the title.
+	 *
+	 * @return The horizontal alignment (never <code>null</code>).
+	 */
+	public HorizontalAlignment getHorizontalAlignment() {
+		return this.horizontalAlignment;
+	}
 
-    /**
-     * Sets the horizontal alignment for the title and sends a
-     * {@link TitleChangeEvent} to all registered listeners.
-     *
-     * @param alignment  the horizontal alignment (<code>null</code> not
-     *                   permitted).
-     */
-    public void setHorizontalAlignment(HorizontalAlignment alignment) {
-        ParamChecks.nullNotPermitted(alignment, "alignment");
-        this.horizontalAlignment = alignment;
-        fireChangeEvent();
-    }
+	/**
+	 * Sets the horizontal alignment for the title and sends a
+	 * {@link TitleChangeEvent} to all registered listeners.
+	 *
+	 * @param alignment the horizontal alignment (<code>null</code> not permitted).
+	 */
+	public void setHorizontalAlignment(HorizontalAlignment alignment) {
+		ParamChecks.nullNotPermitted(alignment, "alignment");
+		this.horizontalAlignment = alignment;
+		fireChangeEvent();
+	}
 
-    /**
-     * Returns the vertical alignment of the title.
-     *
-     * @return The vertical alignment (never <code>null</code>).
-     */
-    public VerticalAlignment getVerticalAlignment() {
-        return this.verticalAlignment;
-    }
+	/**
+	 * Returns the vertical alignment of the title.
+	 *
+	 * @return The vertical alignment (never <code>null</code>).
+	 */
+	public VerticalAlignment getVerticalAlignment() {
+		return this.verticalAlignment;
+	}
 
-    /**
-     * Sets the vertical alignment for the title, and notifies any registered
-     * listeners of the change.
-     *
-     * @param alignment  the new vertical alignment (TOP, MIDDLE or BOTTOM,
-     *                   <code>null</code> not permitted).
-     */
-    public void setVerticalAlignment(VerticalAlignment alignment) {
-        ParamChecks.nullNotPermitted(alignment, "alignment");
-        this.verticalAlignment = alignment;
-        fireChangeEvent();
-    }
+	/**
+	 * Sets the vertical alignment for the title, and notifies any registered
+	 * listeners of the change.
+	 *
+	 * @param alignment the new vertical alignment (TOP, MIDDLE or BOTTOM,
+	 *                  <code>null</code> not permitted).
+	 */
+	public void setVerticalAlignment(VerticalAlignment alignment) {
+		ParamChecks.nullNotPermitted(alignment, "alignment");
+		this.verticalAlignment = alignment;
+		fireChangeEvent();
+	}
 
-    /**
-     * Returns the flag that indicates whether or not the notification
-     * mechanism is enabled.
-     *
-     * @return The flag.
-     */
-    public boolean getNotify() {
-        return this.notify;
-    }
+	/**
+	 * Returns the flag that indicates whether or not the notification mechanism is
+	 * enabled.
+	 *
+	 * @return The flag.
+	 */
+	public boolean getNotify() {
+		return this.notify;
+	}
 
-    /**
-     * Sets the flag that indicates whether or not the notification mechanism
-     * is enabled.  There are certain situations (such as cloning) where you
-     * want to turn notification off temporarily.
-     *
-     * @param flag  the new value of the flag.
-     */
-    public void setNotify(boolean flag) {
-        this.notify = flag;
-        if (flag) {
-            fireChangeEvent();
-        }
-    }
+	/**
+	 * Sets the flag that indicates whether or not the notification mechanism is
+	 * enabled. There are certain situations (such as cloning) where you want to
+	 * turn notification off temporarily.
+	 *
+	 * @param flag the new value of the flag.
+	 */
+	public void setNotify(boolean flag) {
+		this.notify = flag;
+		if (flag) {
+			fireChangeEvent();
+		}
+	}
 
-    /**
-     * Draws the title on a Java 2D graphics device (such as the screen or a
-     * printer).
-     *
-     * @param g2  the graphics device.
-     * @param area  the area allocated for the title (subclasses should not
-     *              draw outside this area).
-     */
-    @Override
-    public abstract void draw(Graphics2D g2, Rectangle2D area);
+	/**
+	 * Draws the title on a Java 2D graphics device (such as the screen or a
+	 * printer).
+	 *
+	 * @param g2   the graphics device.
+	 * @param area the area allocated for the title (subclasses should not draw
+	 *             outside this area).
+	 */
+	@Override
+	public abstract void draw(Graphics2D g2, Rectangle2D area);
 
-    /**
-     * Returns a clone of the title.
-     * <P>
-     * One situation when this is useful is when editing the title properties -
-     * you can edit a clone, and then it is easier to cancel the changes if
-     * necessary.
-     *
-     * @return A clone of the title.
-     *
-     * @throws CloneNotSupportedException not thrown by this class, but it may
-     *         be thrown by subclasses.
-     */
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        Title duplicate = (Title) super.clone();
-        duplicate.listenerList = new EventListenerList();
-        // RectangleInsets is immutable => same reference in clone OK
-        return duplicate;
-    }
+	/**
+	 * Returns a clone of the title.
+	 * <P>
+	 * One situation when this is useful is when editing the title properties - you
+	 * can edit a clone, and then it is easier to cancel the changes if necessary.
+	 *
+	 * @return A clone of the title.
+	 *
+	 * @throws CloneNotSupportedException not thrown by this class, but it may be
+	 *                                    thrown by subclasses.
+	 */
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		Title duplicate = (Title) super.clone();
+		duplicate.listenerList = new EventListenerList();
+		// RectangleInsets is immutable => same reference in clone OK
+		return duplicate;
+	}
 
-    /**
-     * Registers an object for notification of changes to the title.
-     *
-     * @param listener  the object that is being registered.
-     */
-    public void addChangeListener(TitleChangeListener listener) {
-        this.listenerList.add(TitleChangeListener.class, listener);
-    }
+	/**
+	 * Registers an object for notification of changes to the title.
+	 *
+	 * @param listener the object that is being registered.
+	 */
+	public void addChangeListener(TitleChangeListener listener) {
+		this.listenerList.add(TitleChangeListener.class, listener);
+	}
 
-    /**
-     * Unregisters an object for notification of changes to the chart title.
-     *
-     * @param listener  the object that is being unregistered.
-     */
-    public void removeChangeListener(TitleChangeListener listener) {
-        this.listenerList.remove(TitleChangeListener.class, listener);
-    }
+	/**
+	 * Unregisters an object for notification of changes to the chart title.
+	 *
+	 * @param listener the object that is being unregistered.
+	 */
+	public void removeChangeListener(TitleChangeListener listener) {
+		this.listenerList.remove(TitleChangeListener.class, listener);
+	}
 
-    /**
-     * Sends a {@link TitleChangeEvent} to all registered listeners (unless the
-     * <code>notify</code> flag is set to <code>false</code> in which case this
-     * method does nothing).
-     */
-    protected void fireChangeEvent() {
-        notifyListeners(new TitleChangeEvent(this));
-    }
-    
-    /**
-     * Notifies all registered listeners that the chart title has changed in
-     * some way.
-     *
-     * @param event  an object that contains information about the change to
-     *               the title.
-     */
-    protected void notifyListeners(TitleChangeEvent event) {
-        if (this.notify) {
-            Object[] listeners = this.listenerList.getListenerList();
-            for (int i = listeners.length - 2; i >= 0; i -= 2) {
-                if (listeners[i] == TitleChangeListener.class) {
-                    ((TitleChangeListener) listeners[i + 1]).titleChanged(
-                            event);
-                }
-            }
-        }
-    }
+	/**
+	 * Sends a {@link TitleChangeEvent} to all registered listeners (unless the
+	 * <code>notify</code> flag is set to <code>false</code> in which case this
+	 * method does nothing).
+	 */
+	protected void fireChangeEvent() {
+		notifyListeners(new TitleChangeEvent(this));
+	}
 
-    /**
-     * Tests an object for equality with this title.
-     *
-     * @param obj  the object (<code>null</code> not permitted).
-     *
-     * @return <code>true</code> or <code>false</code>.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof Title)) {
-            return false;
-        }
-        Title that = (Title) obj;
-        if (this.visible != that.visible) {
-            return false;
-        }
-        if (this.position != that.position) {
-            return false;
-        }
-        if (this.horizontalAlignment != that.horizontalAlignment) {
-            return false;
-        }
-        if (this.verticalAlignment != that.verticalAlignment) {
-            return false;
-        }
-        if (this.notify != that.notify) {
-            return false;
-        }
-        return super.equals(obj);
-    }
+	/**
+	 * Notifies all registered listeners that the chart title has changed in some
+	 * way.
+	 *
+	 * @param event an object that contains information about the change to the
+	 *              title.
+	 */
+	protected void notifyListeners(TitleChangeEvent event) {
+		if (this.notify) {
+			Object[] listeners = this.listenerList.getListenerList();
+			for (int i = listeners.length - 2; i >= 0; i -= 2) {
+				if (listeners[i] == TitleChangeListener.class) {
+					((TitleChangeListener) listeners[i + 1]).titleChanged(event);
+				}
+			}
+		}
+	}
 
-    /**
-     * Returns a hashcode for the title.
-     *
-     * @return The hashcode.
-     */
-    @Override
-    public int hashCode() {
-        int result = 193;
-        result = 37 * result + ObjectUtils.hashCode(this.position);
-        result = 37 * result
-                + ObjectUtils.hashCode(this.horizontalAlignment);
-        result = 37 * result + ObjectUtils.hashCode(this.verticalAlignment);
-        return result;
-    }
+	/**
+	 * Tests an object for equality with this title.
+	 *
+	 * @param obj the object (<code>null</code> not permitted).
+	 *
+	 * @return <code>true</code> or <code>false</code>.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (!(obj instanceof Title)) {
+			return false;
+		}
+		Title that = (Title) obj;
+		if (this.visible != that.visible) {
+			return false;
+		}
+		if (this.position != that.position) {
+			return false;
+		}
+		if (this.horizontalAlignment != that.horizontalAlignment) {
+			return false;
+		}
+		if (this.verticalAlignment != that.verticalAlignment) {
+			return false;
+		}
+		if (this.notify != that.notify) {
+			return false;
+		}
+		return super.equals(obj);
+	}
 
-    /**
-     * Provides serialization support.
-     *
-     * @param stream  the output stream.
-     *
-     * @throws IOException  if there is an I/O error.
-     */
-    private void writeObject(ObjectOutputStream stream) throws IOException {
-        stream.defaultWriteObject();
-    }
+	/**
+	 * Returns a hashcode for the title.
+	 *
+	 * @return The hashcode.
+	 */
+	@Override
+	public int hashCode() {
+		int result = 193;
+		result = 37 * result + ObjectUtils.hashCode(this.position);
+		result = 37 * result + ObjectUtils.hashCode(this.horizontalAlignment);
+		result = 37 * result + ObjectUtils.hashCode(this.verticalAlignment);
+		return result;
+	}
 
-    /**
-     * Provides serialization support.
-     *
-     * @param stream  the input stream.
-     *
-     * @throws IOException  if there is an I/O error.
-     * @throws ClassNotFoundException  if there is a classpath problem.
-     */
-    private void readObject(ObjectInputStream stream)
-        throws IOException, ClassNotFoundException {
-        stream.defaultReadObject();
-        this.listenerList = new EventListenerList();
-    }
+	/**
+	 * Provides serialization support.
+	 *
+	 * @param stream the output stream.
+	 *
+	 * @throws IOException if there is an I/O error.
+	 */
+	private void writeObject(ObjectOutputStream stream) throws IOException {
+		stream.defaultWriteObject();
+	}
+
+	/**
+	 * Provides serialization support.
+	 *
+	 * @param stream the input stream.
+	 *
+	 * @throws IOException            if there is an I/O error.
+	 * @throws ClassNotFoundException if there is a classpath problem.
+	 */
+	private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
+		stream.defaultReadObject();
+		this.listenerList = new EventListenerList();
+	}
 
 }

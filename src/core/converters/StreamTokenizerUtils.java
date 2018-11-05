@@ -47,10 +47,8 @@ public class StreamTokenizerUtils implements Serializable, RevisionHandler {
 	/**
 	 * Gets token, skipping empty lines.
 	 * 
-	 * @param tokenizer
-	 *            the stream tokenizer
-	 * @throws IOException
-	 *             if reading the next token fails
+	 * @param tokenizer the stream tokenizer
+	 * @throws IOException if reading the next token fails
 	 */
 	public static void getFirstToken(StreamTokenizer tokenizer) throws IOException {
 
@@ -67,10 +65,8 @@ public class StreamTokenizerUtils implements Serializable, RevisionHandler {
 	/**
 	 * Gets token.
 	 * 
-	 * @param tokenizer
-	 *            the stream tokenizer
-	 * @throws IOException
-	 *             if reading the next token fails
+	 * @param tokenizer the stream tokenizer
+	 * @throws IOException if reading the next token fails
 	 */
 	public static void getToken(StreamTokenizer tokenizer) throws IOException {
 
@@ -89,12 +85,9 @@ public class StreamTokenizerUtils implements Serializable, RevisionHandler {
 	/**
 	 * Throws error message with line number and last token read.
 	 * 
-	 * @param theMsg
-	 *            the error message to be thrown
-	 * @param tokenizer
-	 *            the stream tokenizer
-	 * @throws IOException
-	 *             containing the error message
+	 * @param theMsg    the error message to be thrown
+	 * @param tokenizer the stream tokenizer
+	 * @throws IOException containing the error message
 	 */
 	public static void errms(StreamTokenizer tokenizer, String theMsg) throws IOException {
 

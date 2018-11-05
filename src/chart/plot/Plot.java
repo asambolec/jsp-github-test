@@ -176,897 +176,870 @@ import data.general.DatasetChangeEvent;
 import data.general.DatasetChangeListener;
 
 /**
- * The base class for all plots in JFreeChart.  The {@link JFreeChart} class
- * delegates the drawing of axes and data to the plot.  This base class
- * provides facilities common to most plot types.
+ * The base class for all plots in JFreeChart. The {@link JFreeChart} class
+ * delegates the drawing of axes and data to the plot. This base class provides
+ * facilities common to most plot types.
  */
-public abstract class Plot implements DatasetChangeListener,  
-        PublicCloneable, Cloneable, Serializable {
-
-    /** For serialization. */
-    private static final long serialVersionUID = -8831571430103671324L;
-
-    /** Useful constant representing zero. */
-    public static final Number ZERO = 0;
-
-    /** The default insets. */
-    public static final RectangleInsets DEFAULT_INSETS
-            = new RectangleInsets(4.0, 8.0, 4.0, 8.0);
-
-    /** The default outline stroke. */
-    public static final Stroke DEFAULT_OUTLINE_STROKE = new BasicStroke(0.5f,
-            BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
-
-    /** The default outline color. */
-    public static final Color DEFAULT_OUTLINE_COLOR = Color.GRAY;
-
-    /** The default foreground alpha transparency. */
-    public static final float DEFAULT_FOREGROUND_ALPHA = 1.0f;
-
-    /** The default background alpha transparency. */
-    public static final float DEFAULT_BACKGROUND_ALPHA = 1.0f;
-
-    /** The minimum width at which the plot should be drawn. */
-    public static final int MINIMUM_WIDTH_TO_DRAW = 10;
-
-    /** The minimum height at which the plot should be drawn. */
-    public static final int MINIMUM_HEIGHT_TO_DRAW = 10;
-
-    /** A default box shape for legend items. */
-    public static final Shape DEFAULT_LEGEND_ITEM_BOX
-            = new Rectangle2D.Double(-4.0, -4.0, 8.0, 8.0);
-
-    /** A default circle shape for legend items. */
-    public static final Shape DEFAULT_LEGEND_ITEM_CIRCLE
-            = new Ellipse2D.Double(-4.0, -4.0, 8.0, 8.0);
-
-    /** The parent plot (<code>null</code> if this is the root plot). */
-    private Plot parent;
-
-    /** The message to display if no data is available. */
-    private String no_Data_Message;
-
-    /** The font used to display the 'no data' message. */
-    private Font no_Data_MessageFont;
-
-    /** The paint used to draw the 'no data' message. */
-    private transient Paint no_Data_Message_Paint;
-
-    /** Amount of blank space around the plot area. */
-    private RectangleInsets insets;
-  
-    /** 
-     * An object that draws the plot's border (can be {@code null}).
-     */
-    private Drawable border_Painter;
-    
-    /** An optional painter used to fill the plot background. */
-    private Drawable background_Painter;
-    
-    /** An optional image for the plot background. */
-    private transient Image background_Image;  // not currently serialized
-
-    /** The alignment for the background image. */
-    private int background_Image_Alignment = Align.FIT;
-
-    /** The alpha value used to draw the background image. */
-    private float background_Image_Alpha = 0.5f;
-
-    /** The alpha-transparency for the plot. */
-    private float foreground_Alpha;
-
-    /** The alpha transparency for the background paint. */
-    private float background_Alpha;
-
-    /** Storage for registered change listeners. */
-    private transient EventListenerList listener_List;
-
-    /**
-     * A flag that controls whether or not the plot will notify listeners
-     * of changes (defaults to true, but sometimes it is useful to disable
-     * this).
-     *
-     * @since 1.0.13
-     */
-    private boolean notify;
-
-    /**
-     * Creates a new plot.
-     */
-    protected Plot() {
-        this.parent = null;
-        this.insets = DEFAULT_INSETS;
-        this.background_Painter = new ColorPainter(Color.WHITE);
-        this.background_Alpha = DEFAULT_BACKGROUND_ALPHA;
-        this.background_Image = null;
-        this.border_Painter = new BorderPainter(Color.GRAY, 
-                DEFAULT_OUTLINE_STROKE);
-        this.foreground_Alpha = DEFAULT_FOREGROUND_ALPHA;
-
-        this.no_Data_Message = null;
-        this.no_Data_MessageFont = new Font("SansSerif", Font.PLAIN, 12);
-        this.no_Data_Message_Paint = Color.BLACK;
-
-        this.notify = true;
-        this.listener_List = new EventListenerList();
-    }
-
-    /**
-     * Returns the string that is displayed when the dataset is empty or
-     * <code>null</code>.
-     *
-     * @return The 'no data' message (<code>null</code> possible).
-     *
-     * @see #setNoDataMessage(String)
-     * @see #getNoDataMessageFont()
-     * @see #getNoDataMessagePaint()
-     */
-    public String getNoDataMessage() {
-        return this.no_Data_Message.toString();
-    }
-
-    /**
-     * Sets the message that is displayed when the dataset is empty or
-     * <code>null</code>, and sends a {@link PlotChangeEvent} to all registered
-     * listeners.
-     *
-     * @param message  the message (<code>null</code> permitted).
-     *
-     * @see #getNoDataMessage()
-     */
-    public void setNoDataMessage(String message) {
-        this.no_Data_Message = message;
-        fireChangeEvent();
-    }
-
-    /**
-     * Returns the font used to display the 'no data' message.
-     *
-     * @return The font (never <code>null</code>).
-     *
-     * @see #setNoDataMessageFont(Font)
-     * @see #getNoDataMessage()
-     */
-    public Font getNoDataMessageFont() {
-        return this.no_Data_MessageFont;
-    }
-
-    /**
-     * Sets the font used to display the 'no data' message and sends a
-     * {@link PlotChangeEvent} to all registered listeners.
-     *
-     * @param font  the font (<code>null</code> not permitted).
-     *
-     * @see #getNoDataMessageFont()
-     */
-    public void setNoDataMessageFont(Font font) {
-        ParamChecks.nullNotPermitted(font, "font");
-        this.no_Data_MessageFont = font;
-        fireChangeEvent();
-    }
-
-    /**
-     * Returns the paint used to display the 'no data' message.
-     *
-     * @return The paint (never <code>null</code>).
-     *
-     * @see #setNoDataMessagePaint(Paint)
-     * @see #getNoDataMessage()
-     */
-    public Paint getNoDataMessagePaint() {
-        return this.no_Data_Message_Paint;
-    }
-
-    /**
-     * Sets the paint used to display the 'no data' message and sends a
-     * {@link PlotChangeEvent} to all registered listeners.
-     *
-     * @param paint  the paint (<code>null</code> not permitted).
-     *
-     * @see #getNoDataMessagePaint()
-     */
-    public void setNoDataMessagePaint(Paint paint) {
-        ParamChecks.nullNotPermitted(paint, "paint");
-        this.no_Data_Message_Paint = paint;
-        fireChangeEvent();
-    }
-
-    /**
-     * Returns a short string describing the plot type.
-     * <P>
-     * Note: this gets used in the chart property editing user interface,
-     * but there needs to be a better mechanism for identifying the plot type.
-     *
-     * @return A short string describing the plot type (never
-     *     <code>null</code>).
-     */
-    public abstract String getPlotType();
-
-    /**
-     * Returns the parent plot (or <code>null</code> if this plot is not part
-     * of a combined plot).
-     *
-     * @return The parent plot.
-     *
-     * @see #setParent(Plot)
-     * @see #getRootPlot()
-     */
-    public Plot getParent() {
-        return this.parent;
-    }
-
-    /**
-     * Sets the parent plot.  This method is intended for internal use, you
-     * shouldn't need to call it directly.
-     *
-     * @param parent  the parent plot (<code>null</code> permitted).
-     *
-     * @see #getParent()
-     */
-    public void setParent(Plot parent) {
-        this.parent = parent;
-    }
-
-    /**
-     * Returns the root plot.
-     *
-     * @return The root plot.
-     *
-     * @see #getParent()
-     */
-    public Plot getRootPlot() {
-
-        Plot p = getParent();
-        if (p == null) {
-            return this;
-        }
-        return p.getRootPlot();
-
-    }
-
-    /**
-     * Returns <code>true</code> if this plot is part of a combined plot
-     * structure (that is, {@link #getParent()} returns a non-<code>null</code>
-     * value), and <code>false</code> otherwise.
-     *
-     * @return <code>true</code> if this plot is part of a combined plot
-     *         structure.
-     *
-     * @see #getParent()
-     */
-    public boolean isSubplot() {
-        return (getParent() != null);
-    }
-
-    /**
-     * Returns the insets for the plot area.
-     *
-     * @return The insets (never <code>null</code>).
-     *
-     * @see #setInsets(RectangleInsets)
-     */
-    public RectangleInsets getInsets() {
-        return this.insets;
-    }
-
-    /**
-     * Sets the insets for the plot and sends a {@link PlotChangeEvent} to
-     * all registered listeners.
-     *
-     * @param insets  the new insets (<code>null</code> not permitted).
-     *
-     * @see #getInsets()
-     * @see #setInsets(RectangleInsets, boolean)
-     */
-    public void setInsets(RectangleInsets insets) {
-        setInsets(insets, true);
-    }
-    
-    /**
-     * Returns the background painter.  The default value is 
-     * <code>new ColorPainter(Color.WHITE)</code>.
-     * 
-     * @return The background painter (possibly <code>null</code>). 
-     */
-    public Drawable getBackgroundPainter() {
-        return this.background_Painter;
-    }
-    
-    /**
-     * Sets the background painter and sends a change event to all registered
-     * listeners.
-     * 
-     * @param painter  the new painter (<code>null</code> permitted). 
-     */
-    public void setBackgroundPainter(Drawable painter) {
-        this.background_Painter = painter;
-        fireChangeEvent();
-    }
-    
-    public void setBackgroundColor(Color color) {
-        if (color != null) {
-            setBackgroundPainter(new ColorPainter(color));
-        } else {
-            setBackgroundPainter(null);
-        }
-    }
-
-    /**
-     * Sets the insets for the plot and, if requested,  and sends a
-     * {@link PlotChangeEvent} to all registered listeners.
-     *
-     * @param insets  the new insets (<code>null</code> not permitted).
-     * @param notify  a flag that controls whether the registered listeners are
-     *                notified.
-     *
-     * @see #getInsets()
-     * @see #setInsets(RectangleInsets)
-     */
-    public void setInsets(RectangleInsets insets, boolean notify) {
-        ParamChecks.nullNotPermitted(insets, "insets");
-        if (!this.insets.equals(insets)) {
-            this.insets = insets;
-            if (notify) {
-                fireChangeEvent();
-            }
-        }
-
-    }
-
-    /**
-     * Returns the alpha transparency of the plot area background.
-     *
-     * @return The alpha transparency.
-     *
-     * @see #setBackgroundAlpha(float)
-     */
-    public float getBackgroundAlpha() {
-        return this.background_Alpha;
-    }
-
-    /**
-     * Sets the alpha transparency of the plot area background, and notifies
-     * registered listeners that the plot has been modified.
-     *
-     * @param alpha the new alpha value (in the range 0.0f to 1.0f).
-     *
-     * @see #getBackgroundAlpha()
-     */
-    public void setBackgroundAlpha(float alpha) {
-        if (this.background_Alpha != alpha) {
-            this.background_Alpha = alpha;
-            fireChangeEvent();
-        }
-    }
-
-    /**
-     * Returns the background image that is used to fill the plot's background
-     * area.
-     *
-     * @return The image (possibly <code>null</code>).
-     *
-     * @see #setBackgroundImage(Image)
-     */
-    public Image getBackgroundImage() {
-        return this.background_Image;
-    }
-
-    /**
-     * Sets the background image for the plot and sends a
-     * {@link PlotChangeEvent} to all registered listeners.
-     *
-     * @param image  the image (<code>null</code> permitted).
-     *
-     * @see #getBackgroundImage()
-     */
-    public void setBackgroundImage(Image image) {
-        this.background_Image = image;
-        fireChangeEvent();
-    }
-
-    /**
-     * Returns the background image alignment. Alignment constants are defined
-     * in the <code>org.jfree.ui.Align</code> class in the JCommon class
-     * library.
-     *
-     * @return The alignment.
-     *
-     * @see #setBackgroundImageAlignment(int)
-     */
-    public int getBackgroundImageAlignment() {
-        return this.background_Image_Alignment;
-    }
-
-    /**
-     * Sets the alignment for the background image and sends a
-     * {@link PlotChangeEvent} to all registered listeners.
-     *
-     * @param alignment  the alignment.
-     *
-     * @see #getBackgroundImageAlignment()
-     */
-    public void setBackgroundImageAlignment(int alignment) {
-        if (this.background_Image_Alignment != alignment) {
-            this.background_Image_Alignment = alignment;
-            fireChangeEvent();
-        }
-    }
-
-    /**
-     * Returns the alpha transparency used to draw the background image.  This
-     * is a value in the range 0.0f to 1.0f, where 0.0f is fully transparent
-     * and 1.0f is fully opaque.
-     *
-     * @return The alpha transparency.
-     *
-     * @see #setBackgroundImageAlpha(float)
-     */
-    public float getBackgroundImageAlpha() {
-        return this.background_Image_Alpha;
-    }
-
-    /**
-     * Sets the alpha transparency used when drawing the background image.
-     *
-     * @param alpha  the alpha transparency (in the range 0.0f to 1.0f, where
-     *     0.0f is fully transparent, and 1.0f is fully opaque).
-     *
-     * @throws IllegalArgumentException if <code>alpha</code> is not within
-     *     the specified range.
-     *
-     * @see #getBackgroundImageAlpha()
-     */
-    public void setBackgroundImageAlpha(float alpha) {
-        if (alpha < 0.0f || alpha > 1.0f) {
-            throw new IllegalArgumentException(
-                    "The 'alpha' value must be in the range 0.0f to 1.0f.");
-        }
-        if (this.background_Image_Alpha != alpha) {
-            this.background_Image_Alpha = alpha;
-            fireChangeEvent();
-        }
-    }
-
-    public Drawable getBorderPainter() {
-        return this.border_Painter;
-    }
-    
-    public void setBorderPainter(Drawable painter) {
-        this.border_Painter = painter;
-        fireChangeEvent();
-    }
-
-    /**
-     * Returns the alpha-transparency for the plot foreground.
-     *
-     * @return The alpha-transparency.
-     *
-     * @see #setForegroundAlpha(float)
-     */
-    public float getForegroundAlpha() {
-        return this.foreground_Alpha;
-    }
-
-    /**
-     * Sets the alpha-transparency for the plot and sends a
-     * {@link PlotChangeEvent} to all registered listeners.
-     *
-     * @param alpha  the new alpha transparency.
-     *
-     * @see #getForegroundAlpha()
-     */
-    public void setForegroundAlpha(float alpha) {
-        if (this.foreground_Alpha != alpha) {
-            this.foreground_Alpha = alpha;
-            fireChangeEvent();
-        }
-    }
-
-    /**
-     * Returns the legend items for the plot.  By default, this method returns
-     * <code>null</code>.  Subclasses should override to return a list of 
-     * legend items for the plot.
-     *
-     * @return The legend items for the plot (possibly empty, but never 
-     *     <code>null</code>).
-     */
-    public List<LegendItem> getLegendItems() {
-        return new ArrayList<LegendItem>();
-    }
-
-    /**
-     * Returns a flag that controls whether or not change events are sent to
-     * registered listeners.
-     *
-     * @return A boolean.
-     *
-     * @see #setNotify(boolean)
-     *
-     * @since 1.0.13
-     */
-    public boolean isNotify() {
-        return this.notify;
-    }
-
-    /**
-     * Sets a flag that controls whether or not listeners receive
-     * {@link PlotChangeEvent} notifications.
-     *
-     * @param notify  a boolean.
-     *
-     * @see #isNotify()
-     *
-     * @since 1.0.13
-     */
-    public void setNotify(boolean notify) {
-        this.notify = notify;
-        // if the flag is being set to true, there may be queued up changes...
-        if (notify) {
-            notifyListeners(new PlotChangeEvent(this));
-        }
-    }
-
-    /**
-     * Registers an object for notification of changes to the plot.
-     *
-     * @param listener  the object to be registered.
-     *
-     * @see #removeChangeListener(PlotChangeListener)
-     */
-    public void addChangeListener(PlotChangeListener listener) {
-        this.listener_List.add(PlotChangeListener.class, listener);
-    }
-
-    /**
-     * Unregisters an object for notification of changes to the plot.
-     *
-     * @param listener  the object to be unregistered.
-     *
-     * @see #addChangeListener(PlotChangeListener)
-     */
-    public void removeChangeListener(PlotChangeListener listener) {
-        this.listener_List.remove(PlotChangeListener.class, listener);
-    }
-
-    /**
-     * Notifies all registered listeners that the plot has been modified.
-     *
-     * @param event  information about the change event.
-     */
-    public void notifyListeners(PlotChangeEvent event) {
-        // if the 'notify' flag has been switched to false, we don't notify
-        // the listeners
-        if (!this.notify) {
-            return;
-        }
-        Object[] listeners = this.listener_List.getListenerList();
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == PlotChangeListener.class) {
-                ((PlotChangeListener) listeners[i + 1]).plotChanged(event);
-            }
-        }
-    }
-
-    /**
-     * Sends a {@link PlotChangeEvent} to all registered listeners.
-     *
-     * @since 1.0.10
-     */
-    protected void fireChangeEvent() {
-        notifyListeners(new PlotChangeEvent(this));
-    }
-
-    /**
-     * Draws the plot within the specified area.  The anchor is a point on the
-     * chart that is specified externally (for instance, it may be the last
-     * point of the last mouse click performed by the user) - plots can use or
-     * ignore this value as they see fit.
-     * <br><br>
-     * Subclasses need to provide an implementation of this method, obviously.
-     *
-     * @param g2  the graphics device.
-     * @param area  the plot area.
-     * @param anchor  the anchor point (<code>null</code> permitted).
-     * @param parentState  the parent state (if any).
-     * @param info  carries back plot rendering info.
-     */
-    public abstract void draw(Graphics2D g2,
-                              Rectangle2D area,
-                              Point2D anchor,
-                              PlotRenderingInfo info);
-
-    /**
-     * Draws the plot background (the background color and/or image).
-     * <P>
-     * This method will be called during the chart drawing process and is
-     * declared public so that it can be accessed by the renderers used by
-     * certain subclasses.  You shouldn't need to call this method directly.
-     *
-     * @param g2  the graphics device.
-     * @param area  the area within which the plot should be drawn.
-     */
-    public void drawBackground(Graphics2D g2, Rectangle2D area) {
-        // some subclasses override this method completely, so don't put
-        // anything here that *must* be done
-        if (this.background_Painter != null) {
-            this.background_Painter.draw(g2, area);
-        }
-        drawBackgroundImage(g2, area);
-    }
-
-    /**
-     * Draws the background image (if there is one) aligned within the
-     * specified area.
-     *
-     * @param g2  the graphics device.
-     * @param area  the area.
-     *
-     * @see #getBackgroundImage()
-     * @see #getBackgroundImageAlignment()
-     * @see #getBackgroundImageAlpha()
-     */
-    public void drawBackgroundImage(Graphics2D g2, Rectangle2D area) {
-        if (this.background_Image == null) {
-            return;  // nothing to do
-        }
-        Composite savedComposite = g2.getComposite();
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
-                this.background_Image_Alpha));
-        Rectangle2D dest = new Rectangle2D.Double(0.0, 0.0,
-                this.background_Image.getWidth(null),
-                this.background_Image.getHeight(null));
-        Align.align(dest, area, this.background_Image_Alignment);
-        Shape savedClip = g2.getClip();
-        g2.clip(area);
-        g2.drawImage(this.background_Image, (int) dest.getX(),
-                (int) dest.getY(), (int) dest.getWidth() + 1,
-                (int) dest.getHeight() + 1, null);
-        g2.setClip(savedClip);
-        g2.setComposite(savedComposite);
-    }
-
-    /**
-     * Draws the plot outline.  This method will be called during the chart
-     * drawing process and is declared public so that it can be accessed by the
-     * renderers used by certain subclasses. You shouldn't need to call this
-     * method directly.
-     *
-     * @param g2  the graphics device.
-     * @param area  the area within which the plot should be drawn.
-     */
-    public void drawOutline(Graphics2D g2, Rectangle2D area) { // FIXME : rename this drawBorder
-        if (this.border_Painter != null) {
-            this.border_Painter.draw(g2, area);
-        }
-    }
-
-    /**
-     * Draws a message to state that there is no data to plot.
-     *
-     * @param g2  the graphics device.
-     * @param area  the area within which the plot should be drawn.
-     */
-    protected void drawNoDataMessage(Graphics2D g2, Rectangle2D area) {
-        Shape savedClip = g2.getClip();
-        g2.clip(area);
-        String message = this.no_Data_Message;
-        if (message != null) {
-            g2.setFont(this.no_Data_MessageFont);
-            g2.setPaint(this.no_Data_Message_Paint);
-        }
-        g2.setClip(savedClip);
-    }
-
-    /**
-     * Creates a plot entity that contains a reference to the plot and the
-     * data area as shape.
-     *
-     * @param dataArea  the data area used as hot spot for the entity.
-     * @param plotState  the plot rendering info containing a reference to the
-     *     EntityCollection.
-     * @param toolTip  the tool tip (defined in the respective Plot
-     *     subclass) (<code>null</code> permitted).
-     * @param urlText  the url (defined in the respective Plot subclass)
-     *     (<code>null</code> permitted).
-     *
-     *  @since 1.0.13
-     */
-    protected void createAndAddEntity(Rectangle2D dataArea,
-            PlotRenderingInfo plotState, String toolTip, String urlText) {
-        if (plotState != null && plotState.getOwner() != null) {
-            EntityCollection e = plotState.getOwner().getEntityCollection();
-            if (e != null) {
-            }
-        }
-    }
-
-    /**
-     * Handles a 'click' on the plot.  Since the plot does not maintain any
-     * information about where it has been drawn, the plot rendering info is
-     * supplied as an argument so that the plot dimensions can be determined.
-     *
-     * @param x  the x coordinate (in Java2D space).
-     * @param y  the y coordinate (in Java2D space).
-     * @param info  an object containing information about the dimensions of
-     *              the plot.
-     */
-    public void handleClick(int x, int y, PlotRenderingInfo info) {
-        // provides a 'no action' default
-    }
-
-    /**
-     * Performs a zoom on the plot.  Subclasses should override if zooming is
-     * appropriate for the type of plot.
-     *
-     * @param percent  the zoom percentage.
-     */
-    public void zoom(double percent) {
-        // do nothing by default.
-    }
-
-    /**
-     * Receives notification of a change to the plot's dataset.
-     * <P>
-     * The plot reacts by passing on a plot change event to all registered
-     * listeners.
-     *
-     * @param event  information about the event (not used here).
-     */
-    @Override
-    public void datasetChanged(DatasetChangeEvent event) {
-        PlotChangeEvent newEvent = new PlotChangeEvent(this);
-        newEvent.setType(ChartChangeEventType.DATASET_UPDATED);
-        notifyListeners(newEvent);
-    }
-
-    /**
-     * Adjusts the supplied x-value.
-     *
-     * @param x  the x-value.
-     * @param w1  width 1.
-     * @param w2  width 2.
-     * @param edge  the edge (left or right).
-     *
-     * @return The adjusted x-value.
-     */
-    protected double getRectX(double x, double w1, double w2,
-                              RectangleEdge edge) {
-        double result = x;
-        if (edge == RectangleEdge.LEFT) {
-            result = result + w1;
-        }
-        else if (edge == RectangleEdge.RIGHT) {
-            result = result + w2;
-        }
-        return result;
-    }
-
-    /**
-     * Adjusts the supplied y-value.
-     *
-     * @param y  the x-value.
-     * @param h1  height 1.
-     * @param h2  height 2.
-     * @param edge  the edge (top or bottom).
-     *
-     * @return The adjusted y-value.
-     */
-    protected double getRectY(double y, double h1, double h2,
-                              RectangleEdge edge) {
-        double result = y;
-        if (edge == RectangleEdge.TOP) {
-            result = result + h1;
-        }
-        else if (edge == RectangleEdge.BOTTOM) {
-            result = result + h2;
-        }
-        return result;
-    }
-
-    /**
-     * Tests this plot for equality with another object.
-     *
-     * @param obj  the object (<code>null</code> permitted).
-     *
-     * @return <code>true</code> or <code>false</code>.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof Plot)) {
-            return false;
-        }
-        Plot that = (Plot) obj;
-        if (!ObjectUtils.equal(this.no_Data_Message, that.no_Data_Message)) {
-            return false;
-        }
-        if (!ObjectUtils.equal(
-            this.no_Data_MessageFont, that.no_Data_MessageFont
-        )) {
-            return false;
-        }
-        if (!ObjectUtils.equal(this.insets, that.insets)) {
-            return false;
-        }
-        if (!ObjectUtils.equal(this.border_Painter, that.border_Painter)) {
-            return false;   
-        }
-        if (!ObjectUtils.equal(this.background_Painter, 
-                that.background_Painter)) {
-            return false;
-        }
-        if (!ObjectUtils.equal(this.background_Image,
-                that.background_Image)) {
-            return false;
-        }
-        if (this.background_Image_Alignment != that.background_Image_Alignment) {
-            return false;
-        }
-        if (this.background_Image_Alpha != that.background_Image_Alpha) {
-            return false;
-        }
-        if (this.foreground_Alpha != that.foreground_Alpha) {
-            return false;
-        }
-        if (this.background_Alpha != that.background_Alpha) {
-            return false;
-        }
-        if (this.notify != that.notify) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * Creates a clone of the plot.
-     *
-     * @return A clone.
-     *
-     * @throws CloneNotSupportedException if some component of the plot does not
-     *         support cloning.
-     */
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        Plot clone = (Plot) super.clone();
-        // private Plot parent <-- don't clone the parent plot, but take care
-        // childs in combined plots instead
-        clone.listener_List = new EventListenerList();
-        return clone;
-    }
-
-    /**
-     * Provides serialization support.
-     *
-     * @param stream  the output stream.
-     *
-     * @throws IOException  if there is an I/O error.
-     */
-    private void writeObject(ObjectOutputStream stream) throws IOException {
-        stream.defaultWriteObject();
-        SerialUtils.writePaint(this.no_Data_Message_Paint, stream);
-        //SerialUtils.writeStroke(this.outlineStroke, stream);
-        //SerialUtils.writePaint(this.outlinePaint, stream);
-        // backgroundImage
-    }
-
-    /**
-     * Provides serialization support.
-     *
-     * @param stream  the input stream.
-     *
-     * @throws IOException  if there is an I/O error.
-     * @throws ClassNotFoundException  if there is a classpath problem.
-     */
-    private void readObject(ObjectInputStream stream)
-        throws IOException, ClassNotFoundException {
-        stream.defaultReadObject();
-        this.no_Data_Message_Paint = SerialUtils.readPaint(stream);
-        //this.outlineStroke = SerialUtils.readStroke(stream);
-        //this.outlinePaint = SerialUtils.readPaint(stream);
-        // backgroundImage
-        this.listener_List = new EventListenerList();
-    }
+public abstract class Plot implements DatasetChangeListener, PublicCloneable, Cloneable, Serializable {
+
+	/** For serialization. */
+	private static final long serialVersionUID = -8831571430103671324L;
+
+	/** Useful constant representing zero. */
+	public static final Number ZERO = 0;
+
+	/** The default insets. */
+	public static final RectangleInsets DEFAULT_INSETS = new RectangleInsets(4.0, 8.0, 4.0, 8.0);
+
+	/** The default outline stroke. */
+	public static final Stroke DEFAULT_OUTLINE_STROKE = new BasicStroke(0.5f, BasicStroke.CAP_ROUND,
+			BasicStroke.JOIN_ROUND);
+
+	/** The default outline color. */
+	public static final Color DEFAULT_OUTLINE_COLOR = Color.GRAY;
+
+	/** The default foreground alpha transparency. */
+	public static final float DEFAULT_FOREGROUND_ALPHA = 1.0f;
+
+	/** The default background alpha transparency. */
+	public static final float DEFAULT_BACKGROUND_ALPHA = 1.0f;
+
+	/** The minimum width at which the plot should be drawn. */
+	public static final int MINIMUM_WIDTH_TO_DRAW = 10;
+
+	/** The minimum height at which the plot should be drawn. */
+	public static final int MINIMUM_HEIGHT_TO_DRAW = 10;
+
+	/** A default box shape for legend items. */
+	public static final Shape DEFAULT_LEGEND_ITEM_BOX = new Rectangle2D.Double(-4.0, -4.0, 8.0, 8.0);
+
+	/** A default circle shape for legend items. */
+	public static final Shape DEFAULT_LEGEND_ITEM_CIRCLE = new Ellipse2D.Double(-4.0, -4.0, 8.0, 8.0);
+
+	/** The parent plot (<code>null</code> if this is the root plot). */
+	private Plot parent;
+
+	/** The message to display if no data is available. */
+	private String no_Data_Message;
+
+	/** The font used to display the 'no data' message. */
+	private Font no_Data_MessageFont;
+
+	/** The paint used to draw the 'no data' message. */
+	private transient Paint no_Data_Message_Paint;
+
+	/** Amount of blank space around the plot area. */
+	private RectangleInsets insets;
+
+	/**
+	 * An object that draws the plot's border (can be {@code null}).
+	 */
+	private Drawable border_Painter;
+
+	/** An optional painter used to fill the plot background. */
+	private Drawable background_Painter;
+
+	/** An optional image for the plot background. */
+	private transient Image background_Image; // not currently serialized
+
+	/** The alignment for the background image. */
+	private int background_Image_Alignment = Align.FIT;
+
+	/** The alpha value used to draw the background image. */
+	private float background_Image_Alpha = 0.5f;
+
+	/** The alpha-transparency for the plot. */
+	private float foreground_Alpha;
+
+	/** The alpha transparency for the background paint. */
+	private float background_Alpha;
+
+	/** Storage for registered change listeners. */
+	private transient EventListenerList listener_List;
+
+	/**
+	 * A flag that controls whether or not the plot will notify listeners of changes
+	 * (defaults to true, but sometimes it is useful to disable this).
+	 *
+	 * @since 1.0.13
+	 */
+	private boolean notify;
+
+	/**
+	 * Creates a new plot.
+	 */
+	protected Plot() {
+		this.parent = null;
+		this.insets = DEFAULT_INSETS;
+		this.background_Painter = new ColorPainter(Color.WHITE);
+		this.background_Alpha = DEFAULT_BACKGROUND_ALPHA;
+		this.background_Image = null;
+		this.border_Painter = new BorderPainter(Color.GRAY, DEFAULT_OUTLINE_STROKE);
+		this.foreground_Alpha = DEFAULT_FOREGROUND_ALPHA;
+
+		this.no_Data_Message = null;
+		this.no_Data_MessageFont = new Font("SansSerif", Font.PLAIN, 12);
+		this.no_Data_Message_Paint = Color.BLACK;
+
+		this.notify = true;
+		this.listener_List = new EventListenerList();
+	}
+
+	/**
+	 * Returns the string that is displayed when the dataset is empty or
+	 * <code>null</code>.
+	 *
+	 * @return The 'no data' message (<code>null</code> possible).
+	 *
+	 * @see #setNoDataMessage(String)
+	 * @see #getNoDataMessageFont()
+	 * @see #getNoDataMessagePaint()
+	 */
+	public String getNoDataMessage() {
+		return this.no_Data_Message.toString();
+	}
+
+	/**
+	 * Sets the message that is displayed when the dataset is empty or
+	 * <code>null</code>, and sends a {@link PlotChangeEvent} to all registered
+	 * listeners.
+	 *
+	 * @param message the message (<code>null</code> permitted).
+	 *
+	 * @see #getNoDataMessage()
+	 */
+	public void setNoDataMessage(String message) {
+		this.no_Data_Message = message;
+		fireChangeEvent();
+	}
+
+	/**
+	 * Returns the font used to display the 'no data' message.
+	 *
+	 * @return The font (never <code>null</code>).
+	 *
+	 * @see #setNoDataMessageFont(Font)
+	 * @see #getNoDataMessage()
+	 */
+	public Font getNoDataMessageFont() {
+		return this.no_Data_MessageFont;
+	}
+
+	/**
+	 * Sets the font used to display the 'no data' message and sends a
+	 * {@link PlotChangeEvent} to all registered listeners.
+	 *
+	 * @param font the font (<code>null</code> not permitted).
+	 *
+	 * @see #getNoDataMessageFont()
+	 */
+	public void setNoDataMessageFont(Font font) {
+		ParamChecks.nullNotPermitted(font, "font");
+		this.no_Data_MessageFont = font;
+		fireChangeEvent();
+	}
+
+	/**
+	 * Returns the paint used to display the 'no data' message.
+	 *
+	 * @return The paint (never <code>null</code>).
+	 *
+	 * @see #setNoDataMessagePaint(Paint)
+	 * @see #getNoDataMessage()
+	 */
+	public Paint getNoDataMessagePaint() {
+		return this.no_Data_Message_Paint;
+	}
+
+	/**
+	 * Sets the paint used to display the 'no data' message and sends a
+	 * {@link PlotChangeEvent} to all registered listeners.
+	 *
+	 * @param paint the paint (<code>null</code> not permitted).
+	 *
+	 * @see #getNoDataMessagePaint()
+	 */
+	public void setNoDataMessagePaint(Paint paint) {
+		ParamChecks.nullNotPermitted(paint, "paint");
+		this.no_Data_Message_Paint = paint;
+		fireChangeEvent();
+	}
+
+	/**
+	 * Returns a short string describing the plot type.
+	 * <P>
+	 * Note: this gets used in the chart property editing user interface, but there
+	 * needs to be a better mechanism for identifying the plot type.
+	 *
+	 * @return A short string describing the plot type (never <code>null</code>).
+	 */
+	public abstract String getPlotType();
+
+	/**
+	 * Returns the parent plot (or <code>null</code> if this plot is not part of a
+	 * combined plot).
+	 *
+	 * @return The parent plot.
+	 *
+	 * @see #setParent(Plot)
+	 * @see #getRootPlot()
+	 */
+	public Plot getParent() {
+		return this.parent;
+	}
+
+	/**
+	 * Sets the parent plot. This method is intended for internal use, you shouldn't
+	 * need to call it directly.
+	 *
+	 * @param parent the parent plot (<code>null</code> permitted).
+	 *
+	 * @see #getParent()
+	 */
+	public void setParent(Plot parent) {
+		this.parent = parent;
+	}
+
+	/**
+	 * Returns the root plot.
+	 *
+	 * @return The root plot.
+	 *
+	 * @see #getParent()
+	 */
+	public Plot getRootPlot() {
+
+		Plot p = getParent();
+		if (p == null) {
+			return this;
+		}
+		return p.getRootPlot();
+
+	}
+
+	/**
+	 * Returns <code>true</code> if this plot is part of a combined plot structure
+	 * (that is, {@link #getParent()} returns a non-<code>null</code> value), and
+	 * <code>false</code> otherwise.
+	 *
+	 * @return <code>true</code> if this plot is part of a combined plot structure.
+	 *
+	 * @see #getParent()
+	 */
+	public boolean isSubplot() {
+		return (getParent() != null);
+	}
+
+	/**
+	 * Returns the insets for the plot area.
+	 *
+	 * @return The insets (never <code>null</code>).
+	 *
+	 * @see #setInsets(RectangleInsets)
+	 */
+	public RectangleInsets getInsets() {
+		return this.insets;
+	}
+
+	/**
+	 * Sets the insets for the plot and sends a {@link PlotChangeEvent} to all
+	 * registered listeners.
+	 *
+	 * @param insets the new insets (<code>null</code> not permitted).
+	 *
+	 * @see #getInsets()
+	 * @see #setInsets(RectangleInsets, boolean)
+	 */
+	public void setInsets(RectangleInsets insets) {
+		setInsets(insets, true);
+	}
+
+	/**
+	 * Returns the background painter. The default value is
+	 * <code>new ColorPainter(Color.WHITE)</code>.
+	 * 
+	 * @return The background painter (possibly <code>null</code>).
+	 */
+	public Drawable getBackgroundPainter() {
+		return this.background_Painter;
+	}
+
+	/**
+	 * Sets the background painter and sends a change event to all registered
+	 * listeners.
+	 * 
+	 * @param painter the new painter (<code>null</code> permitted).
+	 */
+	public void setBackgroundPainter(Drawable painter) {
+		this.background_Painter = painter;
+		fireChangeEvent();
+	}
+
+	public void setBackgroundColor(Color color) {
+		if (color != null) {
+			setBackgroundPainter(new ColorPainter(color));
+		} else {
+			setBackgroundPainter(null);
+		}
+	}
+
+	/**
+	 * Sets the insets for the plot and, if requested, and sends a
+	 * {@link PlotChangeEvent} to all registered listeners.
+	 *
+	 * @param insets the new insets (<code>null</code> not permitted).
+	 * @param notify a flag that controls whether the registered listeners are
+	 *               notified.
+	 *
+	 * @see #getInsets()
+	 * @see #setInsets(RectangleInsets)
+	 */
+	public void setInsets(RectangleInsets insets, boolean notify) {
+		ParamChecks.nullNotPermitted(insets, "insets");
+		if (!this.insets.equals(insets)) {
+			this.insets = insets;
+			if (notify) {
+				fireChangeEvent();
+			}
+		}
+
+	}
+
+	/**
+	 * Returns the alpha transparency of the plot area background.
+	 *
+	 * @return The alpha transparency.
+	 *
+	 * @see #setBackgroundAlpha(float)
+	 */
+	public float getBackgroundAlpha() {
+		return this.background_Alpha;
+	}
+
+	/**
+	 * Sets the alpha transparency of the plot area background, and notifies
+	 * registered listeners that the plot has been modified.
+	 *
+	 * @param alpha the new alpha value (in the range 0.0f to 1.0f).
+	 *
+	 * @see #getBackgroundAlpha()
+	 */
+	public void setBackgroundAlpha(float alpha) {
+		if (this.background_Alpha != alpha) {
+			this.background_Alpha = alpha;
+			fireChangeEvent();
+		}
+	}
+
+	/**
+	 * Returns the background image that is used to fill the plot's background area.
+	 *
+	 * @return The image (possibly <code>null</code>).
+	 *
+	 * @see #setBackgroundImage(Image)
+	 */
+	public Image getBackgroundImage() {
+		return this.background_Image;
+	}
+
+	/**
+	 * Sets the background image for the plot and sends a {@link PlotChangeEvent} to
+	 * all registered listeners.
+	 *
+	 * @param image the image (<code>null</code> permitted).
+	 *
+	 * @see #getBackgroundImage()
+	 */
+	public void setBackgroundImage(Image image) {
+		this.background_Image = image;
+		fireChangeEvent();
+	}
+
+	/**
+	 * Returns the background image alignment. Alignment constants are defined in
+	 * the <code>org.jfree.ui.Align</code> class in the JCommon class library.
+	 *
+	 * @return The alignment.
+	 *
+	 * @see #setBackgroundImageAlignment(int)
+	 */
+	public int getBackgroundImageAlignment() {
+		return this.background_Image_Alignment;
+	}
+
+	/**
+	 * Sets the alignment for the background image and sends a
+	 * {@link PlotChangeEvent} to all registered listeners.
+	 *
+	 * @param alignment the alignment.
+	 *
+	 * @see #getBackgroundImageAlignment()
+	 */
+	public void setBackgroundImageAlignment(int alignment) {
+		if (this.background_Image_Alignment != alignment) {
+			this.background_Image_Alignment = alignment;
+			fireChangeEvent();
+		}
+	}
+
+	/**
+	 * Returns the alpha transparency used to draw the background image. This is a
+	 * value in the range 0.0f to 1.0f, where 0.0f is fully transparent and 1.0f is
+	 * fully opaque.
+	 *
+	 * @return The alpha transparency.
+	 *
+	 * @see #setBackgroundImageAlpha(float)
+	 */
+	public float getBackgroundImageAlpha() {
+		return this.background_Image_Alpha;
+	}
+
+	/**
+	 * Sets the alpha transparency used when drawing the background image.
+	 *
+	 * @param alpha the alpha transparency (in the range 0.0f to 1.0f, where 0.0f is
+	 *              fully transparent, and 1.0f is fully opaque).
+	 *
+	 * @throws IllegalArgumentException if <code>alpha</code> is not within the
+	 *                                  specified range.
+	 *
+	 * @see #getBackgroundImageAlpha()
+	 */
+	public void setBackgroundImageAlpha(float alpha) {
+		if (alpha < 0.0f || alpha > 1.0f) {
+			throw new IllegalArgumentException("The 'alpha' value must be in the range 0.0f to 1.0f.");
+		}
+		if (this.background_Image_Alpha != alpha) {
+			this.background_Image_Alpha = alpha;
+			fireChangeEvent();
+		}
+	}
+
+	public Drawable getBorderPainter() {
+		return this.border_Painter;
+	}
+
+	public void setBorderPainter(Drawable painter) {
+		this.border_Painter = painter;
+		fireChangeEvent();
+	}
+
+	/**
+	 * Returns the alpha-transparency for the plot foreground.
+	 *
+	 * @return The alpha-transparency.
+	 *
+	 * @see #setForegroundAlpha(float)
+	 */
+	public float getForegroundAlpha() {
+		return this.foreground_Alpha;
+	}
+
+	/**
+	 * Sets the alpha-transparency for the plot and sends a {@link PlotChangeEvent}
+	 * to all registered listeners.
+	 *
+	 * @param alpha the new alpha transparency.
+	 *
+	 * @see #getForegroundAlpha()
+	 */
+	public void setForegroundAlpha(float alpha) {
+		if (this.foreground_Alpha != alpha) {
+			this.foreground_Alpha = alpha;
+			fireChangeEvent();
+		}
+	}
+
+	/**
+	 * Returns the legend items for the plot. By default, this method returns
+	 * <code>null</code>. Subclasses should override to return a list of legend
+	 * items for the plot.
+	 *
+	 * @return The legend items for the plot (possibly empty, but never
+	 *         <code>null</code>).
+	 */
+	public List<LegendItem> getLegendItems() {
+		return new ArrayList<>();
+	}
+
+	/**
+	 * Returns a flag that controls whether or not change events are sent to
+	 * registered listeners.
+	 *
+	 * @return A boolean.
+	 *
+	 * @see #setNotify(boolean)
+	 *
+	 * @since 1.0.13
+	 */
+	public boolean isNotify() {
+		return this.notify;
+	}
+
+	/**
+	 * Sets a flag that controls whether or not listeners receive
+	 * {@link PlotChangeEvent} notifications.
+	 *
+	 * @param notify a boolean.
+	 *
+	 * @see #isNotify()
+	 *
+	 * @since 1.0.13
+	 */
+	public void setNotify(boolean notify) {
+		this.notify = notify;
+		// if the flag is being set to true, there may be queued up changes...
+		if (notify) {
+			notifyListeners(new PlotChangeEvent(this));
+		}
+	}
+
+	/**
+	 * Registers an object for notification of changes to the plot.
+	 *
+	 * @param listener the object to be registered.
+	 *
+	 * @see #removeChangeListener(PlotChangeListener)
+	 */
+	public void addChangeListener(PlotChangeListener listener) {
+		this.listener_List.add(PlotChangeListener.class, listener);
+	}
+
+	/**
+	 * Unregisters an object for notification of changes to the plot.
+	 *
+	 * @param listener the object to be unregistered.
+	 *
+	 * @see #addChangeListener(PlotChangeListener)
+	 */
+	public void removeChangeListener(PlotChangeListener listener) {
+		this.listener_List.remove(PlotChangeListener.class, listener);
+	}
+
+	/**
+	 * Notifies all registered listeners that the plot has been modified.
+	 *
+	 * @param event information about the change event.
+	 */
+	public void notifyListeners(PlotChangeEvent event) {
+		// if the 'notify' flag has been switched to false, we don't notify
+		// the listeners
+		if (!this.notify) {
+			return;
+		}
+		Object[] listeners = this.listener_List.getListenerList();
+		for (int i = listeners.length - 2; i >= 0; i -= 2) {
+			if (listeners[i] == PlotChangeListener.class) {
+				((PlotChangeListener) listeners[i + 1]).plotChanged(event);
+			}
+		}
+	}
+
+	/**
+	 * Sends a {@link PlotChangeEvent} to all registered listeners.
+	 *
+	 * @since 1.0.10
+	 */
+	protected void fireChangeEvent() {
+		notifyListeners(new PlotChangeEvent(this));
+	}
+
+	/**
+	 * Draws the plot within the specified area. The anchor is a point on the chart
+	 * that is specified externally (for instance, it may be the last point of the
+	 * last mouse click performed by the user) - plots can use or ignore this value
+	 * as they see fit. <br>
+	 * <br>
+	 * Subclasses need to provide an implementation of this method, obviously.
+	 *
+	 * @param g2          the graphics device.
+	 * @param area        the plot area.
+	 * @param anchor      the anchor point (<code>null</code> permitted).
+	 * @param parentState the parent state (if any).
+	 * @param info        carries back plot rendering info.
+	 */
+	public abstract void draw(Graphics2D g2, Rectangle2D area, Point2D anchor, PlotRenderingInfo info);
+
+	/**
+	 * Draws the plot background (the background color and/or image).
+	 * <P>
+	 * This method will be called during the chart drawing process and is declared
+	 * public so that it can be accessed by the renderers used by certain
+	 * subclasses. You shouldn't need to call this method directly.
+	 *
+	 * @param g2   the graphics device.
+	 * @param area the area within which the plot should be drawn.
+	 */
+	public void drawBackground(Graphics2D g2, Rectangle2D area) {
+		// some subclasses override this method completely, so don't put
+		// anything here that *must* be done
+		if (this.background_Painter != null) {
+			this.background_Painter.draw(g2, area);
+		}
+		drawBackgroundImage(g2, area);
+	}
+
+	/**
+	 * Draws the background image (if there is one) aligned within the specified
+	 * area.
+	 *
+	 * @param g2   the graphics device.
+	 * @param area the area.
+	 *
+	 * @see #getBackgroundImage()
+	 * @see #getBackgroundImageAlignment()
+	 * @see #getBackgroundImageAlpha()
+	 */
+	public void drawBackgroundImage(Graphics2D g2, Rectangle2D area) {
+		if (this.background_Image == null) {
+			return; // nothing to do
+		}
+		Composite savedComposite = g2.getComposite();
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, this.background_Image_Alpha));
+		Rectangle2D dest = new Rectangle2D.Double(0.0, 0.0, this.background_Image.getWidth(null),
+				this.background_Image.getHeight(null));
+		Align.align(dest, area, this.background_Image_Alignment);
+		Shape savedClip = g2.getClip();
+		g2.clip(area);
+		g2.drawImage(this.background_Image, (int) dest.getX(), (int) dest.getY(), (int) dest.getWidth() + 1,
+				(int) dest.getHeight() + 1, null);
+		g2.setClip(savedClip);
+		g2.setComposite(savedComposite);
+	}
+
+	/**
+	 * Draws the plot outline. This method will be called during the chart drawing
+	 * process and is declared public so that it can be accessed by the renderers
+	 * used by certain subclasses. You shouldn't need to call this method directly.
+	 *
+	 * @param g2   the graphics device.
+	 * @param area the area within which the plot should be drawn.
+	 */
+	public void drawOutline(Graphics2D g2, Rectangle2D area) { // FIXME : rename this drawBorder
+		if (this.border_Painter != null) {
+			this.border_Painter.draw(g2, area);
+		}
+	}
+
+	/**
+	 * Draws a message to state that there is no data to plot.
+	 *
+	 * @param g2   the graphics device.
+	 * @param area the area within which the plot should be drawn.
+	 */
+	protected void drawNoDataMessage(Graphics2D g2, Rectangle2D area) {
+		Shape savedClip = g2.getClip();
+		g2.clip(area);
+		String message = this.no_Data_Message;
+		if (message != null) {
+			g2.setFont(this.no_Data_MessageFont);
+			g2.setPaint(this.no_Data_Message_Paint);
+		}
+		g2.setClip(savedClip);
+	}
+
+	/**
+	 * Creates a plot entity that contains a reference to the plot and the data area
+	 * as shape.
+	 *
+	 * @param dataArea  the data area used as hot spot for the entity.
+	 * @param plotState the plot rendering info containing a reference to the
+	 *                  EntityCollection.
+	 * @param toolTip   the tool tip (defined in the respective Plot subclass)
+	 *                  (<code>null</code> permitted).
+	 * @param urlText   the url (defined in the respective Plot subclass)
+	 *                  (<code>null</code> permitted).
+	 *
+	 * @since 1.0.13
+	 */
+	protected void createAndAddEntity(Rectangle2D dataArea, PlotRenderingInfo plotState, String toolTip,
+			String urlText) {
+		if (plotState != null && plotState.getOwner() != null) {
+			EntityCollection e = plotState.getOwner().getEntityCollection();
+			if (e != null) {
+			}
+		}
+	}
+
+	/**
+	 * Handles a 'click' on the plot. Since the plot does not maintain any
+	 * information about where it has been drawn, the plot rendering info is
+	 * supplied as an argument so that the plot dimensions can be determined.
+	 *
+	 * @param x    the x coordinate (in Java2D space).
+	 * @param y    the y coordinate (in Java2D space).
+	 * @param info an object containing information about the dimensions of the
+	 *             plot.
+	 */
+	public void handleClick(int x, int y, PlotRenderingInfo info) {
+		// provides a 'no action' default
+	}
+
+	/**
+	 * Performs a zoom on the plot. Subclasses should override if zooming is
+	 * appropriate for the type of plot.
+	 *
+	 * @param percent the zoom percentage.
+	 */
+	public void zoom(double percent) {
+		// do nothing by default.
+	}
+
+	/**
+	 * Receives notification of a change to the plot's dataset.
+	 * <P>
+	 * The plot reacts by passing on a plot change event to all registered
+	 * listeners.
+	 *
+	 * @param event information about the event (not used here).
+	 */
+	@Override
+	public void datasetChanged(DatasetChangeEvent event) {
+		PlotChangeEvent newEvent = new PlotChangeEvent(this);
+		newEvent.setType(ChartChangeEventType.DATASET_UPDATED);
+		notifyListeners(newEvent);
+	}
+
+	/**
+	 * Adjusts the supplied x-value.
+	 *
+	 * @param x    the x-value.
+	 * @param w1   width 1.
+	 * @param w2   width 2.
+	 * @param edge the edge (left or right).
+	 *
+	 * @return The adjusted x-value.
+	 */
+	protected double getRectX(double x, double w1, double w2, RectangleEdge edge) {
+		double result = x;
+		if (edge == RectangleEdge.LEFT) {
+			result = result + w1;
+		} else if (edge == RectangleEdge.RIGHT) {
+			result = result + w2;
+		}
+		return result;
+	}
+
+	/**
+	 * Adjusts the supplied y-value.
+	 *
+	 * @param y    the x-value.
+	 * @param h1   height 1.
+	 * @param h2   height 2.
+	 * @param edge the edge (top or bottom).
+	 *
+	 * @return The adjusted y-value.
+	 */
+	protected double getRectY(double y, double h1, double h2, RectangleEdge edge) {
+		double result = y;
+		if (edge == RectangleEdge.TOP) {
+			result = result + h1;
+		} else if (edge == RectangleEdge.BOTTOM) {
+			result = result + h2;
+		}
+		return result;
+	}
+
+	/**
+	 * Tests this plot for equality with another object.
+	 *
+	 * @param obj the object (<code>null</code> permitted).
+	 *
+	 * @return <code>true</code> or <code>false</code>.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (!(obj instanceof Plot)) {
+			return false;
+		}
+		Plot that = (Plot) obj;
+		if (!ObjectUtils.equal(this.no_Data_Message, that.no_Data_Message)) {
+			return false;
+		}
+		if (!ObjectUtils.equal(this.no_Data_MessageFont, that.no_Data_MessageFont)) {
+			return false;
+		}
+		if (!ObjectUtils.equal(this.insets, that.insets)) {
+			return false;
+		}
+		if (!ObjectUtils.equal(this.border_Painter, that.border_Painter)) {
+			return false;
+		}
+		if (!ObjectUtils.equal(this.background_Painter, that.background_Painter)) {
+			return false;
+		}
+		if (!ObjectUtils.equal(this.background_Image, that.background_Image)) {
+			return false;
+		}
+		if (this.background_Image_Alignment != that.background_Image_Alignment) {
+			return false;
+		}
+		if (this.background_Image_Alpha != that.background_Image_Alpha) {
+			return false;
+		}
+		if (this.foreground_Alpha != that.foreground_Alpha) {
+			return false;
+		}
+		if (this.background_Alpha != that.background_Alpha) {
+			return false;
+		}
+		if (this.notify != that.notify) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Creates a clone of the plot.
+	 *
+	 * @return A clone.
+	 *
+	 * @throws CloneNotSupportedException if some component of the plot does not
+	 *                                    support cloning.
+	 */
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		Plot clone = (Plot) super.clone();
+		// private Plot parent <-- don't clone the parent plot, but take care
+		// childs in combined plots instead
+		clone.listener_List = new EventListenerList();
+		return clone;
+	}
+
+	/**
+	 * Provides serialization support.
+	 *
+	 * @param stream the output stream.
+	 *
+	 * @throws IOException if there is an I/O error.
+	 */
+	private void writeObject(ObjectOutputStream stream) throws IOException {
+		stream.defaultWriteObject();
+		SerialUtils.writePaint(this.no_Data_Message_Paint, stream);
+		// SerialUtils.writeStroke(this.outlineStroke, stream);
+		// SerialUtils.writePaint(this.outlinePaint, stream);
+		// backgroundImage
+	}
+
+	/**
+	 * Provides serialization support.
+	 *
+	 * @param stream the input stream.
+	 *
+	 * @throws IOException            if there is an I/O error.
+	 * @throws ClassNotFoundException if there is a classpath problem.
+	 */
+	private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
+		stream.defaultReadObject();
+		this.no_Data_Message_Paint = SerialUtils.readPaint(stream);
+		// this.outlineStroke = SerialUtils.readStroke(stream);
+		// this.outlinePaint = SerialUtils.readPaint(stream);
+		// backgroundImage
+		this.listener_List = new EventListenerList();
+	}
 
 }

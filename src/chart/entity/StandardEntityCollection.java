@@ -62,155 +62,153 @@ import chart.util.PublicCloneable;
 /**
  * A standard implementation of the {@link EntityCollection} interface.
  */
-public class StandardEntityCollection implements EntityCollection,
-        Cloneable, PublicCloneable, Serializable {
+public class StandardEntityCollection implements EntityCollection, Cloneable, PublicCloneable, Serializable {
 
-    /** For serialization. */
-    private static final long serialVersionUID = 5384773031184897047L;
+	/** For serialization. */
+	private static final long serialVersionUID = 5384773031184897047L;
 
-    /** Storage for the entities. */
-    private List<ChartEntity> entities;
+	/** Storage for the entities. */
+	private List<ChartEntity> entities;
 
-    /**
-     * Constructs a new entity collection (initially empty).
-     */
-    public StandardEntityCollection() {
-        this.entities = new java.util.ArrayList<ChartEntity>();
-    }
+	/**
+	 * Constructs a new entity collection (initially empty).
+	 */
+	public StandardEntityCollection() {
+		this.entities = new java.util.ArrayList<>();
+	}
 
-    /**
-     * Returns the number of entities in the collection.
-     *
-     * @return The entity count.
-     */
-    @Override
-    public int getEntityCount() {
-        return this.entities.size();
-    }
+	/**
+	 * Returns the number of entities in the collection.
+	 *
+	 * @return The entity count.
+	 */
+	@Override
+	public int getEntityCount() {
+		return this.entities.size();
+	}
 
-    /**
-     * Returns a chart entity from the collection.
-     *
-     * @param index  the entity index.
-     *
-     * @return The entity.
-     *
-     * @see #add(ChartEntity)
-     */
-    @Override
-    public ChartEntity getEntity(int index) {
-        return this.entities.get(index);
-    }
+	/**
+	 * Returns a chart entity from the collection.
+	 *
+	 * @param index the entity index.
+	 *
+	 * @return The entity.
+	 *
+	 * @see #add(ChartEntity)
+	 */
+	@Override
+	public ChartEntity getEntity(int index) {
+		return this.entities.get(index);
+	}
 
-    /**
-     * Clears all the entities from the collection.
-     */
-    @Override
-    public void clear() {
-        this.entities.removeAll(entities);
-    }
+	/**
+	 * Clears all the entities from the collection.
+	 */
+	@Override
+	public void clear() {
+		this.entities.removeAll(entities);
+	}
 
-    /**
-     * Adds an entity to the collection.
-     *
-     * @param entity  the entity (<code>null</code> not permitted).
-     */
-    @Override
-    public void add(ChartEntity entity) {
-        if (entity == null) {
-            throw new IllegalArgumentException("Null 'entity' argument.");
-        }
-        this.entities.add(entity);
-    }
+	/**
+	 * Adds an entity to the collection.
+	 *
+	 * @param entity the entity (<code>null</code> not permitted).
+	 */
+	@Override
+	public void add(ChartEntity entity) {
+		if (entity == null) {
+			throw new IllegalArgumentException("Null 'entity' argument.");
+		}
+		this.entities.add(entity);
+	}
 
-    /**
-     * Adds all the entities from the specified collection.
-     *
-     * @param collection  the collection of entities (<code>null</code> not
-     *     permitted).
-     */
-    @Override
-    public void addAll(EntityCollection collection) {
-        this.entities.addAll(collection.getEntities());
-    }
+	/**
+	 * Adds all the entities from the specified collection.
+	 *
+	 * @param collection the collection of entities (<code>null</code> not
+	 *                   permitted).
+	 */
+	@Override
+	public void addAll(EntityCollection collection) {
+		this.entities.addAll(collection.getEntities());
+	}
 
-    /**
-     * Returns the last entity in the list with an area that encloses the
-     * specified coordinates, or <code>null</code> if there is no such entity.
-     *
-     * @param x  the x coordinate.
-     * @param y  the y coordinate.
-     *
-     * @return The entity (possibly <code>null</code>).
-     */
-    @Override
-    public ChartEntity getEntity(double x, double y) {
-        int entityCount = this.entities.size();
-        for (int i = entityCount - 1; i >= 0; i--) {
-            ChartEntity entity = this.entities.get(i);
-            if (entity.getArea().contains(x, y)) {
-                return entity;
-            }
-        }
-        return null;
-    }
+	/**
+	 * Returns the last entity in the list with an area that encloses the specified
+	 * coordinates, or <code>null</code> if there is no such entity.
+	 *
+	 * @param x the x coordinate.
+	 * @param y the y coordinate.
+	 *
+	 * @return The entity (possibly <code>null</code>).
+	 */
+	@Override
+	public ChartEntity getEntity(double x, double y) {
+		int entityCount = this.entities.size();
+		for (int i = entityCount - 1; i >= 0; i--) {
+			ChartEntity entity = this.entities.get(i);
+			if (entity.getArea().contains(x, y)) {
+				return entity;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Returns the entities in an unmodifiable collection.
-     *
-     * @return The entities.
-     */
-    @Override
-    public Collection<ChartEntity> getEntities() {
-        return Collections.unmodifiableCollection(this.entities);
-    }
+	/**
+	 * Returns the entities in an unmodifiable collection.
+	 *
+	 * @return The entities.
+	 */
+	@Override
+	public Collection<ChartEntity> getEntities() {
+		return Collections.unmodifiableCollection(this.entities);
+	}
 
-    /**
-     * Returns an iterator for the entities in the collection.
-     *
-     * @return An iterator.
-     */
-    @Override
-    public Iterator<ChartEntity> iterator() {
-        return this.entities.iterator();
-    }
+	/**
+	 * Returns an iterator for the entities in the collection.
+	 *
+	 * @return An iterator.
+	 */
+	@Override
+	public Iterator<ChartEntity> iterator() {
+		return this.entities.iterator();
+	}
 
-    /**
-     * Tests this object for equality with an arbitrary object.
-     *
-     * @param obj  the object to test against (<code>null</code> permitted).
-     *
-     * @return A boolean.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof StandardEntityCollection) {
-            StandardEntityCollection that = (StandardEntityCollection) obj;
-            return ObjectUtils.equal(this.entities, that.entities);
-        }
-        return false;
-    }
+	/**
+	 * Tests this object for equality with an arbitrary object.
+	 *
+	 * @param obj the object to test against (<code>null</code> permitted).
+	 *
+	 * @return A boolean.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (obj instanceof StandardEntityCollection) {
+			StandardEntityCollection that = (StandardEntityCollection) obj;
+			return ObjectUtils.equal(this.entities, that.entities);
+		}
+		return false;
+	}
 
-    /**
-     * Returns a clone of this entity collection.
-     *
-     * @return A clone.
-     *
-     * @throws CloneNotSupportedException if the object cannot be cloned.
-     */
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        StandardEntityCollection clone
-                = (StandardEntityCollection) super.clone();
-        clone.entities = new java.util.ArrayList<ChartEntity>(this.entities.size());
-        for (int i = 0; i < this.entities.size(); i++) {
-            ChartEntity entity = this.entities.get(i);
-            clone.entities.add((ChartEntity) entity.clone());
-        }
-        return clone;
-    }
+	/**
+	 * Returns a clone of this entity collection.
+	 *
+	 * @return A clone.
+	 *
+	 * @throws CloneNotSupportedException if the object cannot be cloned.
+	 */
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		StandardEntityCollection clone = (StandardEntityCollection) super.clone();
+		clone.entities = new java.util.ArrayList<>(this.entities.size());
+		for (int i = 0; i < this.entities.size(); i++) {
+			ChartEntity entity = this.entities.get(i);
+			clone.entities.add((ChartEntity) entity.clone());
+		}
+		return clone;
+	}
 
 }

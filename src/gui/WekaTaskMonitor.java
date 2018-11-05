@@ -72,11 +72,9 @@ public class WekaTaskMonitor extends JPanel implements TaskLogger {
 
 			/*
 			 * Image pic = Toolkit.getDefaultToolkit().
-			 * getImage(ClassLoader.getSystemResource(
-			 * "weka/gui/weka_stationary.gif")); Image pic2 =
-			 * Toolkit.getDefaultToolkit().
-			 * getImage(ClassLoader.getSystemResource(
-			 * "weka/gui/weka_animated.gif"));
+			 * getImage(ClassLoader.getSystemResource( "weka/gui/weka_stationary.gif"));
+			 * Image pic2 = Toolkit.getDefaultToolkit().
+			 * getImage(ClassLoader.getSystemResource( "weka/gui/weka_animated.gif"));
 			 */
 
 			mIconStationary = new ImageIcon(pic);

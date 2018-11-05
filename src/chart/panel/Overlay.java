@@ -51,26 +51,26 @@ import chart.event.OverlayChangeListener;
  */
 public interface Overlay {
 
-    /**
-     * Paints the crosshairs in the layer.
-     *
-     * @param g2  the graphics target.
-     * @param chartPanel  the chart panel.
-     */
-    public void paintOverlay(Graphics2D g2, ChartPanel chartPanel);
+	/**
+	 * Paints the crosshairs in the layer.
+	 *
+	 * @param g2         the graphics target.
+	 * @param chartPanel the chart panel.
+	 */
+	public void paintOverlay(Graphics2D g2, ChartPanel chartPanel);
 
-    /**
-     * Registers a change listener with the overlay.
-     * 
-     * @param listener  the listener.
-     */
-    public void addChangeListener(OverlayChangeListener listener);
+	/**
+	 * Registers a change listener with the overlay.
+	 * 
+	 * @param listener the listener.
+	 */
+	public void addChangeListener(OverlayChangeListener listener);
 
-    /**
-     * Deregisters a listener from the overlay.
-     * 
-     * @param listener  the listener.
-     */
-    public void removeChangeListener(OverlayChangeListener listener);
+	/**
+	 * Deregisters a listener from the overlay.
+	 * 
+	 * @param listener the listener.
+	 */
+	public void removeChangeListener(OverlayChangeListener listener);
 
 }

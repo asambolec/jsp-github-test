@@ -44,8 +44,7 @@ public class ProtectedProperties extends Properties implements RevisionHandler {
 	/**
 	 * Creates a set of protected properties from a set of normal ones.
 	 * 
-	 * @param props
-	 *            the properties to be stored and protected.
+	 * @param props the properties to be stored and protected.
 	 */
 	public ProtectedProperties(Properties props) {
 
@@ -62,8 +61,7 @@ public class ProtectedProperties extends Properties implements RevisionHandler {
 	 * Overrides a method to prevent the properties from being modified.
 	 * 
 	 * @return never returns without throwing an exception.
-	 * @throws UnsupportedOperationException
-	 *             always.
+	 * @throws UnsupportedOperationException always.
 	 */
 	@Override
 	public Object setProperty(String key, String value) {
@@ -78,8 +76,7 @@ public class ProtectedProperties extends Properties implements RevisionHandler {
 	/**
 	 * Overrides a method to prevent the properties from being modified.
 	 * 
-	 * @throws UnsupportedOperationException
-	 *             always.
+	 * @throws UnsupportedOperationException always.
 	 */
 	@Override
 	public void load(InputStream inStream) {
@@ -90,8 +87,7 @@ public class ProtectedProperties extends Properties implements RevisionHandler {
 	/**
 	 * Overrides a method to prevent the properties from being modified.
 	 * 
-	 * @throws UnsupportedOperationException
-	 *             always.
+	 * @throws UnsupportedOperationException always.
 	 */
 	@Override
 	public void clear() {
@@ -103,8 +99,7 @@ public class ProtectedProperties extends Properties implements RevisionHandler {
 	 * Overrides a method to prevent the properties from being modified.
 	 * 
 	 * @return never returns without throwing an exception.
-	 * @throws UnsupportedOperationException
-	 *             always.
+	 * @throws UnsupportedOperationException always.
 	 */
 	@Override
 	public Object put(Object key, Object value) {
@@ -119,8 +114,7 @@ public class ProtectedProperties extends Properties implements RevisionHandler {
 	/**
 	 * Overrides a method to prevent the properties from being modified.
 	 * 
-	 * @throws UnsupportedOperationException
-	 *             always.
+	 * @throws UnsupportedOperationException always.
 	 */
 	@Override
 	public void putAll(Map<? extends Object, ? extends Object> t) {
@@ -132,8 +126,7 @@ public class ProtectedProperties extends Properties implements RevisionHandler {
 	 * Overrides a method to prevent the properties from being modified.
 	 * 
 	 * @return never returns without throwing an exception.
-	 * @throws UnsupportedOperationException
-	 *             always.
+	 * @throws UnsupportedOperationException always.
 	 */
 	@Override
 	public Object remove(Object key) {

@@ -39,39 +39,37 @@ package chart.util;
  *
  */
 
-
-
 /**
  * Used to indicate absolute or relative units.
  */
 public enum UnitType {
 
-    /** Absolute. */
-    ABSOLUTE("UnitType.ABSOLUTE"),
+	/** Absolute. */
+	ABSOLUTE("UnitType.ABSOLUTE"),
 
-    /** Relative. */
-    RELATIVE("UnitType.RELATIVE");
+	/** Relative. */
+	RELATIVE("UnitType.RELATIVE");
 
-    /** The name. */
-    private String name;
+	/** The name. */
+	private String name;
 
-    /**
-     * Private constructor.
-     *
-     * @param name  the name.
-     */
-    private UnitType(final String name) {
-        this.name = name;
-    }
+	/**
+	 * Private constructor.
+	 *
+	 * @param name the name.
+	 */
+	private UnitType(final String name) {
+		this.name = name;
+	}
 
-    /**
-     * Returns a string representing the object.
-     *
-     * @return The string.
-     */
-    @Override
-    public String toString() {
-        return this.name;
-    }
+	/**
+	 * Returns a string representing the object.
+	 *
+	 * @return The string.
+	 */
+	@Override
+	public String toString() {
+		return this.name;
+	}
 
 }

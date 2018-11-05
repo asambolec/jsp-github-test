@@ -73,8 +73,7 @@ public abstract class AbstractSaver implements Saver, CapabilitiesHandler, Capab
 	/**
 	 * Set whether not to check capabilities.
 	 * 
-	 * @param doNotCheckCapabilities
-	 *            true if capabilities are not to be checked.
+	 * @param doNotCheckCapabilities true if capabilities are not to be checked.
 	 */
 	@Override
 	public void setDoNotCheckCapabilities(boolean doNotCheckCapabilities) {
@@ -113,8 +112,7 @@ public abstract class AbstractSaver implements Saver, CapabilitiesHandler, Capab
 	/**
 	 * Sets the retrieval mode.
 	 * 
-	 * @param mode
-	 *            the retrieval mode
+	 * @param mode the retrieval mode
 	 */
 	@Override
 	public void setRetrieval(int mode) {
@@ -135,8 +133,7 @@ public abstract class AbstractSaver implements Saver, CapabilitiesHandler, Capab
 	/**
 	 * Sets the write mode.
 	 * 
-	 * @param mode
-	 *            the write mode
+	 * @param mode the write mode
 	 */
 	protected void setWriteMode(int mode) {
 
@@ -157,8 +154,7 @@ public abstract class AbstractSaver implements Saver, CapabilitiesHandler, Capab
 	/**
 	 * Sets instances that should be stored.
 	 * 
-	 * @param instances
-	 *            the instances
+	 * @param instances the instances
 	 */
 	@Override
 	public void setInstances(Instances instances) {
@@ -190,10 +186,8 @@ public abstract class AbstractSaver implements Saver, CapabilitiesHandler, Capab
 	/**
 	 * Default implementation throws an IOException.
 	 * 
-	 * @param file
-	 *            the File
-	 * @exception IOException
-	 *                always
+	 * @param file the File
+	 * @exception IOException always
 	 */
 	@Override
 	public void setDestination(File file) throws IOException {
@@ -204,10 +198,8 @@ public abstract class AbstractSaver implements Saver, CapabilitiesHandler, Capab
 	/**
 	 * Default implementation throws an IOException.
 	 * 
-	 * @param output
-	 *            the OutputStream
-	 * @exception IOException
-	 *                always
+	 * @param output the OutputStream
+	 * @exception IOException always
 	 */
 	@Override
 	public void setDestination(OutputStream output) throws IOException {
@@ -216,8 +208,8 @@ public abstract class AbstractSaver implements Saver, CapabilitiesHandler, Capab
 	}
 
 	/**
-	 * Returns the Capabilities of this saver. Derived savers have to override
-	 * this method to enable capabilities.
+	 * Returns the Capabilities of this saver. Derived savers have to override this
+	 * method to enable capabilities.
 	 * 
 	 * @return the capabilities of this object
 	 * @see Capabilities
@@ -232,11 +224,10 @@ public abstract class AbstractSaver implements Saver, CapabilitiesHandler, Capab
 	}
 
 	/**
-	 * Sets the strcuture of the instances for the first step of incremental
-	 * saving. The instances only need to have a header.
+	 * Sets the strcuture of the instances for the first step of incremental saving.
+	 * The instances only need to have a header.
 	 * 
-	 * @param headerInfo
-	 *            an instances object.
+	 * @param headerInfo an instances object.
 	 * @return the appropriate write mode
 	 */
 	public int setStructure(Instances headerInfo) {
@@ -270,15 +261,13 @@ public abstract class AbstractSaver implements Saver, CapabilitiesHandler, Capab
 	}
 
 	/**
-	 * Method for incremental saving. Standard behaviour: no incremental saving
-	 * is possible, therefore throw an IOException. An incremental saving
-	 * process is stopped by calling this method with null.
+	 * Method for incremental saving. Standard behaviour: no incremental saving is
+	 * possible, therefore throw an IOException. An incremental saving process is
+	 * stopped by calling this method with null.
 	 * 
-	 * @param i
-	 *            the instance to be saved
-	 * @throws IOException
-	 *             IOEXception if the instance acnnot be written to the
-	 *             specified destination
+	 * @param i the instance to be saved
+	 * @throws IOException IOEXception if the instance acnnot be written to the
+	 *                     specified destination
 	 */
 	@Override
 	public void writeIncremental(Instance i) throws IOException {
@@ -289,8 +278,7 @@ public abstract class AbstractSaver implements Saver, CapabilitiesHandler, Capab
 	/**
 	 * Writes to a file in batch mode To be overridden.
 	 * 
-	 * @throws IOException
-	 *             exception if writting is not possible
+	 * @throws IOException exception if writting is not possible
 	 */
 	@Override
 	public abstract void writeBatch() throws IOException;
@@ -298,8 +286,7 @@ public abstract class AbstractSaver implements Saver, CapabilitiesHandler, Capab
 	/**
 	 * Default implementation throws an IOException.
 	 * 
-	 * @exception IOException
-	 *                always
+	 * @exception IOException always
 	 */
 	@Override
 	public String getFileExtension() throws Exception {
@@ -310,10 +297,8 @@ public abstract class AbstractSaver implements Saver, CapabilitiesHandler, Capab
 	/**
 	 * Default implementation throws an IOException.
 	 * 
-	 * @param file
-	 *            the File
-	 * @exception IOException
-	 *                always
+	 * @param file the File
+	 * @exception IOException always
 	 */
 	@Override
 	public void setFile(File file) throws IOException {
@@ -324,10 +309,8 @@ public abstract class AbstractSaver implements Saver, CapabilitiesHandler, Capab
 	/**
 	 * Default implementation throws an IOException.
 	 * 
-	 * @param prefix
-	 *            the file prefix
-	 * @exception IOException
-	 *                always
+	 * @param prefix the file prefix
+	 * @exception IOException always
 	 */
 	@Override
 	public void setFilePrefix(String prefix) throws Exception {
@@ -338,8 +321,7 @@ public abstract class AbstractSaver implements Saver, CapabilitiesHandler, Capab
 	/**
 	 * Default implementation throws an IOException.
 	 * 
-	 * @exception IOException
-	 *                always
+	 * @exception IOException always
 	 */
 	@Override
 	public String filePrefix() throws Exception {
@@ -350,10 +332,8 @@ public abstract class AbstractSaver implements Saver, CapabilitiesHandler, Capab
 	/**
 	 * Default implementation throws an IOException.
 	 * 
-	 * @param dir
-	 *            the name of the directory to save in
-	 * @exception IOException
-	 *                always
+	 * @param dir the name of the directory to save in
+	 * @exception IOException always
 	 */
 	@Override
 	public void setDir(String dir) throws IOException {
@@ -366,8 +346,7 @@ public abstract class AbstractSaver implements Saver, CapabilitiesHandler, Capab
 	 * 
 	 * @param relationName
 	 * @param add
-	 * @exception IOException
-	 *                always
+	 * @exception IOException always
 	 */
 	@Override
 	public void setDirAndPrefix(String relationName, String add) throws IOException {
@@ -378,8 +357,7 @@ public abstract class AbstractSaver implements Saver, CapabilitiesHandler, Capab
 	/**
 	 * Default implementation throws an IOException.
 	 * 
-	 * @exception IOException
-	 *                always
+	 * @exception IOException always
 	 */
 	@Override
 	public String retrieveDir() throws IOException {

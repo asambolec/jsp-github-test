@@ -71,10 +71,8 @@ public class HierarchyPropertyParser implements Serializable {
 	 * Constructor that builds a tree from the given property with the given
 	 * delimitor
 	 * 
-	 * @param p
-	 *            the given property string
-	 * @param delim
-	 *            the given dilimitor
+	 * @param p     the given property string
+	 * @param delim the given dilimitor
 	 */
 	public HierarchyPropertyParser(String p, String delim) throws Exception {
 		this();
@@ -84,8 +82,7 @@ public class HierarchyPropertyParser implements Serializable {
 	/**
 	 * Set the seperator between levels. Default is dot.
 	 * 
-	 * @param s
-	 *            the seperator symbol
+	 * @param s the seperator symbol
 	 */
 	public void setSeperator(String s) {
 		mSeperator = s;
@@ -103,10 +100,8 @@ public class HierarchyPropertyParser implements Serializable {
 	/**
 	 * Build a tree from the given property with the given delimitor
 	 * 
-	 * @param p
-	 *            the given property
-	 * @param delim
-	 *            the given delimitor
+	 * @param p     the given property
+	 * @param delim the given delimitor
 	 */
 	public void build(String p, String delim) throws Exception {
 		StringTokenizer st = new StringTokenizer(p, delim);
@@ -124,8 +119,7 @@ public class HierarchyPropertyParser implements Serializable {
 	/**
 	 * Add the given item of property to the tree
 	 * 
-	 * @param property
-	 *            the given item
+	 * @param property the given item
 	 */
 	public synchronized void add(String property) {
 		String[] values = tokenize(property);
@@ -139,12 +133,9 @@ public class HierarchyPropertyParser implements Serializable {
 	/**
 	 * Private function to build one branch of the tree based on one property
 	 * 
-	 * @param parent
-	 *            the parent of the node to be built
-	 * @param values
-	 *            the value of one property
-	 * @param lvl
-	 *            the level of the node to be built in the tree
+	 * @param parent the parent of the node to be built
+	 * @param values the value of one property
+	 * @param lvl    the level of the node to be built in the tree
 	 */
 	private void buildBranch(TreeNode parent, String[] values, int lvl) {
 		// Precondition: children is not null
@@ -184,11 +175,10 @@ public class HierarchyPropertyParser implements Serializable {
 	}
 
 	/**
-	 * Tokenize the given string based on the seperator and put the tokens into
-	 * an array of strings
+	 * Tokenize the given string based on the seperator and put the tokens into an
+	 * array of strings
 	 * 
-	 * @param rawString
-	 *            the given string
+	 * @param rawString the given string
 	 * @return an array of strings
 	 */
 	public String[] tokenize(String rawString) {
@@ -209,8 +199,7 @@ public class HierarchyPropertyParser implements Serializable {
 	/**
 	 * Whether the HierarchyPropertyParser contains the given string
 	 * 
-	 * @param string
-	 *            the given string
+	 * @param string the given string
 	 * @return whether contains
 	 */
 	public boolean contains(String string) {
@@ -226,12 +215,9 @@ public class HierarchyPropertyParser implements Serializable {
 	 * Private function to decide whether one level of one branch contains the
 	 * relevant values
 	 * 
-	 * @param parent
-	 *            the parent of the node to be searched
-	 * @param values
-	 *            the value of one property
-	 * @param lvl
-	 *            the level of the node in question
+	 * @param parent the parent of the node to be searched
+	 * @param values the value of one property
+	 * @param lvl    the level of the node in question
 	 * @return whether this branch contains the corresponding values
 	 */
 	private boolean isContained(TreeNode parent, String[] values, int lvl) {
@@ -254,8 +240,7 @@ public class HierarchyPropertyParser implements Serializable {
 	/**
 	 * Whether the given string has a hierachy structure with the seperators
 	 * 
-	 * @param string
-	 *            the given string
+	 * @param string the given string
 	 */
 	public boolean isHierachic(String string) {
 		int index = string.indexOf(mSeperator);
@@ -268,14 +253,12 @@ public class HierarchyPropertyParser implements Serializable {
 	}
 
 	/**
-	 * Helper function to search for the given target string in a given vector
-	 * in which the elements' value may hopefully is equal to the target. If
-	 * such elements are found the first index is returned, otherwise -1
+	 * Helper function to search for the given target string in a given vector in
+	 * which the elements' value may hopefully is equal to the target. If such
+	 * elements are found the first index is returned, otherwise -1
 	 * 
-	 * @param vct
-	 *            the given vector
-	 * @param target
-	 *            the given target string
+	 * @param vct    the given vector
+	 * @param target the given target string
 	 * @return the index of the found element, -1 if not found
 	 */
 	public int search(Vector<TreeNode> vct, String target) {
@@ -293,14 +276,12 @@ public class HierarchyPropertyParser implements Serializable {
 	}
 
 	/**
-	 * Go to a certain node of the tree according to the specified path Note
-	 * that the path must be absolute path from the root. <br>
+	 * Go to a certain node of the tree according to the specified path Note that
+	 * the path must be absolute path from the root. <br>
 	 * For relative path, see goDown(String path).
 	 * 
-	 * @param path
-	 *            the given absolute path
-	 * @return whether the path exists, if false the current position does not
-	 *         move
+	 * @param path the given absolute path
+	 * @return whether the path exists, if false the current position does not move
 	 */
 	public synchronized boolean goTo(String path) {
 		if (!isHierachic(path)) {
@@ -333,14 +314,11 @@ public class HierarchyPropertyParser implements Serializable {
 	}
 
 	/**
-	 * Go to a certain node of the tree down from the current node according to
-	 * the specified relative path. The path does not contain the value of
-	 * current node
+	 * Go to a certain node of the tree down from the current node according to the
+	 * specified relative path. The path does not contain the value of current node
 	 * 
-	 * @param path
-	 *            the given relative path
-	 * @return whether the path exists, if false the current position does not
-	 *         move
+	 * @param path the given relative path
+	 * @return whether the path exists, if false the current position does not move
 	 */
 	public synchronized boolean goDown(String path) {
 		if (!isHierachic(path)) {
@@ -388,13 +366,12 @@ public class HierarchyPropertyParser implements Serializable {
 	}
 
 	/**
-	 * Go to one child node from the current position in the tree according to
-	 * the given value <br>
-	 * If the child node with the given value cannot be found it returns false,
-	 * true otherwise. If false, the current position does not change
+	 * Go to one child node from the current position in the tree according to the
+	 * given value <br>
+	 * If the child node with the given value cannot be found it returns false, true
+	 * otherwise. If false, the current position does not change
 	 * 
-	 * @param value
-	 *            the value of the given child
+	 * @param value the value of the given child
 	 * @return whether the child can be found
 	 */
 	public synchronized boolean goToChild(String value) {
@@ -412,13 +389,11 @@ public class HierarchyPropertyParser implements Serializable {
 	}
 
 	/**
-	 * Go to one child node from the current position in the tree according to
-	 * the given position <br>
+	 * Go to one child node from the current position in the tree according to the
+	 * given position <br>
 	 * 
-	 * @param pos
-	 *            the position of the given child
-	 * @exception Exception
-	 *                if the position is out of range or leaf is reached
+	 * @param pos the position of the given child
+	 * @exception Exception if the position is out of range or leaf is reached
 	 */
 	public synchronized void goToChild(int pos) throws Exception {
 		if ((mCurrent.children == null) || (pos < 0) || (pos >= mCurrent.children.size())) {
@@ -442,8 +417,7 @@ public class HierarchyPropertyParser implements Serializable {
 	}
 
 	/**
-	 * The value in the children nodes. If current node is leaf, it returns
-	 * null.
+	 * The value in the children nodes. If current node is leaf, it returns null.
 	 * 
 	 * @return the value in the children nodes
 	 */
@@ -519,9 +493,9 @@ public class HierarchyPropertyParser implements Serializable {
 	}
 
 	/**
-	 * The context of the current node, i.e. the path from the root to the
-	 * parent node of the current node, seperated by the seperator. If root, it
-	 * returns null
+	 * The context of the current node, i.e. the path from the root to the parent
+	 * node of the current node, seperated by the seperator. If root, it returns
+	 * null
 	 * 
 	 * @return the context path
 	 */
@@ -530,8 +504,8 @@ public class HierarchyPropertyParser implements Serializable {
 	}
 
 	/**
-	 * The full value of the current node, i.e. its context + seperator + its
-	 * value. For root, only its value.
+	 * The full value of the current node, i.e. its context + seperator + its value.
+	 * For root, only its value.
 	 * 
 	 * @return the context path
 	 */
@@ -555,8 +529,7 @@ public class HierarchyPropertyParser implements Serializable {
 	/**
 	 * Show one node of the tree in text format
 	 * 
-	 * @param node
-	 *            the node in question
+	 * @param node the node in question
 	 * @return the node in text format
 	 */
 	private String showNode(TreeNode node, boolean[] hasBar) {
@@ -602,8 +575,7 @@ public class HierarchyPropertyParser implements Serializable {
 	/**
 	 * Tests out the parser.
 	 * 
-	 * @param args
-	 *            should contain nothing
+	 * @param args should contain nothing
 	 */
 	public static void main(String args[]) {
 		StringBuffer sb = new StringBuffer();
@@ -660,9 +632,9 @@ public class HierarchyPropertyParser implements Serializable {
 	}
 
 	/**
-	 * The inner class implementing a single tree node. All fields are made
-	 * public simply for convenient access, Although a severe violation of OO
-	 * Design principle.
+	 * The inner class implementing a single tree node. All fields are made public
+	 * simply for convenient access, Although a severe violation of OO Design
+	 * principle.
 	 */
 	private class TreeNode implements Serializable {
 

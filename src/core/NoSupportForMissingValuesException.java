@@ -45,8 +45,7 @@ public class NoSupportForMissingValuesException extends WekaException {
 	/**
 	 * Creates a new NoSupportForMissingValuesException.
 	 *
-	 * @param message
-	 *            the reason for raising an exception.
+	 * @param message the reason for raising an exception.
 	 */
 	public NoSupportForMissingValuesException(String message) {
 

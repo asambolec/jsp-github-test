@@ -76,10 +76,8 @@ public abstract class AbstractFileLoader extends AbstractLoader implements FileS
 	/**
 	 * sets the source File
 	 * 
-	 * @param file
-	 *            the source file
-	 * @exception IOException
-	 *                if an error occurs
+	 * @param file the source file
+	 * @exception IOException if an error occurs
 	 */
 	@Override
 	public void setFile(File file) throws IOException {
@@ -93,8 +91,7 @@ public abstract class AbstractFileLoader extends AbstractLoader implements FileS
 	/**
 	 * Set the environment variables to use.
 	 * 
-	 * @param env
-	 *            the environment variables to use
+	 * @param env the environment variables to use
 	 */
 	@Override
 	public void setEnvironment(Environment env) {
@@ -113,8 +110,7 @@ public abstract class AbstractFileLoader extends AbstractLoader implements FileS
 	/**
 	 * Resets the loader ready to read a new data set
 	 * 
-	 * @throws IOException
-	 *             if something goes wrong
+	 * @throws IOException if something goes wrong
 	 */
 	@Override
 	public void reset() throws IOException {
@@ -126,10 +122,8 @@ public abstract class AbstractFileLoader extends AbstractLoader implements FileS
 	 * Resets the Loader object and sets the source of the data set to be the
 	 * supplied File object.
 	 * 
-	 * @param file
-	 *            the source file.
-	 * @throws IOException
-	 *             if an error occurs
+	 * @param file the source file.
+	 * @throws IOException if an error occurs
 	 */
 	@Override
 	public void setSource(File file) throws IOException {
@@ -165,21 +159,20 @@ public abstract class AbstractFileLoader extends AbstractLoader implements FileS
 				setSource(new FileInputStream(file));
 			}
 		} else {
-//			 System.out.println("Looking in classpath.... \n");
+			// System.out.println("Looking in classpath.... \n");
 			// look for it as a resource in the classpath
 
 			// forward slashes are platform independent for loading from the
 			// classpath...
 			String fnameWithCorrectSeparators = fName.replace(File.separatorChar, '/');
 			if (this.getClass().getClassLoader().getResource(fnameWithCorrectSeparators) != null) {
-//				 System.out.println("Found resource in classpath... \n");
+				// System.out.println("Found resource in classpath... \n");
 				setSource(this.getClass().getClassLoader().getResourceAsStream(fnameWithCorrectSeparators));
 			}
 		}
 		// }
 		/*
-		 * catch (FileNotFoundException ex) { throw new
-		 * IOException("File not found"); }
+		 * catch (FileNotFoundException ex) { throw new IOException("File not found"); }
 		 */
 
 		if (m_useRelativePath) {
@@ -210,8 +203,7 @@ public abstract class AbstractFileLoader extends AbstractLoader implements FileS
 	/**
 	 * Set whether to use relative rather than absolute paths
 	 * 
-	 * @param rp
-	 *            true if relative paths are to be used
+	 * @param rp true if relative paths are to be used
 	 */
 	@Override
 	public void setUseRelativePath(boolean rp) {
@@ -232,8 +224,7 @@ public abstract class AbstractFileLoader extends AbstractLoader implements FileS
 	 * generates a string suitable for output on the command line displaying all
 	 * available options (currently only a simple usage).
 	 * 
-	 * @param loader
-	 *            the loader to create the option string for
+	 * @param loader the loader to create the option string for
 	 * @return the option string
 	 */
 	protected static String makeOptionStr(AbstractFileLoader loader) {
@@ -272,11 +263,9 @@ public abstract class AbstractFileLoader extends AbstractLoader implements FileS
 	/**
 	 * runs the given loader with the provided options
 	 * 
-	 * @param loader
-	 *            the loader to run
-	 * @param options
-	 *            the commandline options, first argument must be the file to
-	 *            load
+	 * @param loader  the loader to run
+	 * @param options the commandline options, first argument must be the file to
+	 *                load
 	 */
 	public static void runFileLoader(AbstractFileLoader loader, String[] options) {
 		// help request?
@@ -339,21 +328,20 @@ public abstract class AbstractFileLoader extends AbstractLoader implements FileS
 	 * Resets the Loader object and sets the source of the data set to be the
 	 * supplied File object.
 	 * 
-	 * @param file
-	 *            the source file.
-	 * @exception IOException
-	 *                if an error occurs
+	 * @param file the source file.
+	 * @exception IOException if an error occurs
 	 * 
-	 *                public void setSource(File file) throws IOException {
-	 *                m_structure = null; setRetrieval(NONE);
+	 *                        public void setSource(File file) throws IOException {
+	 *                        m_structure = null; setRetrieval(NONE);
 	 * 
-	 *                if (file == null) { throw new IOException("Source file
-	 *                object is null!"); }
+	 *                        if (file == null) { throw new IOException("Source file
+	 *                        object is null!"); }
 	 * 
-	 *                try { setSource(new FileInputStream(file)); } catch
-	 *                (FileNotFoundException ex) { throw new IOException("File
-	 *                not found"); }
+	 *                        try { setSource(new FileInputStream(file)); } catch
+	 *                        (FileNotFoundException ex) { throw new
+	 *                        IOException("File not found"); }
 	 * 
-	 *                m_sourceFile = file; m_File = file.getAbsolutePath(); }
+	 *                        m_sourceFile = file; m_File = file.getAbsolutePath();
+	 *                        }
 	 */
 }

@@ -45,8 +45,7 @@ public class UnassignedDatasetException extends RuntimeException {
 	/**
 	 * Creates a new UnassignedDatasetException.
 	 *
-	 * @param message
-	 *            the reason for raising an exception.
+	 * @param message the reason for raising an exception.
 	 */
 	public UnassignedDatasetException(String message) {
 

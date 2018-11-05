@@ -54,10 +54,8 @@ public class Tag implements Serializable, RevisionHandler {
 	/**
 	 * Creates a new <code>Tag</code> instance.
 	 *
-	 * @param ident
-	 *            the ID for the new Tag.
-	 * @param readable
-	 *            the description for the new Tag.
+	 * @param ident    the ID for the new Tag.
+	 * @param readable the description for the new Tag.
 	 */
 	public Tag(int ident, String readable) {
 		this(ident, "", readable);
@@ -66,12 +64,9 @@ public class Tag implements Serializable, RevisionHandler {
 	/**
 	 * Creates a new <code>Tag</code> instance.
 	 *
-	 * @param ident
-	 *            the ID for the new Tag.
-	 * @param identStr
-	 *            the ID string for the new Tag (case-insensitive).
-	 * @param readable
-	 *            the description for the new Tag.
+	 * @param ident    the ID for the new Tag.
+	 * @param identStr the ID string for the new Tag (case-insensitive).
+	 * @param readable the description for the new Tag.
 	 */
 	public Tag(int ident, String identStr, String readable) {
 		this(ident, identStr, readable, true);
@@ -102,8 +97,7 @@ public class Tag implements Serializable, RevisionHandler {
 	/**
 	 * Sets the numeric ID of the Tag.
 	 *
-	 * @param id
-	 *            the ID of the Tag.
+	 * @param id the ID of the Tag.
 	 */
 	public void setID(int id) {
 		m_ID = id;
@@ -121,8 +115,7 @@ public class Tag implements Serializable, RevisionHandler {
 	/**
 	 * Sets the string ID of the Tag.
 	 *
-	 * @param str
-	 *            the string ID of the Tag.
+	 * @param str the string ID of the Tag.
 	 */
 	public void setIDStr(String str) {
 		m_IDStr = str;
@@ -140,8 +133,7 @@ public class Tag implements Serializable, RevisionHandler {
 	/**
 	 * Sets the string description of the Tag.
 	 *
-	 * @param r
-	 *            the description of the Tag.
+	 * @param r the description of the Tag.
 	 */
 	public void setReadable(String r) {
 		m_Readable = r;
@@ -161,8 +153,7 @@ public class Tag implements Serializable, RevisionHandler {
 	 * returns a list that can be used in the listOption methods to list all the
 	 * available ID strings, e.g.: &lt;0|1|2&gt; or &lt;what|ever&gt;
 	 * 
-	 * @param tags
-	 *            the tags to create the list for
+	 * @param tags the tags to create the list for
 	 * @return a list of all ID strings
 	 */
 	public static String toOptionList(Tag[] tags) {
@@ -182,11 +173,10 @@ public class Tag implements Serializable, RevisionHandler {
 	}
 
 	/**
-	 * returns a string that can be used in the listOption methods to list all
-	 * the available options, i.e., "\t\tID = Text\n" for each option
+	 * returns a string that can be used in the listOption methods to list all the
+	 * available options, i.e., "\t\tID = Text\n" for each option
 	 * 
-	 * @param tags
-	 *            the tags to create the string for
+	 * @param tags the tags to create the string for
 	 * @return a string explaining the tags
 	 */
 	public static String toOptionSynopsis(Tag[] tags) {

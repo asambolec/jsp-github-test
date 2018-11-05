@@ -31,8 +31,8 @@ package core;
 public interface CapabilitiesIgnorer {
 
 	/**
-	 * Returns true if we do not actually want to check capabilities to
-	 * conserver runtime.
+	 * Returns true if we do not actually want to check capabilities to conserver
+	 * runtime.
 	 */
 	public boolean getDoNotCheckCapabilities();
 

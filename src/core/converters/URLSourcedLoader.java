@@ -31,10 +31,8 @@ public interface URLSourcedLoader {
 	/**
 	 * Set the url to load from
 	 *
-	 * @param url
-	 *            the url to load from
-	 * @exception Exception
-	 *                if the url can't be set.
+	 * @param url the url to load from
+	 * @exception Exception if the url can't be set.
 	 */
 	void setURL(String url) throws Exception;
 

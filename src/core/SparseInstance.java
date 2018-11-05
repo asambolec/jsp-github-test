@@ -52,9 +52,8 @@ public class SparseInstance extends AbstractInstance {
 	 * Reference to the dataset is set to null. (ie. the instance doesn't have
 	 * access to information about the attribute types)
 	 * 
-	 * @param instance
-	 *            the instance from which the attribute values and the weight
-	 *            are to be copied
+	 * @param instance the instance from which the attribute values and the weight
+	 *                 are to be copied
 	 */
 	public SparseInstance(Instance instance) {
 
@@ -83,12 +82,11 @@ public class SparseInstance extends AbstractInstance {
 	}
 
 	/**
-	 * Constructor that copies the info from the given instance. Reference to
-	 * the dataset is set to null. (ie. the instance doesn't have access to
-	 * information about the attribute types)
+	 * Constructor that copies the info from the given instance. Reference to the
+	 * dataset is set to null. (ie. the instance doesn't have access to information
+	 * about the attribute types)
 	 * 
-	 * @param instance
-	 *            the instance from which the attribute info is to be copied
+	 * @param instance the instance from which the attribute info is to be copied
 	 */
 	public SparseInstance(SparseInstance instance) {
 
@@ -104,10 +102,8 @@ public class SparseInstance extends AbstractInstance {
 	 * Reference to the dataset is set to null. (ie. the instance doesn't have
 	 * access to information about the attribute types)
 	 * 
-	 * @param weight
-	 *            the instance's weight
-	 * @param attValues
-	 *            a vector of attribute values
+	 * @param weight    the instance's weight
+	 * @param attValues a vector of attribute values
 	 */
 	public SparseInstance(double weight, double[] attValues) {
 
@@ -131,21 +127,16 @@ public class SparseInstance extends AbstractInstance {
 	}
 
 	/**
-	 * Constructor that inititalizes instance variable with given values.
-	 * Reference to the dataset is set to null. (ie. the instance doesn't have
-	 * access to information about the attribute types) Note that the indices
-	 * need to be sorted in ascending order. Otherwise things won't work
-	 * properly.
+	 * Constructor that inititalizes instance variable with given values. Reference
+	 * to the dataset is set to null. (ie. the instance doesn't have access to
+	 * information about the attribute types) Note that the indices need to be
+	 * sorted in ascending order. Otherwise things won't work properly.
 	 * 
-	 * @param weight
-	 *            the instance's weight
-	 * @param attValues
-	 *            a vector of attribute values (just the ones to be stored)
-	 * @param indices
-	 *            the indices of the given values in the full vector (need to be
-	 *            sorted in ascending order)
-	 * @param maxNumValues
-	 *            the maximium number of values that can be stored
+	 * @param weight       the instance's weight
+	 * @param attValues    a vector of attribute values (just the ones to be stored)
+	 * @param indices      the indices of the given values in the full vector (need
+	 *                     to be sorted in ascending order)
+	 * @param maxNumValues the maximium number of values that can be stored
 	 */
 	public SparseInstance(double weight, double[] attValues, int[] indices, int maxNumValues) {
 
@@ -174,12 +165,11 @@ public class SparseInstance extends AbstractInstance {
 	}
 
 	/**
-	 * Constructor of an instance that sets weight to one, all values to be
-	 * missing, and the reference to the dataset to null. (ie. the instance
-	 * doesn't have access to information about the attribute types)
+	 * Constructor of an instance that sets weight to one, all values to be missing,
+	 * and the reference to the dataset to null. (ie. the instance doesn't have
+	 * access to information about the attribute types)
 	 * 
-	 * @param numAttributes
-	 *            the size of the instance
+	 * @param numAttributes the size of the instance
 	 */
 	public SparseInstance(int numAttributes) {
 
@@ -202,8 +192,8 @@ public class SparseInstance extends AbstractInstance {
 
 	/**
 	 * Produces a shallow copy of this instance. The copy has access to the same
-	 * dataset. (if you want to make a copy that doesn't have access to the
-	 * dataset, use <code>new SparseInstance(instance)</code>
+	 * dataset. (if you want to make a copy that doesn't have access to the dataset,
+	 * use <code>new SparseInstance(instance)</code>
 	 * 
 	 * @return the shallow copy
 	 */
@@ -219,8 +209,7 @@ public class SparseInstance extends AbstractInstance {
 	 * Copies the instance but fills up its values based on the given array of
 	 * doubles. The copy has access to the same dataset.
 	 *
-	 * @param values
-	 *            the array with new values
+	 * @param values the array with new values
 	 * @return the new instance
 	 */
 	@Override
@@ -234,8 +223,7 @@ public class SparseInstance extends AbstractInstance {
 	/**
 	 * Returns the index of the attribute stored at the given position.
 	 * 
-	 * @param position
-	 *            the position
+	 * @param position the position
 	 * @return the index of the attribute stored at the given position
 	 */
 	@Override
@@ -278,11 +266,10 @@ public class SparseInstance extends AbstractInstance {
 	}
 
 	/**
-	 * Merges this instance with the given instance and returns the result.
-	 * Dataset is set to null.
+	 * Merges this instance with the given instance and returns the result. Dataset
+	 * is set to null.
 	 * 
-	 * @param inst
-	 *            the instance to be merged with this one
+	 * @param inst the instance to be merged with this one
 	 * @return the merged instances
 	 */
 	@Override
@@ -327,14 +314,12 @@ public class SparseInstance extends AbstractInstance {
 	}
 
 	/**
-	 * Replaces all missing values in the instance with the values contained in
-	 * the given array. A deep copy of the vector of attribute values is
-	 * performed before the values are replaced.
+	 * Replaces all missing values in the instance with the values contained in the
+	 * given array. A deep copy of the vector of attribute values is performed
+	 * before the values are replaced.
 	 * 
-	 * @param array
-	 *            containing the means and modes
-	 * @exception IllegalArgumentException
-	 *                if numbers of attributes are unequal
+	 * @param array containing the means and modes
+	 * @exception IllegalArgumentException if numbers of attributes are unequal
 	 */
 	@Override
 	public void replaceMissingValues(double[] array) {
@@ -369,12 +354,10 @@ public class SparseInstance extends AbstractInstance {
 	 * floating-point format). Performs a deep copy of the vector of attribute
 	 * values before the value is set.
 	 * 
-	 * @param attIndex
-	 *            the attribute's index
-	 * @param value
-	 *            the new attribute value (If the corresponding attribute is
-	 *            nominal (or a string) then this is the new value's index as a
-	 *            double).
+	 * @param attIndex the attribute's index
+	 * @param value    the new attribute value (If the corresponding attribute is
+	 *                 nominal (or a string) then this is the new value's index as a
+	 *                 double).
 	 */
 	@Override
 	public void setValue(int attIndex, double value) {
@@ -418,12 +401,10 @@ public class SparseInstance extends AbstractInstance {
 	 * floating-point format). Performs a deep copy of the vector of attribute
 	 * values before the value is set.
 	 * 
-	 * @param indexOfIndex
-	 *            the index of the attribute's index
-	 * @param value
-	 *            the new attribute value (If the corresponding attribute is
-	 *            nominal (or a string) then this is the new value's index as a
-	 *            double).
+	 * @param indexOfIndex the index of the attribute's index
+	 * @param value        the new attribute value (If the corresponding attribute
+	 *                     is nominal (or a string) then this is the new value's
+	 *                     index as a double).
 	 */
 	@Override
 	public void setValueSparse(int indexOfIndex, double value) {
@@ -479,9 +460,8 @@ public class SparseInstance extends AbstractInstance {
 	 * doesn't have access to a dataset, it returns the internal floating-point
 	 * values. Quotes string values that contain whitespace characters.
 	 * 
-	 * @param afterDecimalPoint
-	 *            maximum number of digits permitted after the decimal point for
-	 *            numeric values
+	 * @param afterDecimalPoint maximum number of digits permitted after the decimal
+	 *                          point for numeric values
 	 * 
 	 * @return the instance's description as a string
 	 */
@@ -556,11 +536,9 @@ public class SparseInstance extends AbstractInstance {
 	/**
 	 * Returns an instance's attribute value in internal format.
 	 * 
-	 * @param attIndex
-	 *            the attribute's index
-	 * @return the specified value as a double (If the corresponding attribute
-	 *         is nominal (or a string) then it returns the value's index as a
-	 *         double).
+	 * @param attIndex the attribute's index
+	 * @return the specified value as a double (If the corresponding attribute is
+	 *         nominal (or a string) then it returns the value's index as a double).
 	 */
 	@Override
 	public double value(int attIndex) {
@@ -576,8 +554,7 @@ public class SparseInstance extends AbstractInstance {
 	/**
 	 * Deletes an attribute at the given position (0 to numAttributes() - 1).
 	 * 
-	 * @param position
-	 *            the attribute's position
+	 * @param position the attribute's position
 	 */
 	@Override
 	protected void forceDeleteAttributeAt(int position) {
@@ -611,11 +588,10 @@ public class SparseInstance extends AbstractInstance {
 	}
 
 	/**
-	 * Inserts an attribute at the given position (0 to numAttributes()) and
-	 * sets its value to be missing.
+	 * Inserts an attribute at the given position (0 to numAttributes()) and sets
+	 * its value to be missing.
 	 * 
-	 * @param position
-	 *            the attribute's position
+	 * @param position the attribute's position
 	 */
 	@Override
 	protected void forceInsertAttributeAt(int position) {

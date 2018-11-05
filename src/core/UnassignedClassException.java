@@ -45,8 +45,7 @@ public class UnassignedClassException extends RuntimeException {
 	/**
 	 * Creates a new UnassignedClassException.
 	 *
-	 * @param message
-	 *            the reason for raising an exception.
+	 * @param message the reason for raising an exception.
 	 */
 	public UnassignedClassException(String message) {
 

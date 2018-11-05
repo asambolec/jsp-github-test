@@ -65,8 +65,8 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	/** Interconnection matrix for the graph */
 	protected int graphMatrix[][];
 	/**
-	 * Array containing the indices of nodes in each level. The
-	 * nodeLevels.length is equal to the number of levels
+	 * Array containing the indices of nodes in each level. The nodeLevels.length is
+	 * equal to the number of levels
 	 */
 	protected int nodeLevels[][];
 	/** The nodeWidth and nodeHeight */
@@ -77,9 +77,8 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	protected int m_nodeHeight;
 
 	/*
-	 * The following radio buttons control the way the layout is performed. If
-	 * any of the following is changed then we need to perform a complete
-	 * relayout
+	 * The following radio buttons control the way the layout is performed. If any
+	 * of the following is changed then we need to perform a complete relayout
 	 */
 	protected JRadioButton m_jRbNaiveLayout;
 	protected JRadioButton m_jRbPriorityLayout;
@@ -87,8 +86,8 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	protected JRadioButton m_jRbBottomup;
 
 	/**
-	 * controls edge concentration by concentrating multilple singular dummy
-	 * child nodes into one plural dummy child node
+	 * controls edge concentration by concentrating multilple singular dummy child
+	 * nodes into one plural dummy child node
 	 */
 	protected JCheckBox m_jCbEdgeConcentration;
 
@@ -116,8 +115,8 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	private int origNodesSize;
 
 	/**
-	 * Constructor - takes in FastVectors of nodes and edges, and the initial
-	 * width and height of a node
+	 * Constructor - takes in FastVectors of nodes and edges, and the initial width
+	 * and height of a node
 	 */
 	public HierarchicalBCEngine(ArrayList<GraphNode> nodes, ArrayList<GraphEdge> edges, int nodeWidth, int nodeHeight) {
 		m_nodes = nodes;
@@ -128,20 +127,16 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	}
 
 	/**
-	 * Constructor - takes in FastVectors of nodes and edges, the initial width
-	 * and height of a node, and a boolean value to indicate if the edges should
-	 * be concentrated.
+	 * Constructor - takes in FastVectors of nodes and edges, the initial width and
+	 * height of a node, and a boolean value to indicate if the edges should be
+	 * concentrated.
 	 * 
-	 * @param nodes
-	 *            - FastVector containing all the nodes
-	 * @param edges
-	 *            - FastVector containing all the edges
-	 * @param nodeWidth
-	 *            - A node's allowed width
-	 * @param nodeHeight
-	 *            - A node's allowed height
-	 * @param edgeConcentration
-	 *            - True: if want to concentrate edges, False: otherwise
+	 * @param nodes             - FastVector containing all the nodes
+	 * @param edges             - FastVector containing all the edges
+	 * @param nodeWidth         - A node's allowed width
+	 * @param nodeHeight        - A node's allowed height
+	 * @param edgeConcentration - True: if want to concentrate edges, False:
+	 *                          otherwise
 	 */
 	public HierarchicalBCEngine(ArrayList<GraphNode> nodes, ArrayList<GraphEdge> edges, int nodeWidth, int nodeHeight,
 			boolean edgeConcentration) {
@@ -154,9 +149,9 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 
 	/**
 	 * SimpleConstructor If we want to instantiate the class first, and if
-	 * information for nodes and edges is not available. However, we would have
-	 * to manually provide all the information later on by calling setNodesEdges
-	 * and setNodeSize methods
+	 * information for nodes and edges is not available. However, we would have to
+	 * manually provide all the information later on by calling setNodesEdges and
+	 * setNodeSize methods
 	 */
 	public HierarchicalBCEngine() {
 	}
@@ -247,10 +242,8 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	 * Sets the nodes and edges for this LayoutEngine. Must be used if the class
 	 * created by simple HierarchicalBCEngine() constructor.
 	 * 
-	 * @param nodes
-	 *            - FastVector containing all the nodes
-	 * @param edges
-	 *            - FastVector containing all the edges
+	 * @param nodes - FastVector containing all the nodes
+	 * @param edges - FastVector containing all the edges
 	 */
 	@Override
 	public void setNodesEdges(ArrayList<GraphNode> nodes, ArrayList<GraphEdge> edges) {
@@ -262,10 +255,8 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	 * Sets the size of a node. This method must be used if the class created by
 	 * simple HierarchicalBCEngine() constructor.
 	 * 
-	 * @param nodeWidth
-	 *            - A node's allowed width
-	 * @param nodeHeight
-	 *            - A node's allowed height
+	 * @param nodeWidth  - A node's allowed width
+	 * @param nodeHeight - A node's allowed height
 	 */
 	@Override
 	public void setNodeSize(int nodeWidth, int nodeHeight) {
@@ -276,8 +267,7 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	/**
 	 * Method to add a LayoutCompleteEventListener
 	 * 
-	 * @param l
-	 *            - Listener to receive the LayoutCompleteEvent by this class.
+	 * @param l - Listener to receive the LayoutCompleteEvent by this class.
 	 */
 	@Override
 	public void addLayoutCompleteEventListener(LayoutCompleteEventListener l) {
@@ -290,8 +280,7 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	/**
 	 * Method to remove a LayoutCompleteEventListener.
 	 * 
-	 * @param e
-	 *            - The LayoutCompleteEventListener to remove.
+	 * @param e - The LayoutCompleteEventListener to remove.
 	 */
 	@Override
 	public void removeLayoutCompleteEventListener(LayoutCompleteEventListener e) {
@@ -314,8 +303,7 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	/**
 	 * Fires a LayoutCompleteEvent.
 	 * 
-	 * @param e
-	 *            - The LayoutCompleteEvent to fire
+	 * @param e - The LayoutCompleteEvent to fire
 	 */
 	@Override
 	public void fireLayoutCompleteEvent(LayoutCompleteEvent e) {
@@ -331,12 +319,12 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 
 	/**
 	 * This method does a complete layout of the graph which includes removing
-	 * cycles, assigning levels to nodes, reducing edge crossings and laying out
-	 * the vertices horizontally for better visibility. The removing of cycles
-	 * and assignment of levels is only performed if hasn't been performed
-	 * earlier or if some layout option has been changed and it is necessary to
-	 * do so. It is necessary to do so, if the user selects/deselects edge
-	 * concentration or topdown/bottomup options.
+	 * cycles, assigning levels to nodes, reducing edge crossings and laying out the
+	 * vertices horizontally for better visibility. The removing of cycles and
+	 * assignment of levels is only performed if hasn't been performed earlier or if
+	 * some layout option has been changed and it is necessary to do so. It is
+	 * necessary to do so, if the user selects/deselects edge concentration or
+	 * topdown/bottomup options.
 	 * <p>
 	 * The layout is performed in a separate thread and the progress bar of the
 	 * class is updated for each of the steps as the process continues.
@@ -417,13 +405,13 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	}
 
 	/**
-	 * This method removes the temporary nodes that were added to fill in the
-	 * gaps, and removes all edges from all nodes in their edges[][] array
+	 * This method removes the temporary nodes that were added to fill in the gaps,
+	 * and removes all edges from all nodes in their edges[][] array
 	 */
 	protected void clearTemps_and_EdgesFromNodes() {
 		/*
-		 * System.out.println("Before............."); for(int i=0;
-		 * i<m_nodes.size(); i++) { GraphNode n = (GraphNode)m_nodes.get(i);
+		 * System.out.println("Before............."); for(int i=0; i<m_nodes.size();
+		 * i++) { GraphNode n = (GraphNode)m_nodes.get(i);
 		 * System.out.println("N: "+n.ID+","+i); }
 		 * System.out.println("origNodesSize: "+origNodesSize);
 		 */
@@ -432,15 +420,15 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 		for (int i = origNodesSize; i < curSize; i++) {
 			m_nodes.remove(origNodesSize);
 		}
-		for (GraphNode iterator : m_nodes) {
+		m_nodes.forEach(iterator -> {
 			iterator.edges = null;
-		}
+		});
 
 		nodeLevels = null;
 
 		/*
-		 * System.out.println("After.............."); for(int i=0;
-		 * i<m_nodes.size(); i++) { GraphNode n = (GraphNode)m_nodes.get(i);
+		 * System.out.println("After.............."); for(int i=0; i<m_nodes.size();
+		 * i++) { GraphNode n = (GraphNode)m_nodes.get(i);
 		 * System.out.println("N: "+n.ID+","+i); }
 		 */
 	}
@@ -452,25 +440,23 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	protected void processGraph() {
 		origNodesSize = m_nodes.size();
 		graphMatrix = new int[m_nodes.size()][m_nodes.size()];
-		for (GraphEdge iterator : m_edges) {
+		m_edges.forEach(iterator -> {
 			graphMatrix[iterator.src][iterator.dest] = iterator.type;
 			/*
 			 * System.out.print("\t"); for(int i=0; i<graphMatrix.length; i++)
-			 * System.out.print(((GraphNode)m_nodes.get(i)).ID+" ");
-			 * System.out.println(""); for(int i=0; i<graphMatrix.length; i++) {
-			 * GraphNode n = (GraphNode)m_nodes.get(i);
-			 * System.out.print(n.ID+"\t"); for(int j=0;
-			 * j<graphMatrix[i].length; j++)
-			 * System.out.print(graphMatrix[i][j]+" "); System.out.println("");
-			 * }
+			 * System.out.print(((GraphNode)m_nodes.get(i)).ID+" "); System.out.println("");
+			 * for(int i=0; i<graphMatrix.length; i++) { GraphNode n =
+			 * (GraphNode)m_nodes.get(i); System.out.print(n.ID+"\t"); for(int j=0;
+			 * j<graphMatrix[i].length; j++) System.out.print(graphMatrix[i][j]+" ");
+			 * System.out.println(""); }
 			 */
-		}
+		});
 	}
 
 	/*
-	 * This method makes a proper hierarchy of the graph by first removing
-	 * cycles, then assigning levels to the nodes and then removing gaps by
-	 * adding dummy vertices.
+	 * This method makes a proper hierarchy of the graph by first removing cycles,
+	 * then assigning levels to the nodes and then removing gaps by adding dummy
+	 * vertices.
 	 */
 	protected void makeProperHierarchy() {
 		processGraph();
@@ -692,10 +678,10 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	}
 
 	/**
-	 * This method removes gaps from the graph. It tries to minimise the number
-	 * of edges by concentrating multiple dummy nodes from the same parent and
-	 * on the same vertical level into one. It takes as an argument of int[] of
-	 * length m_nodes.size() containing the level of each node.
+	 * This method removes gaps from the graph. It tries to minimise the number of
+	 * edges by concentrating multiple dummy nodes from the same parent and on the
+	 * same vertical level into one. It takes as an argument of int[] of length
+	 * m_nodes.size() containing the level of each node.
 	 */
 	private void removeGapsWithEdgeConcentration(int nodesLevel[]) {
 
@@ -894,9 +880,9 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	/**
 	 * Returns the index of an element in a level. Must never be called with the
 	 * wrong element and the wrong level, will throw an exception otherwise. It
-	 * takes as agrument the index of the element (in the m_nodes vector) and
-	 * the level it is supposed to be in (as each level contains the indices of
-	 * the nodes present in that level).
+	 * takes as agrument the index of the element (in the m_nodes vector) and the
+	 * level it is supposed to be in (as each level contains the indices of the
+	 * nodes present in that level).
 	 */
 	private int indexOfElementInLevel(int element, int level[]) throws Exception {
 		for (int i = 0; i < level.length; i++) {
@@ -909,9 +895,9 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	}
 
 	/**
-	 * Computes the number of edge crossings in the whole graph Takes as an
-	 * argument levels of nodes. It is essentially the same algorithm provided
-	 * in Universitat des Saarlandes technical report A03/94 by Georg Sander.
+	 * Computes the number of edge crossings in the whole graph Takes as an argument
+	 * levels of nodes. It is essentially the same algorithm provided in Universitat
+	 * des Saarlandes technical report A03/94 by Georg Sander.
 	 */
 	protected int crossings(final int levels[][]) {
 		int sum = 0;
@@ -1085,8 +1071,8 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	}
 
 	/**
-	 * This method should not be called directly. It should be called only from
-	 * to call removeCycles()
+	 * This method should not be called directly. It should be called only from to
+	 * call removeCycles()
 	 */
 	private void removeCycles2(int nindex, int visited[]) {
 		visited[nindex] = 2;
@@ -1113,8 +1099,8 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	}
 
 	/**
-	 * This method assigns a vertical level to each node. See
-	 * makeProperHierarchy() to see how to use it.
+	 * This method assigns a vertical level to each node. See makeProperHierarchy()
+	 * to see how to use it.
 	 */
 	protected void assignLevels(int levels[], int depth, int i, int j) {
 		// System.out.println(i+","+j);
@@ -1260,10 +1246,10 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	}
 
 	/**
-	 * See Sugiyama et al. 1981 (full reference give at top) lindex is the index
-	 * of the level we want to process. In this method we'll sort the vertices
-	 * at the level one below lindex according to their UP-barycenters (or
-	 * column barycenters).
+	 * See Sugiyama et al. 1981 (full reference give at top) lindex is the index of
+	 * the level we want to process. In this method we'll sort the vertices at the
+	 * level one below lindex according to their UP-barycenters (or column
+	 * barycenters).
 	 */
 	protected void phaseID(final int lindex, final int levels[][]) {
 		float colBC[]; // = new float[levels[lindex+1].size()];
@@ -1302,10 +1288,9 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	}
 
 	/**
-	 * See Sugiyama et al. 1981 (full reference give at top) lindex is the index
-	 * of the level we want to process. In this method we'll sort the vertices
-	 * at the level lindex according to their DOWN-barycenters (or row
-	 * barycenters).
+	 * See Sugiyama et al. 1981 (full reference give at top) lindex is the index of
+	 * the level we want to process. In this method we'll sort the vertices at the
+	 * level lindex according to their DOWN-barycenters (or row barycenters).
 	 */
 	public void phaseIU(final int lindex, final int levels[][]) {
 		float rowBC[];
@@ -1533,8 +1518,8 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	}
 
 	/**
-	 * Prints out the interconnection matrix at each level. See Sugiyama et al.
-	 * 1981 (full reference give at top)
+	 * Prints out the interconnection matrix at each level. See Sugiyama et al. 1981
+	 * (full reference give at top)
 	 */
 	protected void printMatrices(final int levels[][]) {
 		int i = 0;
@@ -1579,25 +1564,25 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	}
 
 	/**
-	 * This methods sorts the vertices in level[] according to their barycenters
-	 * in BC[], using combsort11. It, however, doesn't touch the vertices with
+	 * This methods sorts the vertices in level[] according to their barycenters in
+	 * BC[], using combsort11. It, however, doesn't touch the vertices with
 	 * barycenter equal to zero.
 	 */
 	/*
-	 * //This method should be removed protected static void combSort11(int
-	 * level[], float BC[]) { int switches, j, top, gap, lhold; float hold; gap
-	 * = BC.length; do { gap=(int)(gap/1.3); switch(gap) { case 0: gap = 1;
-	 * break; case 9: case 10: gap=11; break; default: break; } switches=0; top
-	 * = BC.length-gap; for(int i=0; i<top; i++) { j=i+gap; if(BC[i]==0 ||
-	 * BC[j]==0) continue; if(BC[i] > BC[j]) { hold=BC[i]; BC[i]=BC[j];
-	 * BC[j]=hold; lhold = level[i]; level[i] = level[j]; level[j] = lhold;
-	 * switches++; }//endif }//endfor }while(switches>0 || gap>1); }
+	 * //This method should be removed protected static void combSort11(int level[],
+	 * float BC[]) { int switches, j, top, gap, lhold; float hold; gap = BC.length;
+	 * do { gap=(int)(gap/1.3); switch(gap) { case 0: gap = 1; break; case 9: case
+	 * 10: gap=11; break; default: break; } switches=0; top = BC.length-gap; for(int
+	 * i=0; i<top; i++) { j=i+gap; if(BC[i]==0 || BC[j]==0) continue; if(BC[i] >
+	 * BC[j]) { hold=BC[i]; BC[i]=BC[j]; BC[j]=hold; lhold = level[i]; level[i] =
+	 * level[j]; level[j] = lhold; switches++; }//endif }//endfor }while(switches>0
+	 * || gap>1); }
 	 */
 
 	/**
-	 * This methods sorts the vertices in level[] according to their barycenters
-	 * in BC[], using insertion sort. It, however, doesn't touch the vertices
-	 * with barycenter equal to zero.
+	 * This methods sorts the vertices in level[] according to their barycenters in
+	 * BC[], using insertion sort. It, however, doesn't touch the vertices with
+	 * barycenter equal to zero.
 	 */
 	// Both level and BC have elements in the same order
 	protected static void isort(int level[], float BC[]) {
@@ -1662,12 +1647,12 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	 */
 	protected void naiveLayout() {
 		/*
-		 * if(maxStringWidth==0) { int strWidth; for(int i=0; i<m_nodes.size();
-		 * i++) { strWidth = m_fm.stringWidth(((GraphNode)m_nodes.get(i)).lbl);
+		 * if(maxStringWidth==0) { int strWidth; for(int i=0; i<m_nodes.size(); i++) {
+		 * strWidth = m_fm.stringWidth(((GraphNode)m_nodes.get(i)).lbl);
 		 * if(strWidth>maxStringWidth) maxStringWidth=strWidth; }
 		 * 
-		 * if(m_nodeSize<maxStringWidth) {m_nodeSize = maxStringWidth+4;
-		 * m_nodeArea = m_nodeSize+8; } }
+		 * if(m_nodeSize<maxStringWidth) {m_nodeSize = maxStringWidth+4; m_nodeArea =
+		 * m_nodeSize+8; } }
 		 */
 		if (nodeLevels == null) {
 			makeProperHierarchy();
@@ -1740,8 +1725,8 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	}
 
 	/**
-	 * This method lays out the vertices horizontally, in each level. See
-	 * Sugiyama et al. 1981 for full reference.
+	 * This method lays out the vertices horizontally, in each level. See Sugiyama
+	 * et al. 1981 for full reference.
 	 */
 	protected void priorityLayout1() {
 
@@ -1881,9 +1866,9 @@ public class HierarchicalBCEngine implements GraphConstants, LayoutEngine {
 	}
 
 	/**
-	 * This method is used by priorityLayout1(). It should not be called
-	 * directly. This method does the actual moving of the vertices in each
-	 * level based on their priorities and barycenters.
+	 * This method is used by priorityLayout1(). It should not be called directly.
+	 * This method does the actual moving of the vertices in each level based on
+	 * their priorities and barycenters.
 	 */
 	private void priorityLayout2(int level[], int priorities[], int bCenters[], int horPositions[]) {
 		int descOrder[] = new int[priorities.length];

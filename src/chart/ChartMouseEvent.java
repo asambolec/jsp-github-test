@@ -61,85 +61,81 @@ import chart.entity.ChartEntity;
  */
 public class ChartMouseEvent extends EventObject implements Serializable {
 
-    /** For serialization. */
-    private static final long serialVersionUID = -682393837314562149L;
+	/** For serialization. */
+	private static final long serialVersionUID = -682393837314562149L;
 
-    /** The chart that the mouse event relates to. */
-    private JFreeChart chart;
+	/** The chart that the mouse event relates to. */
+	private JFreeChart chart;
 
-    /** The Java mouse event that triggered this event. */
-    private MouseEvent trigger;
+	/** The Java mouse event that triggered this event. */
+	private MouseEvent trigger;
 
-    /** The chart entity (if any). */
-    private ChartEntity entity;
+	/** The chart entity (if any). */
+	private ChartEntity entity;
 
-    /**
-     * Constructs a new event.
-     *
-     * @param chart  the source chart (<code>null</code> not permitted).
-     * @param trigger  the mouse event that triggered this event
-     *                 (<code>null</code> not permitted).
-     * @param entity  the chart entity (if any) under the mouse point
-     *                (<code>null</code> permitted).
-     */
-    public ChartMouseEvent(JFreeChart chart, MouseEvent trigger,
-                           ChartEntity entity) {
-        super(chart);
-        this.chart = chart;
-        this.trigger = trigger;
-        this.entity = entity;
-    }
+	/**
+	 * Constructs a new event.
+	 *
+	 * @param chart   the source chart (<code>null</code> not permitted).
+	 * @param trigger the mouse event that triggered this event (<code>null</code>
+	 *                not permitted).
+	 * @param entity  the chart entity (if any) under the mouse point
+	 *                (<code>null</code> permitted).
+	 */
+	public ChartMouseEvent(JFreeChart chart, MouseEvent trigger, ChartEntity entity) {
+		super(chart);
+		this.chart = chart;
+		this.trigger = trigger;
+		this.entity = entity;
+	}
 
-    /**
-     * Returns the chart that the mouse event relates to.
-     *
-     * @return The chart (never <code>null</code>).
-     */
-    public JFreeChart getChart() {
-        return this.chart;
-    }
+	/**
+	 * Returns the chart that the mouse event relates to.
+	 *
+	 * @return The chart (never <code>null</code>).
+	 */
+	public JFreeChart getChart() {
+		return this.chart;
+	}
 
-    public String getOutputAsString(List<String> list) {
-    	String result = "";
-		for(String val : list) {
+	public String getOutputAsString(List<String> list) {
+		String result = "";
+		for (String val : list) {
 			result = result + val;
 		}
 		return result;
-    }
-    
-    /**
-     * Returns the mouse event that triggered this event.
-     *
-     * @return The event (never <code>null</code>).
-     */
-    public MouseEvent getTrigger() {
-        return this.trigger;
-    }
+	}
 
-    /**
-     * Returns the chart entity (if any) under the mouse point.
-     *
-     * @return The chart entity (possibly <code>null</code>).
-     */
-    public ChartEntity getEntity() {
-        return this.entity;
-    }
+	/**
+	 * Returns the mouse event that triggered this event.
+	 *
+	 * @return The event (never <code>null</code>).
+	 */
+	public MouseEvent getTrigger() {
+		return this.trigger;
+	}
 
-    private List<String> generateList(String input) {
+	/**
+	 * Returns the chart entity (if any) under the mouse point.
+	 *
+	 * @return The chart entity (possibly <code>null</code>).
+	 */
+	public ChartEntity getEntity() {
+		return this.entity;
+	}
+
+	private List<String> generateList(String input) {
 		return Arrays.asList(input.split(";")); //$NON-NLS-1$
 	}
-    
-    public String loopingOverLists(String input) {
+
+	public String loopingOverLists(String input) {
 		StringBuilder sb = new StringBuilder();
-		List<String>list = generateList(input);
-		int i = 0;
-		while (i < list.size()) {
-			String t = list.get(i);
+		List<String> list = generateList(input);
+		list.forEach(t -> {
 			System.out.println(t);
 			sb.append(t);
-			i++;
-		}
+		});
 		return sb.toString();
 	}
-    
+
 }

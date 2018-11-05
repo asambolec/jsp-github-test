@@ -52,24 +52,24 @@ package data.general;
 /**
  * The base interface for data sets.
  * <P>
- * All datasets are required to support the {@link DatasetChangeEvent}
- * mechanism by allowing listeners to register and receive notification of any
- * changes to the dataset.
+ * All datasets are required to support the {@link DatasetChangeEvent} mechanism
+ * by allowing listeners to register and receive notification of any changes to
+ * the dataset.
  */
 public interface Dataset {
 
-    /**
-     * Registers an object for notification of changes to the dataset.
-     *
-     * @param listener  the object to register.
-     */
-    public void addChangeListener(DatasetChangeListener listener);
+	/**
+	 * Registers an object for notification of changes to the dataset.
+	 *
+	 * @param listener the object to register.
+	 */
+	public void addChangeListener(DatasetChangeListener listener);
 
-    /**
-     * Deregisters an object for notification of changes to the dataset.
-     *
-     * @param listener  the object to deregister.
-     */
-    public void removeChangeListener(DatasetChangeListener listener);
+	/**
+	 * Deregisters an object for notification of changes to the dataset.
+	 *
+	 * @param listener the object to deregister.
+	 */
+	public void removeChangeListener(DatasetChangeListener listener);
 
 }

@@ -45,8 +45,7 @@ public class UnsupportedAttributeTypeException extends WekaException {
 	/**
 	 * Creates a new UnsupportedAttributeTypeException.
 	 *
-	 * @param message
-	 *            the reason for raising an exception.
+	 * @param message the reason for raising an exception.
 	 */
 	public UnsupportedAttributeTypeException(String message) {
 

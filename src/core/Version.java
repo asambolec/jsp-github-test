@@ -88,14 +88,10 @@ public class Version implements Comparable<String>, RevisionHandler {
 	/**
 	 * parses the version and stores the result in the arrays
 	 * 
-	 * @param version
-	 *            the version string to parse (contains "-" instead of "."!)
-	 * @param maj
-	 *            the major version
-	 * @param min
-	 *            the minor version
-	 * @param rev
-	 *            the revision version
+	 * @param version the version string to parse (contains "-" instead of "."!)
+	 * @param maj     the major version
+	 * @param min     the minor version
+	 * @param rev     the revision version
 	 */
 	private static boolean parseVersion(String version, int[] maj, int[] min, int[] rev, int[] point) {
 		int major = 0;
@@ -165,8 +161,7 @@ public class Version implements Comparable<String>, RevisionHandler {
 	/**
 	 * checks the version of this class against the given version-string
 	 * 
-	 * @param o
-	 *            the version-string to compare with
+	 * @param o the version-string to compare with
 	 * @return -1 if this version is less, 0 if equal and +1 if greater than the
 	 *         provided version
 	 */
@@ -222,8 +217,7 @@ public class Version implements Comparable<String>, RevisionHandler {
 	/**
 	 * whether the given version string is equal to this version
 	 * 
-	 * @param o
-	 *            the version-string to compare to
+	 * @param o the version-string to compare to
 	 * @return TRUE if the version-string is equals to its own
 	 */
 	@Override
@@ -235,8 +229,7 @@ public class Version implements Comparable<String>, RevisionHandler {
 	 * checks whether this version is older than the one from the given version
 	 * string
 	 * 
-	 * @param o
-	 *            the version-string to compare with
+	 * @param o the version-string to compare with
 	 * @return TRUE if this version is older than the given one
 	 */
 	public boolean isOlder(String o) {
@@ -247,8 +240,7 @@ public class Version implements Comparable<String>, RevisionHandler {
 	 * checks whether this version is newer than the one from the given version
 	 * string
 	 * 
-	 * @param o
-	 *            the version-string to compare with
+	 * @param o the version-string to compare with
 	 * @return TRUE if this version is newer than the given one
 	 */
 	public boolean isNewer(String o) {
@@ -278,8 +270,7 @@ public class Version implements Comparable<String>, RevisionHandler {
 	/**
 	 * only for testing
 	 * 
-	 * @param args
-	 *            the commandline arguments - ignored
+	 * @param args the commandline arguments - ignored
 	 */
 	public static void main(String[] args) {
 		Version v;

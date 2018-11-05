@@ -134,8 +134,8 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	protected static boolean m_ShowGlobalInfoToolTip;
 
 	/**
-	 * Loads the configuration property file (USE_DYNAMIC is FALSE) or
-	 * determines the classes dynamically (USE_DYNAMIC is TRUE)
+	 * Loads the configuration property file (USE_DYNAMIC is FALSE) or determines
+	 * the classes dynamically (USE_DYNAMIC is TRUE)
 	 * 
 	 * @see #USE_DYNAMIC
 	 * @see GenericPropertiesCreator
@@ -196,11 +196,10 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	}
 
 	/**
-	 * Constructor that allows specifying whether it is possible to change the
-	 * class within the editor dialog.
+	 * Constructor that allows specifying whether it is possible to change the class
+	 * within the editor dialog.
 	 * 
-	 * @param canChangeClassInDialog
-	 *            whether the user can change the class
+	 * @param canChangeClassInDialog whether the user can change the class
 	 */
 	public GenericObjectEditor(boolean canChangeClassInDialog) {
 		m_canChangeClassInDialog = canChangeClassInDialog;
@@ -339,8 +338,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	/**
 	 * Sets whether the user can change the class in the dialog.
 	 * 
-	 * @param value
-	 *            if true then the user can change the class
+	 * @param value if true then the user can change the class
 	 */
 	public void setCanChangeClassInDialog(boolean value) {
 		m_canChangeClassInDialog = value;
@@ -368,10 +366,8 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	 * returns the name of the root element of the given class name,
 	 * <code>null</code> if it doesn't contain the separator.
 	 * 
-	 * @param clsname
-	 *            the full classname
-	 * @param separator
-	 *            the separator
+	 * @param clsname   the full classname
+	 * @param separator the separator
 	 * @return string the root element
 	 */
 	protected static String getRootFromClass(String clsname, String separator) {
@@ -384,15 +380,14 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 
 	/**
 	 * parses the given string of classes separated by ", " and returns the a
-	 * hashtable with as many entries as there are different root elements in
-	 * the class names (the key is the root element). E.g. if there's only
-	 * "weka." as the prefix for all classes the a hashtable of size 1 is
-	 * returned. if NULL is the input, then NULL is also returned.
+	 * hashtable with as many entries as there are different root elements in the
+	 * class names (the key is the root element). E.g. if there's only "weka." as
+	 * the prefix for all classes the a hashtable of size 1 is returned. if NULL is
+	 * the input, then NULL is also returned.
 	 * 
-	 * @param classes
-	 *            the classnames to work on
-	 * @return for each distinct root element in the classnames, one entry in
-	 *         the hashtable (with the root element as key)
+	 * @param classes the classnames to work on
+	 * @return for each distinct root element in the classnames, one entry in the
+	 *         hashtable (with the root element as key)
 	 */
 	public static Hashtable<String, String> sortClassesByRoot(String classes) {
 		Hashtable<String, Vector<String>> roots;
@@ -458,8 +453,8 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	/**
 	 * Called when the class of object being edited changes.
 	 * 
-	 * @return the hashtable containing the HierarchyPropertyParsers for the
-	 *         root elements
+	 * @return the hashtable containing the HierarchyPropertyParsers for the root
+	 *         elements
 	 */
 	protected Hashtable<String, HierarchyPropertyParser> getClassesFromProperties() {
 
@@ -469,21 +464,20 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		if (cls == null) {
 			return hpps;
 		}
-		List<String> toSort = new ArrayList<String>(cls);
+		List<String> toSort = new ArrayList<>(cls);
 		Collections.sort(toSort, new ClassDiscovery.StringCompare());
 
 		StringBuilder b = new StringBuilder();
-		for (String s : toSort) {
+		toSort.forEach(s -> {
 			b.append(s).append(",");
-		}
+		});
 		String listS = b.substring(0, b.length() - 1);
 		// Hashtable typeOptions =
 		// sortClassesByRoot(EDITOR_PROPERTIES.getProperty(className));
 		Hashtable<String, String> typeOptions = sortClassesByRoot(listS);
 		if (typeOptions == null) {
 			/*
-			 * System.err.
-			 * println("Warning: No configuration property found in\n" +
+			 * System.err. println("Warning: No configuration property found in\n" +
 			 * PROPERTY_FILE + "\n" + "for " + className);
 			 */
 		} else {
@@ -525,11 +519,10 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	}
 
 	/**
-	 * Sets whether the editor is "enabled", meaning that the current values
-	 * will be painted.
+	 * Sets whether the editor is "enabled", meaning that the current values will be
+	 * painted.
 	 * 
-	 * @param newVal
-	 *            a value of type 'boolean'
+	 * @param newVal a value of type 'boolean'
 	 */
 	public void setEnabled(boolean newVal) {
 
@@ -541,8 +534,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	/**
 	 * Sets the class of values that can be edited.
 	 * 
-	 * @param type
-	 *            a value of type 'Class'
+	 * @param type a value of type 'Class'
 	 */
 	public void setClassType(Class<?> type) {
 
@@ -586,19 +578,18 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	/**
 	 * True if the cancel button was used to close the editor.
 	 *
-	 * @return true if the cancel button was pressed the last time the editor
-	 *         was closed
+	 * @return true if the cancel button was pressed the last time the editor was
+	 *         closed
 	 */
 	public boolean wasCancelPressed() {
 		return m_CancelWasPressed;
 	}
 
 	/**
-	 * Sets the current Object. If the Object is in the Object chooser, this
-	 * becomes the selected item (and added to the chooser if necessary).
+	 * Sets the current Object. If the Object is in the Object chooser, this becomes
+	 * the selected item (and added to the chooser if necessary).
 	 * 
-	 * @param o
-	 *            an object that must be a Object.
+	 * @param o an object that must be a Object.
 	 */
 	@Override
 	public void setValue(Object o) {
@@ -627,8 +618,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	/**
 	 * Sets the current Object.
 	 * 
-	 * @param c
-	 *            a value of type 'Object'
+	 * @param c a value of type 'Object'
 	 */
 	protected void setObject(Object c) {
 
@@ -670,10 +660,9 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	}
 
 	/**
-	 * Supposedly returns an initialization string to create a Object identical
-	 * to the current one, including it's state, but this doesn't appear
-	 * possible given that the initialization string isn't supposed to contain
-	 * multiple statements.
+	 * Supposedly returns an initialization string to create a Object identical to
+	 * the current one, including it's state, but this doesn't appear possible given
+	 * that the initialization string isn't supposed to contain multiple statements.
 	 * 
 	 * @return the java source code initialisation string
 	 */
@@ -684,8 +673,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	}
 
 	/**
-	 * Returns true to indicate that we can paint a representation of the
-	 * Object.
+	 * Returns true to indicate that we can paint a representation of the Object.
 	 * 
 	 * @return true
 	 */
@@ -698,10 +686,8 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	/**
 	 * Paints a representation of the current Object.
 	 * 
-	 * @param gfx
-	 *            the graphics context to use
-	 * @param box
-	 *            the area we are allowed to paint into
+	 * @param gfx the graphics context to use
+	 * @param box the area we are allowed to paint into
 	 */
 	@Override
 	public void paintValue(java.awt.Graphics gfx, java.awt.Rectangle box) {
@@ -751,10 +737,9 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	/**
 	 * Returns null as we don't support getting/setting values as text.
 	 * 
-	 * @param text
-	 *            the text value
-	 * @throws IllegalArgumentException
-	 *             as we don't support getting/setting values as text.
+	 * @param text the text value
+	 * @throws IllegalArgumentException as we don't support getting/setting values
+	 *                                  as text.
 	 */
 	@Override
 	public void setAsText(String text) {
@@ -801,8 +786,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	/**
 	 * Adds a PropertyChangeListener who will be notified of value changes.
 	 * 
-	 * @param l
-	 *            a value of type 'PropertyChangeListener'
+	 * @param l a value of type 'PropertyChangeListener'
 	 */
 	@Override
 	public void addPropertyChangeListener(PropertyChangeListener l) {
@@ -813,8 +797,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	/**
 	 * Removes a PropertyChangeListener.
 	 * 
-	 * @param l
-	 *            a value of type 'PropertyChangeListener'
+	 * @param l a value of type 'PropertyChangeListener'
 	 */
 	@Override
 	public void removePropertyChangeListener(PropertyChangeListener l) {
@@ -850,8 +833,8 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	}
 
 	/**
-	 * Creates a button that when clicked will enable the user to change the
-	 * class of the object being edited.
+	 * Creates a button that when clicked will enable the user to change the class
+	 * of the object being edited.
 	 * 
 	 * @return the choose button
 	 */
@@ -883,8 +866,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	/**
 	 * creates a classname from the given path.
 	 * 
-	 * @param path
-	 *            the path to generate the classname from
+	 * @param path the path to generate the classname from
 	 * @return the generated classname
 	 */
 	protected String getClassnameFromPath(TreePath path) {
@@ -949,8 +931,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	/**
 	 * Creates a JTree from an object heirarchy.
 	 * 
-	 * @param hpps
-	 *            the hierarchy of objects to mirror in the tree
+	 * @param hpps the hierarchy of objects to mirror in the tree
 	 * @return a JTree representation of the hierarchy
 	 */
 	protected JTree createTree(Hashtable<String, HierarchyPropertyParser> hpps) {
@@ -1010,10 +991,8 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	 * m_treeNodeOfCurrentObject if the current object is discovered during
 	 * creation.
 	 * 
-	 * @param tree
-	 *            the root of the tree to add children to
-	 * @param hpp
-	 *            the hierarchy of objects to mirror in the tree
+	 * @param tree the root of the tree to add children to
+	 * @param hpp  the hierarchy of objects to mirror in the tree
 	 */
 	protected void addChildrenToTree(GOETreeNode tree, HierarchyPropertyParser hpp) {
 
@@ -1050,8 +1029,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	/**
 	 * Called when the user selects an class type to change to.
 	 * 
-	 * @param className
-	 *            the name of the class that was selected
+	 * @param className the name of the class that was selected
 	 */
 	protected void classSelected(String className) {
 
@@ -1086,8 +1064,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	/**
 	 * Sets the capabilities to use for filtering.
 	 * 
-	 * @param value
-	 *            the object to get the filter capabilities from
+	 * @param value the object to get the filter capabilities from
 	 */
 	public void setCapabilitiesFilter(Capabilities value) {
 		m_CapabilitiesFilter = new Capabilities(null);
@@ -1113,11 +1090,9 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	/**
 	 * Makes a copy of an object using serialization.
 	 * 
-	 * @param source
-	 *            the object to copy
+	 * @param source the object to copy
 	 * @return a copy of the source object
-	 * @exception Exception
-	 *                if the copy fails
+	 * @exception Exception if the copy fails
 	 */
 	public static Object makeCopy(Object source) throws Exception {
 		SerializedObject so = new SerializedObject(source);
@@ -1126,11 +1101,9 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	}
 
 	/**
-	 * Returns the available classnames for a certain property in the props
-	 * file.
+	 * Returns the available classnames for a certain property in the props file.
 	 * 
-	 * @param property
-	 *            the property to get the classnames for
+	 * @param property the property to get the classnames for
 	 * @return the classnames
 	 */
 	public static Vector<String> getClassnames(String property) {
@@ -1158,8 +1131,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 	/**
 	 * Tests out the Object editor from the command line.
 	 * 
-	 * @param args
-	 *            may contain the class name of a Object to edit
+	 * @param args may contain the class name of a Object to edit
 	 */
 	public static void main(String[] args) {
 
@@ -1223,20 +1195,19 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		protected String m_toolTipText;
 
 		/**
-		 * Creates a tree node that has no parent and no children, but which
-		 * allows children.
+		 * Creates a tree node that has no parent and no children, but which allows
+		 * children.
 		 */
 		public GOETreeNode() {
 			super();
 		}
 
 		/**
-		 * Creates a tree node with no parent, no children, but which allows
-		 * children, and initializes it with the specified user object.
+		 * Creates a tree node with no parent, no children, but which allows children,
+		 * and initializes it with the specified user object.
 		 * 
-		 * @param userObject
-		 *            an Object provided by the user that constitutes the node's
-		 *            data
+		 * @param userObject an Object provided by the user that constitutes the node's
+		 *                   data
 		 */
 		public GOETreeNode(Object userObject) {
 			super(userObject);
@@ -1246,12 +1217,10 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		 * Creates a tree node with no parent, no children, initialized with the
 		 * specified user object, and that allows children only if specified.
 		 * 
-		 * @param userObject
-		 *            an Object provided by the user that constitutes the node's
-		 *            data
-		 * @param allowsChildren
-		 *            if true, the node is allowed to have child nodes --
-		 *            otherwise, it is always a leaf node
+		 * @param userObject     an Object provided by the user that constitutes the
+		 *                       node's data
+		 * @param allowsChildren if true, the node is allowed to have child nodes --
+		 *                       otherwise, it is always a leaf node
 		 */
 		public GOETreeNode(Object userObject, boolean allowsChildren) {
 			super(userObject, allowsChildren);
@@ -1260,8 +1229,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		/**
 		 * Set the tool tip for this node
 		 * 
-		 * @param tip
-		 *            the tool tip for this node
+		 * @param tip the tool tip for this node
 		 */
 		public void setToolTipText(String tip) {
 			m_toolTipText = tip;
@@ -1449,8 +1417,8 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		}
 
 		/**
-		 * transfers the selected Capabilities from the JList to the
-		 * Capabilities object.
+		 * transfers the selected Capabilities from the JList to the Capabilities
+		 * object.
 		 * 
 		 * @see #m_Capabilities
 		 * @see #m_List
@@ -1472,8 +1440,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		/**
 		 * sets the initial capabilities.
 		 * 
-		 * @param value
-		 *            the capabilities to use
+		 * @param value the capabilities to use
 		 */
 		public void setCapabilities(Capabilities value) {
 			if (value != null) {
@@ -1497,8 +1464,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		/**
 		 * sets the JPopupMenu to display again after closing the dialog.
 		 * 
-		 * @param value
-		 *            the JPopupMenu to display again
+		 * @param value the JPopupMenu to display again
 		 */
 		public void setPopup(JPopupMenu value) {
 			m_Popup = value;
@@ -1514,8 +1480,8 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		}
 
 		/**
-		 * if a JPopupMenu is set, it is displayed again. Displaying this dialog
-		 * closes any JPopupMenu automatically.
+		 * if a JPopupMenu is set, it is displayed again. Displaying this dialog closes
+		 * any JPopupMenu automatically.
 		 */
 		public void showPopup() {
 			if (getPopup() != null) {
@@ -1554,8 +1520,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		/**
 		 * Constructs a new popup menu.
 		 * 
-		 * @param tree
-		 *            the tree to put in the menu
+		 * @param tree the tree to put in the menu
 		 */
 		public JTreePopupMenu(JTree tree) {
 
@@ -1630,12 +1595,9 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		/**
 		 * Displays the menu, making sure it will fit on the screen.
 		 * 
-		 * @param invoker
-		 *            the component thast invoked the menu
-		 * @param x
-		 *            the x location of the popup
-		 * @param y
-		 *            the y location of the popup
+		 * @param invoker the component thast invoked the menu
+		 * @param x       the x location of the popup
+		 * @param y       the y location of the popup
 		 */
 		@Override
 		public void show(Component invoker, int x, int y) {
@@ -1809,8 +1771,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		/**
 		 * Enables/disables the cancel button.
 		 * 
-		 * @param flag
-		 *            true to enable cancel button, false to disable it
+		 * @param flag true to enable cancel button, false to disable it
 		 */
 		protected void setCancelButton(boolean flag) {
 
@@ -1832,15 +1793,13 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 			int returnVal = m_FileChooser.showOpenDialog(this);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File selected = m_FileChooser.getSelectedFile();
-				try {
-					ObjectInputStream oi = SerializationHelper
-							.getObjectInputStream(new BufferedInputStream(new FileInputStream(selected)));
+				try (ObjectInputStream oi = SerializationHelper
+						.getObjectInputStream(new BufferedInputStream(new FileInputStream(selected)))) {
 					/*
-					 * ObjectInputStream oi = new ObjectInputStream(new
-					 * BufferedInputStream( new FileInputStream(selected)));
+					 * ObjectInputStream oi = new ObjectInputStream(new BufferedInputStream( new
+					 * FileInputStream(selected)));
 					 */
 					Object obj = oi.readObject();
-					oi.close();
 					if (!m_ClassType.isAssignableFrom(obj.getClass())) {
 						throw new Exception("Object not of type: " + m_ClassType.getName());
 					}
@@ -1857,8 +1816,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		/**
 		 * Saves an object to a file selected by the user.
 		 * 
-		 * @param object
-		 *            the object to save
+		 * @param object the object to save
 		 */
 		protected void saveObject(Object object) {
 
@@ -1868,11 +1826,9 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 			int returnVal = m_FileChooser.showSaveDialog(this);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File sFile = m_FileChooser.getSelectedFile();
-				try {
-					ObjectOutputStream oo = new ObjectOutputStream(
-							new BufferedOutputStream(new FileOutputStream(sFile)));
+				try (ObjectOutputStream oo = new ObjectOutputStream(
+						new BufferedOutputStream(new FileOutputStream(sFile)))) {
 					oo.writeObject(object);
-					oo.close();
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(this,
 							"Couldn't write to file: " + sFile.getName() + "\n" + ex.getMessage(), "Save object",
@@ -1893,8 +1849,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		/**
 		 * Makes a copy of an object using serialization.
 		 * 
-		 * @param source
-		 *            the object to copy
+		 * @param source the object to copy
 		 * @return a copy of the source object
 		 */
 		protected Object copyObject(Object source) {
@@ -1913,8 +1868,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		/**
 		 * Allows customization of the action label on the dialog.
 		 * 
-		 * @param newLabel
-		 *            the new string for the ok button
+		 * @param newLabel the new string for the ok button
 		 */
 		public void setOkButtonText(String newLabel) {
 
@@ -1924,8 +1878,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		/**
 		 * This is used to hook an action listener to the ok button.
 		 * 
-		 * @param a
-		 *            The action listener.
+		 * @param a The action listener.
 		 */
 		public void addOkListener(ActionListener a) {
 
@@ -1935,8 +1888,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		/**
 		 * This is used to hook an action listener to the cancel button.
 		 * 
-		 * @param a
-		 *            The action listener.
+		 * @param a The action listener.
 		 */
 		public void addCancelListener(ActionListener a) {
 
@@ -1946,8 +1898,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		/**
 		 * This is used to remove an action listener from the ok button.
 		 * 
-		 * @param a
-		 *            The action listener
+		 * @param a The action listener
 		 */
 		public void removeOkListener(ActionListener a) {
 
@@ -1957,8 +1908,7 @@ public class GenericObjectEditor implements PropertyEditor, CustomPanelSupplier 
 		/**
 		 * This is used to remove an action listener from the cancel button.
 		 * 
-		 * @param a
-		 *            The action listener
+		 * @param a The action listener
 		 */
 		public void removeCancelListener(ActionListener a) {
 

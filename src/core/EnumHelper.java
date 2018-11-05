@@ -47,8 +47,7 @@ public class EnumHelper {
 	/**
 	 * Constructor
 	 *
-	 * @param e
-	 *            the enum value to wrap
+	 * @param e the enum value to wrap
 	 */
 	public EnumHelper(Enum e) {
 		m_selectedEnumValue = e.toString();
@@ -64,8 +63,7 @@ public class EnumHelper {
 	/**
 	 * Set the fully qualified enum class name
 	 *
-	 * @param enumClass
-	 *            the fully qualified name of the enum class
+	 * @param enumClass the fully qualified name of the enum class
 	 */
 	public void setEnumClass(String enumClass) {
 		m_enumClass = enumClass;
@@ -81,19 +79,18 @@ public class EnumHelper {
 	}
 
 	/**
-	 * Set the selected/wrapped enum value (as obtained by calling toString() on
-	 * the enum value)
+	 * Set the selected/wrapped enum value (as obtained by calling toString() on the
+	 * enum value)
 	 *
-	 * @param selectedEnumValue
-	 *            the enum value to wrap
+	 * @param selectedEnumValue the enum value to wrap
 	 */
 	public void setSelectedEnumValue(String selectedEnumValue) {
 		m_selectedEnumValue = selectedEnumValue;
 	}
 
 	/**
-	 * Get the selected/wrapped enum value (as obtained by calling toString() on
-	 * the enum value)
+	 * Get the selected/wrapped enum value (as obtained by calling toString() on the
+	 * enum value)
 	 *
 	 * @return the enum value to wrap
 	 */
@@ -102,16 +99,14 @@ public class EnumHelper {
 	}
 
 	/**
-	 * Helper method to recover an enum value given the fully qualified name of
-	 * the enum and the value in question as strings
+	 * Helper method to recover an enum value given the fully qualified name of the
+	 * enum and the value in question as strings
 	 *
-	 * @param enmumClass
-	 *            a string containing the fully qualified name of the enum class
-	 * @param enumValue
-	 *            a string containing the value of the enum to find
+	 * @param enmumClass a string containing the fully qualified name of the enum
+	 *                   class
+	 * @param enumValue  a string containing the value of the enum to find
 	 * @return the enum value as an Object
-	 * @throws Exception
-	 *             if a problem occurs
+	 * @throws Exception if a problem occurs
 	 */
 	public static Object valueFromString(String enmumClass, String enumValue) throws Exception {
 		return null;
@@ -120,8 +115,7 @@ public class EnumHelper {
 	/**
 	 * Main method for testing this class
 	 *
-	 * @param args
-	 *            arguments
+	 * @param args arguments
 	 */
 	public static void main(String[] args) {
 		try {

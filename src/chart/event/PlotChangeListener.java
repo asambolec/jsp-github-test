@@ -52,11 +52,11 @@ import java.util.EventListener;
  */
 public interface PlotChangeListener extends EventListener {
 
-    /**
-     * Receives notification of a plot change event.
-     *
-     * @param event  the event.
-     */
-    public void plotChanged(PlotChangeEvent event);
+	/**
+	 * Receives notification of a plot change event.
+	 *
+	 * @param event the event.
+	 */
+	public void plotChanged(PlotChangeEvent event);
 
 }

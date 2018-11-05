@@ -74,8 +74,7 @@ public class ClassCache implements RevisionHandler {
 	/**
 	 * Fixes the classname, turns "/" and "\" into "." and removes ".class".
 	 * 
-	 * @param classname
-	 *            the classname to process
+	 * @param classname the classname to process
 	 * @return the processed classname
 	 */
 	public static String cleanUp(String classname) {
@@ -99,8 +98,7 @@ public class ClassCache implements RevisionHandler {
 	/**
 	 * Extracts the package name from the (clean) classname.
 	 * 
-	 * @param classname
-	 *            the classname to extract the package from
+	 * @param classname the classname to extract the package from
 	 * @return the package name
 	 */
 	public static String extractPackage(String classname) {
@@ -114,9 +112,8 @@ public class ClassCache implements RevisionHandler {
 	/**
 	 * Adds the classname to the cache.
 	 * 
-	 * @param classname
-	 *            the classname, automatically removes ".class" and turns "/" or
-	 *            "\" into "."
+	 * @param classname the classname, automatically removes ".class" and turns "/"
+	 *                  or "\" into "."
 	 * @return true if adding changed the cache
 	 */
 	public boolean add(String classname) {
@@ -138,8 +135,7 @@ public class ClassCache implements RevisionHandler {
 	/**
 	 * Removes the classname from the cache.
 	 * 
-	 * @param classname
-	 *            the classname to remove
+	 * @param classname the classname to remove
 	 * @return true if the removal changed the cache
 	 */
 	public boolean remove(String classname) {
@@ -159,10 +155,8 @@ public class ClassCache implements RevisionHandler {
 	/**
 	 * Fills the class cache with classes in the specified directory.
 	 * 
-	 * @param prefix
-	 *            the package prefix so far, null for default package
-	 * @param dir
-	 *            the directory to search
+	 * @param prefix the package prefix so far, null for default package
+	 * @param dir    the directory to search
 	 */
 	protected void initFromDir(String prefix, File dir) {
 		File[] files;
@@ -191,8 +185,7 @@ public class ClassCache implements RevisionHandler {
 	/**
 	 * Fills the class cache with classes in the specified directory.
 	 * 
-	 * @param dir
-	 *            the directory to search
+	 * @param dir the directory to search
 	 */
 	protected void initFromDir(File dir) {
 		if (VERBOSE) {
@@ -202,11 +195,10 @@ public class ClassCache implements RevisionHandler {
 	}
 
 	/**
-	 * Analyzes the MANIFEST.MF file of a jar whether additional jars are listed
-	 * in the "Class-Path" key.
+	 * Analyzes the MANIFEST.MF file of a jar whether additional jars are listed in
+	 * the "Class-Path" key.
 	 * 
-	 * @param manifest
-	 *            the manifest to analyze
+	 * @param manifest the manifest to analyze
 	 */
 	protected void initFromManifest(Manifest manifest) {
 		if (manifest == null) {
@@ -237,8 +229,7 @@ public class ClassCache implements RevisionHandler {
 	/**
 	 * Fills the class cache with classes from the specified jar.
 	 * 
-	 * @param file
-	 *            the jar to inspect
+	 * @param file the jar to inspect
 	 */
 	protected void initFromJar(File file) {
 		JarFile jar;
@@ -281,8 +272,7 @@ public class ClassCache implements RevisionHandler {
 	/**
 	 * Returns all the classes for the given package.
 	 * 
-	 * @param pkgname
-	 *            the package to get the classes for
+	 * @param pkgname the package to get the classes for
 	 * @return the classes (sorted by name)
 	 */
 	public HashSet<String> getClassnames(String pkgname) {
@@ -296,8 +286,7 @@ public class ClassCache implements RevisionHandler {
 	/**
 	 * Analyzes a part of the classpath.
 	 * 
-	 * @param part
-	 *            the part to analyze
+	 * @param part the part to analyze
 	 */
 	protected void initFromClasspathPart(String part) {
 		File file;
@@ -351,8 +340,7 @@ public class ClassCache implements RevisionHandler {
 	/**
 	 * Find all classes that have the supplied matchText String in their suffix.
 	 * 
-	 * @param matchText
-	 *            the text to match
+	 * @param matchText the text to match
 	 * @return an array list of matching fully qualified class names.
 	 */
 	public ArrayList<String> find(String matchText) {
@@ -394,8 +382,7 @@ public class ClassCache implements RevisionHandler {
 	/**
 	 * For testing only.
 	 * 
-	 * @param args
-	 *            ignored
+	 * @param args ignored
 	 */
 	public static void main(String[] args) {
 		ClassCache cache = new ClassCache();
@@ -417,8 +404,7 @@ public class ClassCache implements RevisionHandler {
 		/**
 		 * Checks whether the file is a class.
 		 * 
-		 * @param pathname
-		 *            the file to check
+		 * @param pathname the file to check
 		 * @return true if a class file
 		 */
 		@Override
@@ -438,8 +424,7 @@ public class ClassCache implements RevisionHandler {
 		/**
 		 * Checks whether the file is a directory.
 		 * 
-		 * @param pathname
-		 *            the file to check
+		 * @param pathname the file to check
 		 * @return true if a directory
 		 */
 		@Override

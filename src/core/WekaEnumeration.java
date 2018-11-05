@@ -48,8 +48,7 @@ public class WekaEnumeration<E> implements Enumeration<E>, RevisionHandler {
 	/**
 	 * Constructs an enumeration.
 	 * 
-	 * @param vector
-	 *            the vector which is to be enumerated
+	 * @param vector the vector which is to be enumerated
 	 */
 	public WekaEnumeration(/* @non_null@ */List<E> vector) {
 
@@ -62,10 +61,8 @@ public class WekaEnumeration<E> implements Enumeration<E>, RevisionHandler {
 	 * Constructs an enumeration with a special element. The special element is
 	 * skipped during the enumeration.
 	 * 
-	 * @param vector
-	 *            the vector which is to be enumerated
-	 * @param special
-	 *            the index of the special element
+	 * @param vector  the vector which is to be enumerated
+	 * @param special the index of the special element
 	 */
 	// @ requires 0 <= special && special < vector.size();
 	public WekaEnumeration(/* @non_null@ */List<E> vector, int special) {

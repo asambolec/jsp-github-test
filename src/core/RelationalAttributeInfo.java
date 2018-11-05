@@ -29,7 +29,7 @@ public class RelationalAttributeInfo extends NominalAttributeInfo {
 	 * 
 	 */
 	private static long serialVersionUID = 1L;
-	
+
 	/** The header information for a relation-valued attribute. */
 	protected Instances m_Header;
 

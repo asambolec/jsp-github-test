@@ -65,12 +65,10 @@ public interface Saver extends Serializable, RevisionHandler {
 	 * Resets the Saver object and sets the destination to be the supplied File
 	 * object.
 	 *
-	 * @param file
-	 *            the File
-	 * @exception IOException
-	 *                if an error occurs support loading from a File.
+	 * @param file the File
+	 * @exception IOException if an error occurs support loading from a File.
 	 *
-	 *                <pre>
+	 *                        <pre>
 	 * <jml>
 	 *    public_normal_behavior
 	 *      requires: file != null
@@ -84,7 +82,7 @@ public interface Saver extends Serializable, RevisionHandler {
 	 *                || (* file does not exist *);
 	 *    signals: (IOException);
 	 * </jml>
-	 *                </pre>
+	 *                        </pre>
 	 */
 	void setDestination(File file) throws IOException;
 
@@ -92,18 +90,15 @@ public interface Saver extends Serializable, RevisionHandler {
 	 * Resets the Saver object and sets the destination to be the supplied
 	 * InputStream.
 	 * 
-	 * @param output
-	 *            the output stream
-	 * @exception IOException
-	 *                if this Loader doesn't support loading from a File.
+	 * @param output the output stream
+	 * @exception IOException if this Loader doesn't support loading from a File.
 	 */
 	void setDestination(OutputStream output) throws IOException;
 
 	/**
 	 * Sets the retrieval mode
 	 * 
-	 * @param mode
-	 *            an integer representing a retrieval mode
+	 * @param mode an integer representing a retrieval mode
 	 */
 	void setRetrieval(int mode);
 
@@ -111,30 +106,25 @@ public interface Saver extends Serializable, RevisionHandler {
 	 * Gets the file extension
 	 * 
 	 * @return a string conatining the file extension (including the '.')
-	 * @throws Exception
-	 *             exception if a Saver not implementing FileSourcedConverter is
-	 *             used.
+	 * @throws Exception exception if a Saver not implementing FileSourcedConverter
+	 *                   is used.
 	 */
 	String getFileExtension() throws Exception;
 
 	/**
 	 * Sets the output file
 	 * 
-	 * @param file
-	 *            the output file
-	 * @throws IOException
-	 *             exception if new output file cannot be set
+	 * @param file the output file
+	 * @throws IOException exception if new output file cannot be set
 	 */
 	void setFile(File file) throws IOException;
 
 	/**
 	 * Sets the file prefix. This method is used in the KnowledgeFlow GUI.
 	 * 
-	 * @param prefix
-	 *            the prefix of the file name
-	 * @throws Exception
-	 *             exception if a Saver not implementing FileSourcedConverter is
-	 *             used.
+	 * @param prefix the prefix of the file name
+	 * @throws Exception exception if a Saver not implementing FileSourcedConverter
+	 *                   is used.
 	 */
 	void setFilePrefix(String prefix) throws Exception;
 
@@ -142,9 +132,8 @@ public interface Saver extends Serializable, RevisionHandler {
 	 * Gets the file prefix This method is used in the KnowledgeFlow GUI.
 	 * 
 	 * @return the prefix of the file name
-	 * @throws Exception
-	 *             exception if a Saver not implementing FileSourcedConverter is
-	 *             used.
+	 * @throws Exception exception if a Saver not implementing FileSourcedConverter
+	 *                   is used.
 	 */
 	String filePrefix() throws Exception;
 
@@ -152,11 +141,9 @@ public interface Saver extends Serializable, RevisionHandler {
 	 * Sets the directory of the output file. This method is used in the
 	 * KnowledgeFlow GUI.
 	 * 
-	 * @param dir
-	 *            a string containing the path and name of the directory
-	 * @throws IOException
-	 *             exception if a Saver not implementing FileSourcedConverter is
-	 *             used.
+	 * @param dir a string containing the path and name of the directory
+	 * @throws IOException exception if a Saver not implementing
+	 *                     FileSourcedConverter is used.
 	 */
 	void setDir(String dir) throws IOException;
 
@@ -164,13 +151,10 @@ public interface Saver extends Serializable, RevisionHandler {
 	 * Sets the file prefix and the directory. This method is used in the
 	 * KnowledgeFlow GUI.
 	 * 
-	 * @param relationName
-	 *            the name of the realtion to be saved
-	 * @param add
-	 *            additional String for the file name
-	 * @throws IOException
-	 *             exception if a Saver not implementing FileSourcedConverter is
-	 *             used.
+	 * @param relationName the name of the realtion to be saved
+	 * @param add          additional String for the file name
+	 * @throws IOException exception if a Saver not implementing
+	 *                     FileSourcedConverter is used.
 	 */
 	public void setDirAndPrefix(String relationName, String add) throws IOException;
 
@@ -179,25 +163,22 @@ public interface Saver extends Serializable, RevisionHandler {
 	 * KnowledgeFlow GUI.
 	 * 
 	 * @return the directory as a string
-	 * @throws IOException
-	 *             exception if a Saver not implementing FileSourcedConverter is
-	 *             used.
+	 * @throws IOException exception if a Saver not implementing
+	 *                     FileSourcedConverter is used.
 	 */
 	String retrieveDir() throws IOException;
 
 	/**
 	 * Sets the instances to be saved
 	 * 
-	 * @param instances
-	 *            the instances
+	 * @param instances the instances
 	 */
 	void setInstances(Instances instances);
 
 	/**
 	 * Writes to a destination in batch mode
 	 * 
-	 * @throws IOException
-	 *             throws exection if writting in batch mode is not possible
+	 * @throws IOException throws exection if writting in batch mode is not possible
 	 */
 	void writeBatch() throws IOException;
 
@@ -205,10 +186,8 @@ public interface Saver extends Serializable, RevisionHandler {
 	 * Writes to a destination in incremental mode. If the instance is null, the
 	 * outputfile will be closed.
 	 * 
-	 * @param inst
-	 *            the instance to write, if null the output file is closed
-	 * @throws IOException
-	 *             throws exception if incremental writting is not possible
+	 * @param inst the instance to write, if null the output file is closed
+	 * @throws IOException throws exception if incremental writting is not possible
 	 */
 	void writeIncremental(Instance inst) throws IOException;
 

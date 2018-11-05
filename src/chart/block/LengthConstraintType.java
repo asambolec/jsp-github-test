@@ -45,35 +45,35 @@ package chart.block;
  */
 public enum LengthConstraintType {
 
-    /** NONE. */
-    NONE("LengthConstraintType.NONE"),
+	/** NONE. */
+	NONE("LengthConstraintType.NONE"),
 
-    /** Range. */
-    RANGE("RectangleConstraintType.RANGE"),
+	/** Range. */
+	RANGE("RectangleConstraintType.RANGE"),
 
-    /** FIXED. */
-    FIXED("LengthConstraintType.FIXED");
+	/** FIXED. */
+	FIXED("LengthConstraintType.FIXED");
 
-    /** The name. */
-    private String name;
+	/** The name. */
+	private String name;
 
-    /**
-     * Private constructor.
-     *
-     * @param name  the name.
-     */
-    private LengthConstraintType(String name) {
-        this.name = name;
-    }
+	/**
+	 * Private constructor.
+	 *
+	 * @param name the name.
+	 */
+	private LengthConstraintType(String name) {
+		this.name = name;
+	}
 
-    /**
-     * Returns a string representing the object.
-     *
-     * @return The string.
-     */
-    @Override
-    public String toString() {
-        return this.name.toString();
-    }
+	/**
+	 * Returns a string representing the object.
+	 *
+	 * @return The string.
+	 */
+	@Override
+	public String toString() {
+		return this.name.toString();
+	}
 
 }

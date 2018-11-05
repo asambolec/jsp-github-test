@@ -50,84 +50,83 @@ import chart.util.ObjectUtils;
 import chart.util.ParamChecks;
 
 /**
- * A painter that fills a rectangle with a solid color.  This is used for 
+ * A painter that fills a rectangle with a solid color. This is used for
  * standard background painting by the {@link JFreeChart} class.
  */
 public class ColorPainter implements Drawable, Serializable {
 
-    /** The fill color. */
-    private Color color;
-    
-    /**
-     * Creates a new instance using the background color for a panel under
-     * the currently installed Swing Look &amp; Feel.
-     */
-    public ColorPainter() {
-        this(UIManager.getColor("Panel.background"));
-    }
-    
-    /**
-     * Creates a new painter with the specified color.
-     * 
-     * @param color  the color (<code>null</code> not permitted). 
-     */
-    public ColorPainter(Color color) {
-        ParamChecks.nullNotPermitted(color, "color");
-        this.color = color;
-    }
+	/** The fill color. */
+	private Color color;
 
-    /**
-     * Returns the color used by the painter to fill rectangles.
-     * 
-     * @return The color (never <code>null</code>). 
-     */
-    public Color getColor() {
-        return this.color;
-    }
-    
-    /**
-     * Fills the specified <code>area</code> with the color that was specified
-     * in the constructor.
-     * 
-     * @param g2  the graphics target (<code>null</code> not permitted).
-     * @param area  the area (<code>null</code> not permitted).
-     */
-    @Override
-    public void draw(Graphics2D g2, Rectangle2D area) {
-        ParamChecks.nullNotPermitted(g2, "g2");
-        ParamChecks.nullNotPermitted(area, "area");
-        g2.setColor(this.color);
-        g2.fill(area);
-    }
+	/**
+	 * Creates a new instance using the background color for a panel under the
+	 * currently installed Swing Look &amp; Feel.
+	 */
+	public ColorPainter() {
+		this(UIManager.getColor("Panel.background"));
+	}
 
-    /**
-     * Tests this instance for equality with an arbitrary object.
-     * 
-     * @param obj  the object (<code>null</code> permitted).
-     * 
-     * @return A boolean. 
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof ColorPainter)) {
-            return true;
-        }
-        ColorPainter that = (ColorPainter) obj;
-        if (!this.color.equals(that.color)) {
-            return false;
-        }
-        return true;
-    }
-    
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + ObjectUtils.hashCode(this.color);
-        return hash;
-    }
-    
+	/**
+	 * Creates a new painter with the specified color.
+	 * 
+	 * @param color the color (<code>null</code> not permitted).
+	 */
+	public ColorPainter(Color color) {
+		ParamChecks.nullNotPermitted(color, "color");
+		this.color = color;
+	}
+
+	/**
+	 * Returns the color used by the painter to fill rectangles.
+	 * 
+	 * @return The color (never <code>null</code>).
+	 */
+	public Color getColor() {
+		return this.color;
+	}
+
+	/**
+	 * Fills the specified <code>area</code> with the color that was specified in
+	 * the constructor.
+	 * 
+	 * @param g2   the graphics target (<code>null</code> not permitted).
+	 * @param area the area (<code>null</code> not permitted).
+	 */
+	@Override
+	public void draw(Graphics2D g2, Rectangle2D area) {
+		ParamChecks.nullNotPermitted(g2, "g2");
+		ParamChecks.nullNotPermitted(area, "area");
+		g2.setColor(this.color);
+		g2.fill(area);
+	}
+
+	/**
+	 * Tests this instance for equality with an arbitrary object.
+	 * 
+	 * @param obj the object (<code>null</code> permitted).
+	 * 
+	 * @return A boolean.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (!(obj instanceof ColorPainter)) {
+			return true;
+		}
+		ColorPainter that = (ColorPainter) obj;
+		if (!this.color.equals(that.color)) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 7;
+		hash = 97 * hash + ObjectUtils.hashCode(this.color);
+		return hash;
+	}
 
 }

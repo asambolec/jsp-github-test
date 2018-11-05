@@ -80,8 +80,8 @@ public abstract class AbstractFileSaver extends AbstractSaver
 	private String mDir;
 
 	/**
-	 * Counter. In incremental mode after reading 100 instances they will be
-	 * written to a file.
+	 * Counter. In incremental mode after reading 100 instances they will be written
+	 * to a file.
 	 */
 	protected int m_incrementalCounter;
 
@@ -146,8 +146,7 @@ public abstract class AbstractFileSaver extends AbstractSaver
 	/**
 	 * Sets ihe file extension.
 	 * 
-	 * @param ext
-	 *            the file extension as a string startin with '.'.
+	 * @param ext the file extension as a string startin with '.'.
 	 */
 	protected void setFileExtension(String ext) {
 
@@ -168,10 +167,8 @@ public abstract class AbstractFileSaver extends AbstractSaver
 	/**
 	 * Sets the destination file.
 	 * 
-	 * @param outputFile
-	 *            the destination file.
-	 * @throws IOException
-	 *             throws an IOException if file cannot be set
+	 * @param outputFile the destination file.
+	 * @throws IOException throws an IOException if file cannot be set
 	 */
 	@Override
 	public void setFile(File outputFile) throws IOException {
@@ -184,8 +181,7 @@ public abstract class AbstractFileSaver extends AbstractSaver
 	/**
 	 * Sets the file name prefix
 	 * 
-	 * @param prefix
-	 *            the file name prefix
+	 * @param prefix the file name prefix
 	 */
 	@Override
 	public void setFilePrefix(String prefix) {
@@ -207,8 +203,7 @@ public abstract class AbstractFileSaver extends AbstractSaver
 	/**
 	 * Sets the directory where the instances should be stored
 	 * 
-	 * @param dir
-	 *            a string containing the directory path and name
+	 * @param dir a string containing the directory path and name
 	 */
 	@Override
 	public void setDir(String dir) {
@@ -230,8 +225,7 @@ public abstract class AbstractFileSaver extends AbstractSaver
 	/**
 	 * Set the environment variables to use.
 	 * 
-	 * @param env
-	 *            the environment variables to use
+	 * @param env the environment variables to use
 	 */
 	@Override
 	public void setEnvironment(Environment env) {
@@ -273,15 +267,13 @@ public abstract class AbstractFileSaver extends AbstractSaver
 	 * <p>
 	 * 
 	 * -o the output file <br>
-	 * The output file. The prefix of the output file is sufficient. If no
-	 * output file is given, Saver tries to use standard out.
+	 * The output file. The prefix of the output file is sufficient. If no output
+	 * file is given, Saver tries to use standard out.
 	 * <p>
 	 * 
 	 * 
-	 * @param options
-	 *            the list of options as an array of strings
-	 * @exception Exception
-	 *                if an option is not supported
+	 * @param options the list of options as an array of strings
+	 * @exception Exception if an option is not supported
 	 */
 	@Override
 	public void setOptions(String[] options) throws Exception {
@@ -374,10 +366,8 @@ public abstract class AbstractFileSaver extends AbstractSaver
 	/**
 	 * Sets the destination file (and directories if necessary).
 	 * 
-	 * @param file
-	 *            the File
-	 * @exception IOException
-	 *                always
+	 * @param file the File
+	 * @exception IOException always
 	 */
 	@Override
 	public void setDestination(File file) throws IOException {
@@ -441,10 +431,8 @@ public abstract class AbstractFileSaver extends AbstractSaver
 	/**
 	 * Sets the destination output stream.
 	 * 
-	 * @param output
-	 *            the output stream.
-	 * @throws IOException
-	 *             throws an IOException if destination cannot be set
+	 * @param output the output stream.
+	 * @throws IOException throws an IOException if destination cannot be set
 	 */
 	@Override
 	public void setDestination(OutputStream output) throws IOException {
@@ -456,10 +444,8 @@ public abstract class AbstractFileSaver extends AbstractSaver
 	 * Sets the directory and the file prefix. This method is used in the
 	 * KnowledgeFlow GUI
 	 * 
-	 * @param relationName
-	 *            the name of the relation to save
-	 * @param add
-	 *            additional string which should be part of the filename
+	 * @param relationName the name of the relation to save
+	 * @param add          additional string which should be part of the filename
 	 */
 	@Override
 	public void setDirAndPrefix(String relationName, String add) {
@@ -515,8 +501,7 @@ public abstract class AbstractFileSaver extends AbstractSaver
 	/**
 	 * Set whether to use relative rather than absolute paths
 	 * 
-	 * @param rp
-	 *            true if relative paths are to be used
+	 * @param rp true if relative paths are to be used
 	 */
 	@Override
 	public void setUseRelativePath(boolean rp) {
@@ -537,8 +522,7 @@ public abstract class AbstractFileSaver extends AbstractSaver
 	 * generates a string suitable for output on the command line displaying all
 	 * available options.
 	 * 
-	 * @param saver
-	 *            the saver to create the option string for
+	 * @param saver the saver to create the option string for
 	 * @return the option string
 	 */
 	protected static String makeOptionStr(AbstractFileSaver saver) {
@@ -564,10 +548,8 @@ public abstract class AbstractFileSaver extends AbstractSaver
 	/**
 	 * runs the given saver with the specified options
 	 * 
-	 * @param saver
-	 *            the saver to run
-	 * @param options
-	 *            the commandline options
+	 * @param saver   the saver to run
+	 * @param options the commandline options
 	 */
 	public static void runFileSaver(AbstractFileSaver saver, String[] options) {
 		// help request?

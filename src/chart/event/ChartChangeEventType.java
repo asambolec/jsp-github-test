@@ -39,39 +39,40 @@
  */
 
 package chart.event;
+
 /**
  * Defines tokens used to indicate an event type.
  */
 public enum ChartChangeEventType {
 
-   /** GENERAL. */
-    GENERAL("ChartChangeEventType.GENERAL"),
+	/** GENERAL. */
+	GENERAL("ChartChangeEventType.GENERAL"),
 
-    /** NEW_DATASET. */
-    NEW_DATASET("ChartChangeEventType.NEW_DATASET"),
+	/** NEW_DATASET. */
+	NEW_DATASET("ChartChangeEventType.NEW_DATASET"),
 
-    /** DATASET_UPDATED. */
-    DATASET_UPDATED("ChartChangeEventType.DATASET_UPDATED");
+	/** DATASET_UPDATED. */
+	DATASET_UPDATED("ChartChangeEventType.DATASET_UPDATED");
 
-    /** The name. */
-    private String name;
+	/** The name. */
+	private String name;
 
-    /**
-     * Private constructor.
-     *
-     * @param name  the name.
-     */
-    private ChartChangeEventType(String name) {
-        this.name = name;
-    }
+	/**
+	 * Private constructor.
+	 *
+	 * @param name the name.
+	 */
+	private ChartChangeEventType(String name) {
+		this.name = name;
+	}
 
-    /**
-     * Returns a string representing the object.
-     *
-     * @return The string.
-     */
-    public String toString() {
-        return this.name;
-    }
+	/**
+	 * Returns a string representing the object.
+	 *
+	 * @return The string.
+	 */
+	public String toString() {
+		return this.name;
+	}
 
 }

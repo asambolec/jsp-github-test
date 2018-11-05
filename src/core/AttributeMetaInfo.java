@@ -71,19 +71,17 @@ public class AttributeMetaInfo implements Serializable, RevisionHandler {
 	/**
 	 * Sets the metadata for the attribute. Processes the strings stored in the
 	 * metadata of the attribute so that the properties can be set up for the
-	 * easy-access metadata methods. Any strings sought that are omitted will
-	 * cause default values to be set.
+	 * easy-access metadata methods. Any strings sought that are omitted will cause
+	 * default values to be set.
 	 * 
-	 * The following properties are recognised: ordering, averageable,
-	 * zeropoint, regular, weight, and range.
+	 * The following properties are recognised: ordering, averageable, zeropoint,
+	 * regular, weight, and range.
 	 * 
 	 * All other properties can be queried and handled appropriately by classes
 	 * calling the getMetadata() method.
 	 * 
-	 * @param metadata
-	 *            the metadata
-	 * @throws IllegalArgumentException
-	 *             if the properties are not consistent
+	 * @param metadata the metadata
+	 * @throws IllegalArgumentException if the properties are not consistent
 	 */
 	// @ requires metadata != null;
 	private void setMetadata(ProtectedProperties metadata, Attribute att) {
@@ -172,15 +170,12 @@ public class AttributeMetaInfo implements Serializable, RevisionHandler {
 
 	/**
 	 * Sets the numeric range based on a string. If the string is null the range
-	 * will default to [-inf,+inf]. A square brace represents a closed interval,
-	 * a curved brace represents an open interval, and 'inf' represents
-	 * infinity. Examples of valid range strings:
-	 * "[-inf,20)","(-13.5,-5.2)","(5,inf]"
+	 * will default to [-inf,+inf]. A square brace represents a closed interval, a
+	 * curved brace represents an open interval, and 'inf' represents infinity.
+	 * Examples of valid range strings: "[-inf,20)","(-13.5,-5.2)","(5,inf]"
 	 * 
-	 * @param rangeString
-	 *            the string to parse as the attribute's numeric range
-	 * @throws IllegalArgumentException
-	 *             if the range is not valid
+	 * @param rangeString the string to parse as the attribute's numeric range
+	 * @throws IllegalArgumentException if the range is not valid
 	 */
 	// @ requires rangeString != null;
 	private void setNumericRange(String rangeString) {

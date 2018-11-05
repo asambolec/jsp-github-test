@@ -50,13 +50,13 @@ import chart.panel.Overlay;
  */
 public class OverlayChangeEvent extends EventObject {
 
-    /**
-     * Creates a new change event.
-     *
-     * @param source  the event source.
-     */
-    public OverlayChangeEvent(Object source) {
-        super(source);
-    }
-    
+	/**
+	 * Creates a new change event.
+	 *
+	 * @param source the event source.
+	 */
+	public OverlayChangeEvent(Object source) {
+		super(source);
+	}
+
 }
